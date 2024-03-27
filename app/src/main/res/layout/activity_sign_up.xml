@@ -41,10 +41,19 @@
                 android:textColor="@color/black"/>
 
             <EditText
+                android:id="@+id/etUsername"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:hint="Tên người dùng"
+                android:drawablePadding="8dp"
+                android:textColor="@color/black"/>
+
+            <EditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:hint="Mật khẩu"
                 android:drawablePadding="8dp"
                 android:textColor="@color/black"/>
@@ -53,7 +62,7 @@
                 android:id="@+id/etConfirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:hint="Nhập lại mật khẩu"
                 android:drawablePadding="8dp"
                 android:textColor="@color/black"/>
@@ -65,16 +74,17 @@
                 android:layout_height="60dp"
                 android:text="Đăng ký"
                 android:textSize="18sp"
+                android:textStyle="bold"
                 android:layout_marginTop="30dp" />
 
             <TextView
-                android:id="@+id/tvSignUp"
+                android:id="@+id/tvSignIn"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Chưa có tài khoản? Đăng ký ngay"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="40dp"
                 android:textSize="18sp" />
 
         </LinearLayout>
