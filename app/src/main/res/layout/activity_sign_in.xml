@@ -61,7 +61,7 @@
                 android:layout_height="60dp"
                 android:text="Đăng nhập"
                 android:id="@+id/btnLogin"
-                android:backgroundTint="@color/prink_boder"
+                android:backgroundTint="@color/pink1"
                 android:textSize="18sp"
                 android:layout_marginTop="30dp"
                 app:cornerRadius = "10dp"/>
