@@ -22,7 +22,7 @@
             android:padding="24dp">
 
             <TextView
-                android:textColor="@color/black"
+                android:textColor="@color/pink1"
                 android:id="@+id/tvTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -33,18 +33,22 @@
 
             <EditText
                 android:id="@+id/etEmail"
+                android:background="@drawable/boder_login"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="40dp"
                 android:hint="Email"
                 android:drawablePadding="8dp"
+                android:padding="8dp"
                 android:textColor="@color/black"/>
 
             <EditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:padding="8dp"
                 android:layout_marginTop="40dp"
+                android:background="@drawable/boder_login"
                 android:hint="Mật khẩu"
                 android:drawablePadding="8dp"
                 android:textColor="@color/black"/>
@@ -52,6 +56,7 @@
             <EditText
                 android:id="@+id/etConfirmPassword"
                 android:layout_width="match_parent"
+                android:background="@drawable/boder_login"
                 android:layout_height="50dp"
                 android:layout_marginTop="40dp"
                 android:hint="Nhập lại mật khẩu"
@@ -63,6 +68,8 @@
                 android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:padding="8dp"
+                android:backgroundTint="@color/pink1"
                 android:text="Đăng ký"
                 android:textSize="18sp"
                 android:layout_marginTop="30dp" />
@@ -74,7 +81,7 @@
                 android:layout_height="match_parent"
                 android:text="Chưa có tài khoản? Đăng ký ngay"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:textSize="18sp" />
 
         </LinearLayout>
