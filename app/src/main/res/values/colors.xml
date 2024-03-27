@@ -2,6 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="pink0">#FFFB6F92</color>
+    <color name="pink1">#FFE18AAA</color>
+    <color name="pink2">#FFFFB3C6</color>
+    <color name="pink3">#FFFFC2D1</color>
+    <color name="pink4">#FFEFCFD4</color>
+    <color name="pink5">#FFF5DCE0</color>
     <color name="prink_boder">#E18AAA</color>
     <color name="blue_login">#539CFF</color>
 </resources>
