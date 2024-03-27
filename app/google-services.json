@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "382070999281",
+    "project_id": "flashlearn-8a899",
+    "storage_bucket": "flashlearn-8a899.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:382070999281:android:22552d3b8f3aedc8e5c150",
+        "android_client_info": {
+          "package_name": "com.trduc.flashlearn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcaoXNREehXoBZScG4wa_H9104hMIn8ko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
