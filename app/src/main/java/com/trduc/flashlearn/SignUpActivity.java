@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    TextView tvTitle, tvSignIn;
+    TextView  tvSignIn;
     EditText etEmail, etUsername, etPassword, etConfirmPassword;
     Button bSignUp;
     FirebaseDatabase database;
@@ -24,14 +24,7 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
-        tvSignIn = findViewById(R.id.tvSignIn);
-        etEmail = findViewById(R.id.etEmail);
-        etUsername = findViewById(R.id.etUsername);
-        etPassword = findViewById(R.id.etPassword);
-        etConfirmPassword = findViewById(R.id.etConfirmPassword);
-        bSignUp = findViewById(R.id.bSignUp);
-
+        init();
         bSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,6 +39,14 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+    }
+    void init(){
+        tvSignIn = findViewById(R.id.tvSignIn);
+        etEmail = findViewById(R.id.etEmail);
+        etUsername = findViewById(R.id.etUsername);
+        etPassword = findViewById(R.id.etPassword);
+        etConfirmPassword = findViewById(R.id.etConfirmPassword);
+        bSignUp = findViewById(R.id.bSignUp);
     }
     boolean isEmail(EditText text) {
         CharSequence email = text.getText().toString();
