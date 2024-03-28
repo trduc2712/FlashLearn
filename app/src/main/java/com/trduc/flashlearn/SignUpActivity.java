@@ -38,12 +38,20 @@ public class SignUpActivity extends AppCompatActivity {
         bSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkuser();
+                checkUser();
             }
         });
         tvSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tvSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
                 startActivity(intent);
             }
@@ -72,7 +80,7 @@ public class SignUpActivity extends AppCompatActivity {
         // Thêm các điều kiện kiểm tra mật khẩu ở đây, ví dụ: mật khẩu phải có ít nhất 8 ký tự
         return password.length() >= 8;
     }
-    void checkuser(){
+    void checkUser(){
         String email = etEmail.getText().toString();
         String username = etUsername.getText().toString();
         String password = etPassword.getText().toString();
