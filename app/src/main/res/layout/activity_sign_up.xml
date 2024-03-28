@@ -4,108 +4,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity">
+    tools:context=".SignUpActivity"
+    android:background="@color/white">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="20dp"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="24sp"
+        android:paddingBottom="24sp"
+        android:paddingLeft="33sp"
+        android:paddingRight="33sp">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal"
-            android:padding="24dp">
+            android:text="Đăng ký"
+            android:gravity="center"
+            android:textColor="@color/pink0"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <EditText
+
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/grey_rounded_border_4sp"
+            android:textColorHint="#B2B4B3"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="10sp"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/etUsername"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="30dp"
+            android:hint="Tên người dùng"
+            android:inputType="text"
+            android:paddingLeft="10sp"
+            android:background="@drawable/grey_rounded_border_4sp"
+            android:textColorHint="#B2B4B3"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="30dp"
+            android:hint="Mật khẩu"
+            android:inputType="textPassword"
+            android:paddingLeft="10sp"
+            android:background="@drawable/grey_rounded_border_4sp"
+            android:textColorHint="#B2B4B3"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/etConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="30dp"
+            android:hint="Nhập lại mật khẩu"
+            android:inputType="textPassword"
+            android:background="@drawable/grey_rounded_border_4sp"
+            android:textColorHint="#B2B4B3"
+            android:paddingLeft="10sp"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/bSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/pink0"
+            android:background="@drawable/pink2_rounded_border_4sp"
+            android:text="Đăng ký"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="40sp">
 
             <TextView
-                android:textColor="@color/pink0"
-                android:id="@+id/tvTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Đăng ký"
-                android:textSize="25dp"
-                android:textAlignment="center"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/etEmail"
-                android:padding="8dp"
-                android:inputType="textEmailAddress"
-                android:layout_width="match_parent"
-                android:background="@drawable/boder_login"
-                android:layout_height="48dp"
-                android:layout_marginTop="40dp"
-                android:hint="Email"
-                android:textSize="15sp"
-                android:drawablePadding="8dp"
-                android:textColor="@color/black"/>
-
-            <EditText
-                android:id="@+id/etUsername"
-                android:padding="8dp"
-                android:inputType="text"
-                android:layout_width="match_parent"
-                android:background="@drawable/boder_login"
-                android:layout_height="48dp"
-                android:layout_marginTop="30dp"
-                android:hint="Tên người dùng"
-                android:textSize="15sp"
-                android:drawablePadding="8dp"
-                android:textColor="@color/black"/>
-
-            <EditText
-                android:id="@+id/etPassword"
-                android:inputType="textPassword"
-                android:layout_width="match_parent"
-                android:padding="8dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/boder_login"
-                android:hint="Mật khẩu"
-                android:drawablePadding="8dp"
-                android:textSize="15sp"
-                android:textColor="@color/black"/>
-
-            <EditText
-                android:id="@+id/etConfirmPassword"
-                android:inputType="textPassword"
-                android:layout_width="match_parent"
-                android:padding="8dp"
-                android:background="@drawable/boder_login"
-                android:layout_height="48dp"
-                android:layout_marginTop="30dp"
-                android:hint="Nhập lại mật khẩu"
-                android:drawablePadding="8dp"
-                android:textSize="15sp"
-                android:textColor="@color/black"/>
-
-            <Button
-                android:id="@+id/bSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:text="Đã có tài khoản?"
                 android:textColor="@color/black"
-                android:layout_width="match_parent"
-                android:backgroundTint="@color/pink1"
-                android:layout_height="48dp"
-                android:text="Đăng ký"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:layout_marginTop="30dp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/tvSignIn"
-                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Đã có tài khoản? Đăng nhập"
                 android:layout_gravity="center"
-                android:layout_marginTop="40dp"
-                android:textSize="13sp" />
+                android:text=" Đăng nhập"
+                android:textColor="@color/pink0"
+                android:textSize="15sp" />
 
         </LinearLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>
