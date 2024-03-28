@@ -35,10 +35,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/boder_login"
-                android:id="@+id/edUsername_Login"
+                android:id="@+id/etEmail_Login"
                 android:layout_marginTop="20dp"
                 android:padding="8dp"
-                android:hint="Tên người dùng"
+                android:hint="Email"
 
                 android:drawablePadding="8dp"
                 android:textColor="@color/black"/>
@@ -46,7 +46,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/edPassword_Login"
+                android:id="@+id/etPassword_Login"
                 android:background="@drawable/boder_login"
                 android:layout_marginTop="20dp"
                 android:padding="8dp"

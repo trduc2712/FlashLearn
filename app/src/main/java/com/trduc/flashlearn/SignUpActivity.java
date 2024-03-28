@@ -1,5 +1,6 @@
 package com.trduc.flashlearn;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,6 +10,12 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.*;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -19,6 +26,9 @@ public class SignUpActivity extends AppCompatActivity {
     Button bSignUp;
     FirebaseDatabase database;
     DatabaseReference reference;
+
+    FirebaseAuth auth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,15 +96,49 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
 
-        database = FirebaseDatabase.getInstance();
-        reference = database.getReference("users");
+//        database = FirebaseDatabase.getInstance();
+//        reference = database.getReference("users");
+//
+//        User user = new User(email, username, password);
+//        reference.child(username).setValue(user);
+        auth = FirebaseAuth.getInstance();
+        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(SignUpActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                    FirebaseUser firebaseUser = auth.getCurrentUser();
 
-        User user = new User(email, username, password);
-        reference.child(username).setValue(user);
+                    database = FirebaseDatabase.getInstance();
+                    reference = database.getReference("Registered users");
 
-        Toast.makeText(SignUpActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
-        startActivity(intent);
+                    User user = new User(email, username, password);
+
+                    reference.child(firebaseUser.getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+
+                                firebaseUser.sendEmailVerification();
+                                Toast.makeText(SignUpActivity.this, "Vui lòng xác minh email", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
+                                startActivity(intent);
+                            }
+                        }
+                    });
+
+
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(SignUpActivity.this, "Vui lòng thử lại", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
 
     }
 }
