@@ -10,7 +10,6 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,33 +17,26 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 public class SignInActivity extends AppCompatActivity {
-    EditText loginEmail, loginPassword;
-    Button loginButton;
+    EditText etEmail, etPassword;
+    Button bSignIn, bFacebookSignIn, bGoogleSignIn;
     FirebaseAuth auth;
-    TextView loginForgot,login_sigup;
-    Button loginfb,logingg;
+    TextView tvForgotPassword, tvSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         init();
-        loginForgot.setOnClickListener(new View.OnClickListener() {
+        tvForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignInActivity.this, Forgotpassword.class);
+                Intent intent = new Intent(SignInActivity.this, ForgotPasswordActivity.class);
                 startActivity(intent);
             }
         });
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        bSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!checkUsername() | !checkPassword()) {
@@ -53,59 +45,59 @@ public class SignInActivity extends AppCompatActivity {
                 }
             }
         });
-        login_sigup.setOnClickListener(new View.OnClickListener() {
+        tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
                 startActivity(intent);
-
             }
         });
 
     }
-    void init(){
-        loginEmail=findViewById(R.id.etEmail_Login);
-        loginPassword=findViewById(R.id.etPassword_Login);
-        loginButton=findViewById(R.id.btnLogin);
-        loginForgot=findViewById(R.id.tvForgotpass);
-        login_sigup=findViewById(R.id.tvSigup_login);
-        loginfb=findViewById(R.id.lnLoginFB);
-        logingg=findViewById(R.id.lnLoginGG);
-
-
+    void init() {
+        etEmail = findViewById(R.id.etEmail);
+        etPassword = findViewById(R.id.etPassword);
+        bSignIn = findViewById(R.id.bSignIn);
+        tvForgotPassword = findViewById(R.id.tvForgotPassword);
+        tvSignUp = findViewById(R.id.tvSignUp);
+        bFacebookSignIn = findViewById(R.id.bFacebookSignIn);
+        bGoogleSignIn = findViewById(R.id.bGoogleSignIn);
     }
+
     boolean isEmail(EditText text) {
         CharSequence email = text.getText().toString();
         return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
     }
+
     public Boolean checkUsername() {
-        if (!isEmail(loginEmail)) {
-            loginEmail.setError("Email không đúng định dạng");
+        if (!isEmail(etEmail)) {
+            etEmail.setError("Email không đúng định dạng");
             Toast.makeText(SignInActivity.this, "Vui lòng nhập lại email", Toast.LENGTH_SHORT).show();
             return false;
 
         } else {
-            loginEmail.setError(null);
+            etEmail.setError(null);
             return true;
         }
     }
 
     public Boolean checkPassword(){
-        String val = loginPassword.getText().toString();
+        String val = etPassword.getText().toString();
         if (val.isEmpty()) {
-            loginPassword.setError("Mật khẩu không đúng định dạng");
+            etPassword.setError("Mật khẩu không đúng định dạng");
             Toast.makeText(SignInActivity.this, "Vui lòng nhập mật khẩu", Toast.LENGTH_SHORT).show();
             return false;
         } else {
-            loginPassword.setError(null);
+            etPassword.setError(null);
             return true;
         }
     }
+
     public void checkUser(){
-        String userEmail = loginEmail.getText().toString().trim();
-        String userPassword = loginPassword.getText().toString().trim();
+        String email = etEmail.getText().toString().trim();
+        String password = etPassword.getText().toString().trim();
         auth = FirebaseAuth.getInstance();
-        auth.signInWithEmailAndPassword(userEmail,userPassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+        auth.signInWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
                 Intent intent = new Intent(SignInActivity.this, MainActivity.class);

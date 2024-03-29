@@ -26,7 +26,6 @@ public class SignUpActivity extends AppCompatActivity {
     Button bSignUp;
     FirebaseDatabase database;
     DatabaseReference reference;
-
     FirebaseAuth auth;
 
 

@@ -32,7 +32,7 @@
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/grey_rounded_border_4sp"
             android:textColorHint="#B2B4B3"
             android:hint="Email"
@@ -44,7 +44,7 @@
             android:id="@+id/etUsername"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:hint="Tên người dùng"
             android:inputType="text"
             android:paddingLeft="10sp"
@@ -56,7 +56,7 @@
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:hint="Mật khẩu"
             android:inputType="textPassword"
             android:paddingLeft="10sp"
@@ -68,7 +68,7 @@
             android:id="@+id/etConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:hint="Nhập lại mật khẩu"
             android:inputType="textPassword"
             android:background="@drawable/grey_rounded_border_4sp"
@@ -80,7 +80,7 @@
             android:id="@+id/bSignUp"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/pink0"
             android:background="@drawable/pink0_rounded_border_4sp"
             android:text="Đăng ký"
@@ -94,7 +94,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center"
-            android:layout_marginTop="40sp">
+            android:layout_marginTop="30sp">
 
             <TextView
                 android:layout_width="wrap_content"

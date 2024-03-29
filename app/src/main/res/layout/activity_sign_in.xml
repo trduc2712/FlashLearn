@@ -29,10 +29,10 @@
 
         <EditText
 
-            android:id="@+id/etEmail_Login"
+            android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/grey_rounded_border_4sp"
             android:textColorHint="#B2B4B3"
             android:hint="Email"
@@ -41,10 +41,10 @@
             android:textSize="15sp" />
 
         <EditText
-            android:id="@+id/etPassword_Login"
+            android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:hint="Mật khẩu"
             android:inputType="textPassword"
             android:paddingLeft="10sp"
@@ -53,7 +53,7 @@
             android:textSize="15sp" />
 
         <TextView
-            android:id="@+id/tvForgotpass"
+            android:id="@+id/tvForgotPassword"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -64,7 +64,7 @@
 
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/bSignIn"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="15dp"
@@ -86,34 +86,29 @@
             android:textSize="15sp" />
 
         <Button
-            android:id="@+id/lnLoginFB"
+            android:id="@+id/bFacebookSignIn"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/facebook_sign_in_background"
-            android:text=""
             android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="20sp" />
 
         <Button
-            android:id="@+id/lnLoginGG"
+            android:id="@+id/bGoogleSignIn"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/google_sign_in_background"
             android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center"
-            android:layout_marginTop="40sp">
+            android:layout_marginTop="30sp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -124,7 +119,7 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/tvSigup_login"
+                android:id="@+id/tvSignUp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"

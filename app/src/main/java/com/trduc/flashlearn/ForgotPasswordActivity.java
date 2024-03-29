@@ -18,25 +18,24 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Forgotpassword extends AppCompatActivity {
+public class ForgotPasswordActivity extends AppCompatActivity {
     ProgressDialog dialog;
     FirebaseAuth auth;
-
-    EditText emailForgot;
-    Button forgotbutton;
+    EditText etEmail;
+    Button bContinue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgotpassword);
-        emailForgot=findViewById(R.id.etEmail_forgot);
-        forgotbutton=findViewById(R.id.btnForgot);
+        setContentView(R.layout.activity_forgot_password);
+        etEmail = findViewById(R.id.etEmail);
+        bContinue = findViewById(R.id.bContinue);
 
         auth=FirebaseAuth.getInstance();
-        dialog=new ProgressDialog(Forgotpassword.this);
+        dialog=new ProgressDialog(ForgotPasswordActivity.this);
         dialog.setCancelable(false);
         dialog.setMessage("Loading....");
 
-        forgotbutton.setOnClickListener(new View.OnClickListener() {
+        bContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 forgotpass();
@@ -45,28 +44,28 @@ public class Forgotpassword extends AppCompatActivity {
     }
 
     private void forgotpass() {
-        if(!isEmail(emailForgot)){
+        if(!isEmail(etEmail)){
             return;
         }
         dialog.show();
-        auth.sendPasswordResetEmail(emailForgot.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+        auth.sendPasswordResetEmail(etEmail.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 dialog.dismiss();
                 if(task.isSuccessful()){
-                    startActivity(new Intent(Forgotpassword.this,SignInActivity.class));
+                    startActivity(new Intent(ForgotPasswordActivity.this,SignInActivity.class));
                     finish();
-                    Toast.makeText(Forgotpassword.this, "Vui lòng kiểm tra email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ForgotPasswordActivity.this, "Vui lòng kiểm tra email", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(Forgotpassword.this, "Email không đúng", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ForgotPasswordActivity.this, "Email không đúng", Toast.LENGTH_SHORT).show();
 
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(Forgotpassword.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ForgotPasswordActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
