@@ -12,8 +12,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -48,6 +50,7 @@ public class SignInActivity extends AppCompatActivity {
     TextView tvForgotPassword, tvSignUp;
     int RC_SIGN_IN = 20;
     SharedPreferences sharedPreferences;
+    boolean isPasswordVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +69,21 @@ public class SignInActivity extends AppCompatActivity {
             etEmail.setText(savedEmail);
             etPassword.setText(savedPassword);
         }
+
+        etPassword.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_RIGHT = 2;
+
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (etPassword.getRight() - etPassword.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        togglePasswordVisibility();
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
 
         tvForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +117,18 @@ public class SignInActivity extends AppCompatActivity {
         });
 
     }
+    private void togglePasswordVisibility() {
+        if (isPasswordVisible) {
+            etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye, 0);
+        } else {
+            etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye, 0);
+        }
+        etPassword.setSelection(etPassword.getText().length());
+        isPasswordVisible = !isPasswordVisible;
+    }
+
     public void loginGG(){
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
