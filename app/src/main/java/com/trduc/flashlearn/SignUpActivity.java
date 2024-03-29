@@ -7,6 +7,7 @@
     import android.os.Bundle;
     import android.text.InputType;
     import android.text.TextUtils;
+    import android.text.method.PasswordTransformationMethod;
     import android.util.Patterns;
     import android.view.MotionEvent;
     import android.view.View;
@@ -34,6 +35,7 @@
         DatabaseReference reference;
         FirebaseAuth auth;
         boolean isPasswordVisible = false;
+        boolean isConfirmPasswordVisible = false;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,7 @@
 
                     if (event.getAction() == MotionEvent.ACTION_UP) {
                         if (event.getRawX() >= (etPassword.getRight() - etPassword.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                            togglePasswordVisibility1();
+                            togglePasswordVisibility();
                             return true;
                         }
                     }
@@ -63,7 +65,7 @@
 
                     if (event.getAction() == MotionEvent.ACTION_UP) {
                         if (event.getRawX() >= (etConfirmPassword.getRight() - etConfirmPassword.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                            togglePasswordVisibility2();
+                            toggleConfirmPasswordVisibility();
                             return true;
                         }
                     }
@@ -96,31 +98,29 @@
 
         }
 
-        private void togglePasswordVisibility1() {
+        private void togglePasswordVisibility() {
+            isPasswordVisible = !isPasswordVisible;
             if (isPasswordVisible) {
-                etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_slash, 0);
-            } else {
-                etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                etPassword.setTransformationMethod(null);
                 etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye, 0);
-            }
-            etPassword.setSelection(etPassword.getText().length());
-            isPasswordVisible = !isPasswordVisible;
-        }
-
-        private void togglePasswordVisibility2() {
-            if (isPasswordVisible) {
-                etConfirmPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_slash, 0);
             } else {
-                etConfirmPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye, 0);
+                etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_slash, 0);
             }
-            etConfirmPassword.setSelection(etConfirmPassword.getText().length());
-            isPasswordVisible = !isPasswordVisible;
         }
 
-        void init(){
+        private void toggleConfirmPasswordVisibility() {
+            isConfirmPasswordVisible = !isConfirmPasswordVisible;
+            if (isConfirmPasswordVisible) {
+                etConfirmPassword.setTransformationMethod(null);
+                etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye, 0);
+            } else {
+                etConfirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_slash, 0);
+            }
+        }
+
+        void init() {
             tvSignIn = findViewById(R.id.tvSignIn);
             etEmail = findViewById(R.id.etEmail);
             etUsername = findViewById(R.id.etUsername);
@@ -128,6 +128,7 @@
             etConfirmPassword = findViewById(R.id.etConfirmPassword);
             bSignUp = findViewById(R.id.bSignUp);
         }
+
         boolean isEmail(EditText text) {
             CharSequence email = text.getText().toString();
             return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
@@ -137,11 +138,13 @@
             CharSequence str = text.getText().toString();
             return TextUtils.isEmpty(str);
         }
+
         boolean isPasswordValid(EditText passwordField) {
             CharSequence password = passwordField.getText().toString();
             // Thêm các điều kiện kiểm tra mật khẩu ở đây, ví dụ: mật khẩu phải có ít nhất 8 ký tự
             return password.length() >= 8;
         }
+
         void checkUser(){
             String email = etEmail.getText().toString();
             String username = etUsername.getText().toString();
@@ -171,9 +174,6 @@
     //        reference.child(username).setValue(user);
 
             auth = FirebaseAuth.getInstance();
-
-
-
             auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {

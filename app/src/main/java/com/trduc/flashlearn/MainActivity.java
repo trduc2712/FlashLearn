@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
-    ImageView menu;
+    ImageView menu, ivProfilePicture;
     LinearLayout home, setting, share, about, sign_out;
     TextView tvEmail, tvUsername;
     private boolean doubleBackToExitPressedOnce = false;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ivProfilePicture = findViewById(R.id.ivProfilePicture);
         drawerLayout = findViewById(R.id.drawerLayout);
         menu = findViewById(R.id.menu);
         home = findViewById(R.id.home);
@@ -44,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
         setting = findViewById(R.id.setting);
         share = findViewById(R.id.share);
         initUi();
-        ShowInformationUser();
+        showInformationUser();
+        showUserProfilePicture();
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,7 +136,8 @@ public class MainActivity extends AppCompatActivity {
         tvEmail = findViewById(R.id.tvEmail);
         tvUsername = findViewById(R.id.tvUsername);
     }
-    private void ShowInformationUser() {
+
+    private void showInformationUser() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null){
             return;
@@ -156,7 +160,26 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
+
+    private void showUserProfilePicture() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String userID = user.getUid();
+            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Registered users").child(userID);
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String photoUrl = dataSnapshot.child("photoUrl").getValue(String.class);
+                    Glide.with(MainActivity.this).load(photoUrl).into(ivProfilePicture);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
+    }
+
 }

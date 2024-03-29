@@ -14,6 +14,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
+import android.text.method.TransformationMethod;
 import android.util.Patterns;
 import android.view.MotionEvent;
 import android.view.View;
@@ -117,16 +119,16 @@ public class SignInActivity extends AppCompatActivity {
         });
 
     }
+
     private void togglePasswordVisibility() {
-        if (isPasswordVisible) {
-            etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_slash, 0);
-        } else {
-            etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-            etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye, 0);
-        }
-        etPassword.setSelection(etPassword.getText().length());
         isPasswordVisible = !isPasswordVisible;
+        if (isPasswordVisible) {
+            etPassword.setTransformationMethod(null);
+            etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye, 0);
+        } else {
+            etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_slash, 0);
+        }
     }
 
     public void loginGG(){
@@ -143,7 +145,7 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==RC_SIGN_IN){
+        if(requestCode == RC_SIGN_IN){
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
