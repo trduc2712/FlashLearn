@@ -23,7 +23,6 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-
         drawerLayout = findViewById(R.id.drawerLayout);
         menu = findViewById(R.id.menu);
         home = findViewById(R.id.home);

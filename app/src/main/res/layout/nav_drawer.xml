@@ -1,149 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="@drawable/drawer_boder"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="176dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="bottom"
-        android:padding="16dp"
-        android:background="@drawable/header_bkg"
+        android:padding="15dp"
+        android:background="@color/white"
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="75sp"
+            android:layout_height="75sp"
+            android:src="@drawable/user_profile_picture"/>
+
         <TextView
             android:id="@+id/tvUsernameprofile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Huyen Nguyen"
+            android:layout_marginTop="7sp"
+            android:text="Tên người dùng"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="20sp"/>
+
         <TextView
             android:id="@+id/tvEmailprofile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="huyennguyen2011203@gmail.com"
+            android:layout_marginTop="7sp"
+            android:text="Địa chỉ email"
             android:textSize="15sp"
-            android:textColor="@color/black"
-            android:layout_marginBottom="15dp"/>
+            android:textColor="@color/black" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/home"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:orientation="horizontal"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/pink0"
-            android:text="Home"
-            android:drawableLeft="@drawable/house_solid"
-            android:textSize="15sp"
-            android:drawablePadding="8dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/setting"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:orientation="horizontal"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/pink0"
-            android:text="Setting"
-            android:drawableLeft="@drawable/setting_solid"
-            android:textSize="15sp"
-            android:drawablePadding="8dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/share"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:orientation="horizontal"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/pink0"
-            android:text="Share"
-            android:textSize="15sp"
-            android:drawableLeft="@drawable/share_solid"
-            android:drawablePadding="8dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/about"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:orientation="horizontal"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/pink0"
-            android:text="About"
-            android:textSize="15sp"
-            android:drawableLeft="@drawable/about_solid"
-            android:drawablePadding="8dp"/>
-
-    </LinearLayout>
-
-    <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="12dp"
-        android:background="@color/pink0"/>
+        android:layout_height="match_parent"
+        android:background="@color/pink0"
+        android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/logout"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="25dp"
-        android:orientation="horizontal"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp">
-
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/pink0"
-            android:text="Logout"
-            android:drawableLeft="@drawable/logout"
-            android:textSize="15sp"
-            android:drawablePadding="8dp"/>
+            android:id="@+id/home"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="Trang chủ"
+                android:drawableLeft="@drawable/house_solid"
+                android:textSize="15sp"
+                android:drawablePadding="8dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/setting"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="Cài đặt"
+                android:drawableLeft="@drawable/setting_solid"
+                android:textSize="15sp"
+                android:drawablePadding="8dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/share"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="Chia sẻ"
+                android:textSize="15sp"
+                android:drawableLeft="@drawable/share_solid"
+                android:drawablePadding="8dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/about"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="Về chúng tôi"
+                android:textSize="15sp"
+                android:drawableLeft="@drawable/about_solid"
+                android:drawablePadding="8dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/logout"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="Đăng xuất"
+                android:drawableLeft="@drawable/logout"
+                android:textSize="15sp"
+                android:drawablePadding="8dp"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

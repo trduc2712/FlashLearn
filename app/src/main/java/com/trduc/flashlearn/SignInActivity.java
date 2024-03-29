@@ -8,12 +8,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,15 +43,30 @@ public class SignInActivity extends AppCompatActivity {
     EditText etEmail, etPassword;
     Button bSignIn, bFacebookSignIn, bGoogleSignIn;
     FirebaseAuth auth;
+    CheckBox cbRemember;
     FirebaseDatabase database;
     TextView tvForgotPassword, tvSignUp;
-    int RC_SIGN_IN=20;
+    int RC_SIGN_IN = 20;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         init();
+
+        sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+
+        boolean isRemembered = sharedPreferences.getBoolean("isChecked", false);
+        cbRemember.setChecked(isRemembered);
+
+        if (isRemembered) {
+            String savedEmail = sharedPreferences.getString("email", "");
+            String savedPassword = sharedPreferences.getString("password", "");
+            etEmail.setText(savedEmail);
+            etPassword.setText(savedPassword);
+        }
+
         tvForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,6 +154,7 @@ public class SignInActivity extends AppCompatActivity {
         tvSignUp = findViewById(R.id.tvSignUp);
         bFacebookSignIn = findViewById(R.id.bFacebookSignIn);
         bGoogleSignIn = findViewById(R.id.bGoogleSignIn);
+        cbRemember = findViewById(R.id.cbRemember);
     }
 
     boolean isEmail(EditText text) {
@@ -184,9 +203,24 @@ public class SignInActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(SignInActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                etPassword.setError("Sai mật khẩu");
             }
         });
+
+        if (cbRemember.isChecked()) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("isChecked", true);
+            editor.putString("email", email);
+            editor.putString("password", password);
+            editor.apply();
+        } else {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("isChecked", false);
+            editor.remove("email");
+            editor.remove("password");
+            editor.apply();
+        }
+
 //        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
 //        Query checkUserDatabase = reference.orderByChild("username").equalTo(userUsername);
 //        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {

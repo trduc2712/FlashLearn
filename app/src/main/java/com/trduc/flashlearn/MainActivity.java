@@ -127,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
                 String name = userprofile.username;
                 Emailprofile.setText(email);
                 Usernameprofile.setText(name);
-
             }
 
             @Override

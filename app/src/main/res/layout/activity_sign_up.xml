@@ -38,10 +38,12 @@
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:paddingLeft="10sp"
+            android:paddingRight="10sp"
             android:textSize="15sp" />
 
         <EditText
             android:id="@+id/etUsername"
+            android:paddingRight="10sp"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="20dp"
@@ -54,6 +56,7 @@
 
         <EditText
             android:id="@+id/etPassword"
+            android:paddingRight="10sp"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="20dp"
@@ -68,6 +71,7 @@
             android:id="@+id/etConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:paddingRight="10sp"
             android:layout_marginTop="20dp"
             android:hint="Nhập lại mật khẩu"
             android:inputType="textPassword"
