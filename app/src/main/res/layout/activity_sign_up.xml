@@ -55,6 +55,7 @@
             android:textSize="15sp" />
 
         <EditText
+            android:drawableRight="@drawable/eye_slash"
             android:id="@+id/etPassword"
             android:paddingRight="10sp"
             android:layout_width="match_parent"
@@ -71,6 +72,7 @@
             android:id="@+id/etConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:drawableRight="@drawable/eye_slash"
             android:paddingRight="10sp"
             android:layout_marginTop="20dp"
             android:hint="Nhập lại mật khẩu"

@@ -16,19 +16,18 @@ public class SettingActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu;
-    LinearLayout home, setting, share, about, logout;
+    LinearLayout home, setting, share, about, sign_out;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-
         drawerLayout = findViewById(R.id.drawerLayout);
         menu = findViewById(R.id.menu);
         home = findViewById(R.id.home);
         about = findViewById(R.id.about);
-        logout = findViewById(R.id.logout);
+        sign_out = findViewById(R.id.sign_out);
         setting = findViewById(R.id.setting);
         share = findViewById(R.id.share);
 
@@ -63,10 +62,10 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
-        logout.setOnClickListener(new View.OnClickListener() {
+        sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(SettingActivity.this, "Logout", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SettingActivity.this, "Đăng xuất", Toast.LENGTH_SHORT).show();
             }
         });
     }

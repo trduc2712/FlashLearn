@@ -120,7 +120,7 @@ public class SignInActivity extends AppCompatActivity {
     private void togglePasswordVisibility() {
         if (isPasswordVisible) {
             etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye, 0);
+            etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_slash, 0);
         } else {
             etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
             etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye, 0);
@@ -225,7 +225,6 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onSuccess(AuthResult authResult) {
                 Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-                startActivity(intent);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();

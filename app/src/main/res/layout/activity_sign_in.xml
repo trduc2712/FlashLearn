@@ -42,8 +42,8 @@
             android:textSize="15sp" />
 
         <EditText
-            android:drawableRight="@drawable/eye"
             android:id="@+id/etPassword"
+            android:drawableRight="@drawable/eye_slash"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:paddingRight="10sp"

@@ -5,8 +5,10 @@
 
     import android.content.Intent;
     import android.os.Bundle;
+    import android.text.InputType;
     import android.text.TextUtils;
     import android.util.Patterns;
+    import android.view.MotionEvent;
     import android.view.View;
     import android.widget.*;
 
@@ -31,19 +33,51 @@
         FirebaseDatabase database;
         DatabaseReference reference;
         FirebaseAuth auth;
-
+        boolean isPasswordVisible = false;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_sign_up);
             init();
+
+            etPassword.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    final int DRAWABLE_RIGHT = 2;
+
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        if (event.getRawX() >= (etPassword.getRight() - etPassword.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                            togglePasswordVisibility1();
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
+
+            etConfirmPassword.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    final int DRAWABLE_RIGHT = 2;
+
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        if (event.getRawX() >= (etConfirmPassword.getRight() - etConfirmPassword.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                            togglePasswordVisibility2();
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
+
             bSignUp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     checkUser();
                 }
             });
+
             tvSignIn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -61,6 +95,31 @@
             });
 
         }
+
+        private void togglePasswordVisibility1() {
+            if (isPasswordVisible) {
+                etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_slash, 0);
+            } else {
+                etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye, 0);
+            }
+            etPassword.setSelection(etPassword.getText().length());
+            isPasswordVisible = !isPasswordVisible;
+        }
+
+        private void togglePasswordVisibility2() {
+            if (isPasswordVisible) {
+                etConfirmPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_slash, 0);
+            } else {
+                etConfirmPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye, 0);
+            }
+            etConfirmPassword.setSelection(etConfirmPassword.getText().length());
+            isPasswordVisible = !isPasswordVisible;
+        }
+
         void init(){
             tvSignIn = findViewById(R.id.tvSignIn);
             etEmail = findViewById(R.id.etEmail);

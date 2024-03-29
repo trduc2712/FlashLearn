@@ -8,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,8 +27,9 @@ public class MainActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu;
-    LinearLayout home, setting, share, about, logout;
-    TextView Emailprofile,Usernameprofile;
+    LinearLayout home, setting, share, about, sign_out;
+    TextView tvEmail, tvUsername;
+    private boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         menu = findViewById(R.id.menu);
         home = findViewById(R.id.home);
         about = findViewById(R.id.about);
-        logout = findViewById(R.id.logout);
+        sign_out = findViewById(R.id.sign_out);
         setting = findViewById(R.id.setting);
         share = findViewById(R.id.share);
         initUi();
@@ -75,14 +77,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        logout.setOnClickListener(new View.OnClickListener() {
+        sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Logout", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
             }
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Nhấn trở về một lần nữa để thoát", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+    }
 
     public static void openDrawer(DrawerLayout drawerLayout) {
         drawerLayout.openDrawer(GravityCompat.START);
@@ -108,12 +130,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initUi(){
-        Emailprofile=findViewById(R.id.tvEmailprofile);
-        Usernameprofile=findViewById(R.id.tvUsernameprofile);
+        tvEmail = findViewById(R.id.tvEmail);
+        tvUsername = findViewById(R.id.tvUsername);
     }
-    private void ShowInformationUser(){
+    private void ShowInformationUser() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if(user==null){
+        if (user == null){
             return;
         }
         String userID = user.getUid();
@@ -125,8 +147,8 @@ public class MainActivity extends AppCompatActivity {
                 User userprofile = snapshot.getValue(User.class);
                 String email = user.getEmail();
                 String name = userprofile.username;
-                Emailprofile.setText(email);
-                Usernameprofile.setText(name);
+                tvEmail.setText(email);
+                tvUsername.setText(name);
             }
 
             @Override

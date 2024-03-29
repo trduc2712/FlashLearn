@@ -14,12 +14,13 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
         <ImageView
+            android:id="@+id/ivProfilePicture"
             android:layout_width="75sp"
             android:layout_height="75sp"
             android:src="@drawable/user_profile_picture"/>
 
         <TextView
-            android:id="@+id/tvUsernameprofile"
+            android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7sp"
@@ -29,7 +30,7 @@
             android:textSize="20sp"/>
 
         <TextView
-            android:id="@+id/tvEmailprofile"
+            android:id="@+id/tvEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7sp"
@@ -42,7 +43,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/pink0"
+        android:background="@color/pink3"
         android:orientation="vertical">
 
         <LinearLayout
@@ -58,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:text="Trang chủ"
-                android:drawableLeft="@drawable/house_solid"
+                android:drawableLeft="@drawable/house_icon"
                 android:textSize="15sp"
                 android:drawablePadding="8dp"/>
 
@@ -77,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:text="Cài đặt"
-                android:drawableLeft="@drawable/setting_solid"
+                android:drawableLeft="@drawable/setting_icon"
                 android:textSize="15sp"
                 android:drawablePadding="8dp"/>
 
@@ -97,7 +98,7 @@
                 android:textColor="@color/white"
                 android:text="Chia sẻ"
                 android:textSize="15sp"
-                android:drawableLeft="@drawable/share_solid"
+                android:drawableLeft="@drawable/share_icon"
                 android:drawablePadding="8dp"/>
 
         </LinearLayout>
@@ -116,7 +117,7 @@
                 android:textColor="@color/white"
                 android:text="Về chúng tôi"
                 android:textSize="15sp"
-                android:drawableLeft="@drawable/about_solid"
+                android:drawableLeft="@drawable/about_icon"
                 android:drawablePadding="8dp"/>
 
         </LinearLayout>
@@ -124,7 +125,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/logout"
+            android:id="@+id/sign_out"
             android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
@@ -134,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:text="Đăng xuất"
-                android:drawableLeft="@drawable/logout"
+                android:drawableLeft="@drawable/sign_out_icon"
                 android:textSize="15sp"
                 android:drawablePadding="8dp"/>
 

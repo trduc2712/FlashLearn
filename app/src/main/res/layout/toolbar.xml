@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/menu"
-        android:src="@drawable/bars_solid"/>
+        android:src="@drawable/bars_icon"/>
 
     <TextView
         android:layout_width="0dp"
