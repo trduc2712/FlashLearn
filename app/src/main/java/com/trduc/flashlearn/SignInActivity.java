@@ -39,7 +39,8 @@ public class SignInActivity extends AppCompatActivity {
         bSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!checkUsername() | !checkPassword()) {
+                if (!checkEmail() | !checkPassword()) {
+
                 } else {
                     checkUser();
                 }
@@ -69,12 +70,14 @@ public class SignInActivity extends AppCompatActivity {
         return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
     }
 
-    public Boolean checkUsername() {
+    public Boolean checkEmail() {
+        if (etEmail.getText().toString().isEmpty()) {
+            etEmail.setError("Vui lòng nhập email");
+            return false;
+        }
         if (!isEmail(etEmail)) {
             etEmail.setError("Email không đúng định dạng");
-            Toast.makeText(SignInActivity.this, "Vui lòng nhập lại email", Toast.LENGTH_SHORT).show();
             return false;
-
         } else {
             etEmail.setError(null);
             return true;
@@ -82,10 +85,9 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     public Boolean checkPassword(){
-        String val = etPassword.getText().toString();
-        if (val.isEmpty()) {
-            etPassword.setError("Mật khẩu không đúng định dạng");
-            Toast.makeText(SignInActivity.this, "Vui lòng nhập mật khẩu", Toast.LENGTH_SHORT).show();
+        String password = etPassword.getText().toString();
+        if (password.isEmpty()) {
+            etPassword.setError("Vui lòng nhập mật khẩu");
             return false;
         } else {
             etPassword.setError(null);
@@ -102,6 +104,9 @@ public class SignInActivity extends AppCompatActivity {
             public void onSuccess(AuthResult authResult) {
                 Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                 startActivity(intent);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
