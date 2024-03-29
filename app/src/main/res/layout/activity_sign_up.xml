@@ -82,7 +82,7 @@
             android:layout_height="48dp"
             android:layout_marginTop="30dp"
             android:backgroundTint="@color/pink0"
-            android:background="@drawable/pink2_rounded_border_4sp"
+            android:background="@drawable/pink0_rounded_border_4sp"
             android:text="Đăng ký"
             android:textAllCaps="false"
             android:textColor="@color/white"

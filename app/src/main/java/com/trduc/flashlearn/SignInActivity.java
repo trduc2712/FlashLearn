@@ -30,7 +30,7 @@ public class SignInActivity extends AppCompatActivity {
     Button loginButton;
     FirebaseAuth auth;
     TextView loginForgot,login_sigup;
-    LinearLayout loginfb,logingg;
+    Button loginfb,logingg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

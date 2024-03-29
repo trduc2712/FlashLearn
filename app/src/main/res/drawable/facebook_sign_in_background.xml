@@ -1,0 +1,15 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/pink0" />
+            <stroke
+                android:width="2sp"
+                android:color="@color/pink0" />
+            <corners android:radius="4sp" />
+        </shape>
+    </item>
+
+    <item
+        android:drawable="@drawable/facebook"
+        android:gravity="center" />
+</layer-list>
