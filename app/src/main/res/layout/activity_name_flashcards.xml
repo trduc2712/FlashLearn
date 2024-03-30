@@ -20,7 +20,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Quên mật khẩu"
+            android:text="Tên của bộ flashcard này là gì?"
             android:gravity="center"
             android:textColor="@color/pink0"
             android:textSize="30sp"
@@ -28,13 +28,13 @@
 
         <EditText
 
-            android:id="@+id/etEmail"
+            android:id="@+id/etFlashcardsName"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/grey_rounded_border_4sp"
             android:textColorHint="#B2B4B3"
-            android:hint="Email"
+            android:hint="Tên"
             android:inputType="textEmailAddress"
             android:paddingLeft="10sp"
             android:textSize="15sp" />

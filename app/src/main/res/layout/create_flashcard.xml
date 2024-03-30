@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="33sp"
+        android:paddingLeft="33sp"
+        android:paddingRight="33sp"
+        android:paddingBottom="33sp">
+
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Câu hỏi">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/editTextTextMultiLine2"
+            android:layout_width="match_parent"
+            android:background="@drawable/grey_rounded_border_4sp"
+            android:layout_height="150sp"
+            android:layout_marginTop="15sp"
+            android:inputType="textMultiLine" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15sp"
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:text="Đáp án">
+        </TextView>
+
+        <EditText
+            android:id="@+id/editTextTextMultiLine3"
+            android:layout_width="match_parent"
+            android:background="@drawable/grey_rounded_border_4sp"
+            android:layout_height="150sp"
+            android:layout_marginTop="15sp"
+            android:inputType="textMultiLine" />
+
+        <Button
+            android:id="@+id/bSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="15sp"
+            android:backgroundTint="@color/pink0"
+            android:background="@drawable/pink0_rounded_border_4sp"
+            android:text="Thêm"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>

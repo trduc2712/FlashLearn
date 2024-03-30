@@ -2,7 +2,7 @@ package com.trduc.flashlearn;
 
 public class User {
 
-    String email, username, password;
+    private String email, username, password;
 
     public User() {
 

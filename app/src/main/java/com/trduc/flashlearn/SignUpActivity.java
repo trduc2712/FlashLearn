@@ -102,10 +102,10 @@
             isPasswordVisible = !isPasswordVisible;
             if (isPasswordVisible) {
                 etPassword.setTransformationMethod(null);
-                etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye, 0);
+                etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_slash, 0);
             } else {
                 etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_slash, 0);
+                etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye, 0);
             }
         }
 
@@ -113,10 +113,10 @@
             isConfirmPasswordVisible = !isConfirmPasswordVisible;
             if (isConfirmPasswordVisible) {
                 etConfirmPassword.setTransformationMethod(null);
-                etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye, 0);
+                etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_slash, 0);
             } else {
                 etConfirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_slash, 0);
+                etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye, 0);
             }
         }
 

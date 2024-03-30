@@ -40,10 +40,17 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:background="@color/black">
+
+    </View>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/pink3"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <LinearLayout
@@ -57,7 +64,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:text="Trang chủ"
                 android:drawableLeft="@drawable/house_icon"
                 android:textSize="15sp"
@@ -76,7 +83,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:text="Cài đặt"
                 android:drawableLeft="@drawable/setting_icon"
                 android:textSize="15sp"
@@ -95,7 +102,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:text="Chia sẻ"
                 android:textSize="15sp"
                 android:drawableLeft="@drawable/share_icon"
@@ -114,7 +121,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:text="Về chúng tôi"
                 android:textSize="15sp"
                 android:drawableLeft="@drawable/about_icon"
@@ -133,7 +140,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:text="Đăng xuất"
                 android:drawableLeft="@drawable/sign_out_icon"
                 android:textSize="15sp"

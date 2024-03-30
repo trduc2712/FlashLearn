@@ -137,10 +137,10 @@ public class SignInActivity extends AppCompatActivity {
         isPasswordVisible = !isPasswordVisible;
         if (isPasswordVisible) {
             etPassword.setTransformationMethod(null);
-            etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye, 0);
+            etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_slash, 0);
         } else {
             etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-            etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye_slash, 0);
+            etPassword.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.eye, 0);
         }
     }
 
