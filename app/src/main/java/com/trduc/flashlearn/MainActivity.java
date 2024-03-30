@@ -10,12 +10,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +25,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,12 +40,17 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout home, setting, share, about, sign_out;
     TextView tvEmail, tvUsername;
     private boolean doubleBackToExitPressedOnce = false;
+    Button bCreateFlashcards;
+    FirebaseAuth auth;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
         ivProfilePicture = findViewById(R.id.ivProfilePicture);
         drawerLayout = findViewById(R.id.drawerLayout);
         menu = findViewById(R.id.menu);
@@ -45,9 +59,10 @@ public class MainActivity extends AppCompatActivity {
         sign_out = findViewById(R.id.sign_out);
         setting = findViewById(R.id.setting);
         share = findViewById(R.id.share);
+        bCreateFlashcards = findViewById(R.id.bCreateFlashcards);
         initUi();
         showInformationUser();
-        showUserProfilePicture();
+        addNewUserToFirestore();
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,12 +70,14 @@ public class MainActivity extends AppCompatActivity {
                 openDrawer(drawerLayout);
             }
         });
+
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 recreate();
             }
         });
+
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,10 +100,19 @@ public class MainActivity extends AppCompatActivity {
         sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(MainActivity.this, SignInActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        bCreateFlashcards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, NameFlashcardsActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -139,9 +165,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void showInformationUser() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null){
+        if (user == null) {
             return;
         }
+
         String userID = user.getUid();
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Registered users");
@@ -150,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User userprofile = snapshot.getValue(User.class);
                 String email = user.getEmail();
-                String name = userprofile.username;
+                String name = userprofile.getUsername();
                 tvEmail.setText(email);
                 tvUsername.setText(name);
             }
@@ -162,24 +189,73 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void showUserProfilePicture() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            String userID = user.getUid();
-            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Registered users").child(userID);
-            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    String photoUrl = dataSnapshot.child("photoUrl").getValue(String.class);
-                    Glide.with(MainActivity.this).load(photoUrl).into(ivProfilePicture);
-                }
+    private void addNewUserToFirestore() {
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if (currentUser != null) {
+            String userEmail = currentUser.getEmail();
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+            DocumentReference userRef = db.collection("users").document(userEmail);
+            userRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        System.out.println("Nguoi dung da ton tai");
+                    } else {
+                        Map<String, Object> newUser = new HashMap<>();
+                        newUser.put("email", userEmail);
 
+                        CollectionReference usersRef = db.collection("users");
+                        usersRef.document(userEmail).set(newUser)
+                                .addOnCompleteListener(task1 -> {
+                                    if (task1.isSuccessful()) {
+                                        System.out.println("Da them nguoi dung moi thanh cong");
+                                        addFlashcardSetsForUser(userEmail);
+                                    } else {
+                                        Toast.makeText(MainActivity.this, "Failed to add user to Firestore", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                } else {
+                    Toast.makeText(MainActivity.this, "Error checking user in Firestore", Toast.LENGTH_SHORT).show();
                 }
             });
         }
+    }
+
+    private void addFlashcardSetsForUser(String userEmail) {
+        CollectionReference flashcardSetsRef = db.collection("users").document(userEmail).collection("flashcard_sets");
+
+        Map<String, Object> flashcardSet = new HashMap<>();
+        flashcardSet.put("id", "default");
+        flashcardSet.put("name", "Default Flashcard Set");
+
+        flashcardSetsRef.document("default").set(flashcardSet)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        System.out.println("Da them collection flashcard_sets cho nguoi dung moi");
+                        addFlashcardsForUser(userEmail);
+                    } else {
+                        Toast.makeText(MainActivity.this, "Failed to add flashcard sets to Firestore", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void addFlashcardsForUser(String userEmail) {
+        CollectionReference flashcardsRef = db.collection("users").document(userEmail)
+                .collection("flashcard_sets").document("default").collection("flashcards");
+
+        Map<String, Object> flashcard = new HashMap<>();
+        flashcard.put("question", "Câu hỏi");
+        flashcard.put("answer", "Đáp án");
+
+        flashcardsRef.document().set(flashcard)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        System.out.println("Da them collection flashcards cho nguoi dung moi");
+                    } else {
+                        Toast.makeText(MainActivity.this, "Failed to add flashcards to Firestore", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
 }
