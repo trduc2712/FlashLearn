@@ -10,12 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="33sp"
-        android:paddingLeft="33sp"
-        android:paddingRight="33sp"
         android:paddingBottom="33sp">
 
         <TextView
+            android:id="@+id/tvQuestion"
             android:textSize="15sp"
             android:textColor="@color/black"
             android:layout_width="wrap_content"
@@ -26,14 +24,18 @@
         </TextView>
 
         <EditText
-            android:id="@+id/editTextTextMultiLine2"
+            android:id="@+id/etQuestion"
             android:layout_width="match_parent"
             android:background="@drawable/grey_rounded_border_4sp"
             android:layout_height="150sp"
+            android:padding="15sp"
+            android:gravity="center"
+            android:textSize="15sp"
             android:layout_marginTop="15sp"
             android:inputType="textMultiLine" />
 
         <TextView
+            android:id="@+id/tvAnswer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15sp"
@@ -44,15 +46,18 @@
         </TextView>
 
         <EditText
-            android:id="@+id/editTextTextMultiLine3"
+            android:id="@+id/etAnswer"
             android:layout_width="match_parent"
             android:background="@drawable/grey_rounded_border_4sp"
             android:layout_height="150sp"
+            android:padding="15sp"
+            android:gravity="center"
+            android:textSize="15sp"
             android:layout_marginTop="15sp"
             android:inputType="textMultiLine" />
 
         <Button
-            android:id="@+id/bSignUp"
+            android:id="@+id/bAdd"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="15sp"

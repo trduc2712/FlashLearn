@@ -2,24 +2,15 @@ package com.trduc.flashlearn;
 
 public class Flashcard {
 
-    private String id, question, answer;
+    private String question, answer;
 
     public Flashcard() {
 
     }
 
-    public Flashcard(String id, String question, String answer) {
-        this.id = id;
+    public Flashcard(String question, String answer) {
         this.question = question;
         this.answer = answer;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getQuestion() {
