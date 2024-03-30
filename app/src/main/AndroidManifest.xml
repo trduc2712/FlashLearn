@@ -13,6 +13,9 @@
         android:theme="@style/Theme.FlashLearn"
         tools:targetApi="31">
         <activity
+            android:name=".AlreadyCreateActivity"
+            android:exported="false" />
+        <activity
             android:name=".NameFlashcardsActivity"
             android:exported="false" />
         <activity

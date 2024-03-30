@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:paddingTop="33sp"
         android:paddingBottom="33sp">
 
         <TextView
@@ -26,7 +27,7 @@
         <EditText
             android:id="@+id/etQuestion"
             android:layout_width="match_parent"
-            android:background="@drawable/grey_rounded_border_4sp"
+            android:background="@drawable/black_rounded_border_4sp"
             android:layout_height="150sp"
             android:padding="15sp"
             android:gravity="center"
@@ -48,7 +49,7 @@
         <EditText
             android:id="@+id/etAnswer"
             android:layout_width="match_parent"
-            android:background="@drawable/grey_rounded_border_4sp"
+            android:background="@drawable/black_rounded_border_4sp"
             android:layout_height="150sp"
             android:padding="15sp"
             android:gravity="center"

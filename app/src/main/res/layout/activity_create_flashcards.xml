@@ -10,15 +10,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="33sp"
         android:paddingLeft="33sp"
         android:paddingRight="33sp"
         android:paddingBottom="33sp">
 
         <ListView
+            android:id="@+id/lvAlreadyCreate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ListView
             android:id="@+id/lvCreateFlashcards"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1" />
 
     </LinearLayout>
