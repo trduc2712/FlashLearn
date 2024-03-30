@@ -41,18 +41,22 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthCredential;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignInActivity extends AppCompatActivity {
     EditText etEmail, etPassword;
     Button bSignIn, bFacebookSignIn, bGoogleSignIn;
     FirebaseAuth auth;
-    CheckBox cbRemember;
     FirebaseDatabase database;
+    DatabaseReference reference;
+    CheckBox cbRemember;
     TextView tvForgotPassword, tvSignUp;
     int RC_SIGN_IN = 20;
     SharedPreferences sharedPreferences;
     boolean isPasswordVisible = false;
+
+    GoogleSignInClient googleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +64,17 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
         init();
 
-        sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        googleSignInClient = GoogleSignIn.getClient(this,googleSignInOptions);
+        auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
 
+
+
+        sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
         boolean isRemembered = sharedPreferences.getBoolean("isChecked", false);
         cbRemember.setChecked(isRemembered);
 
@@ -132,12 +145,7 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     public void loginGG(){
-        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(this,googleSignInOptions);
-        auth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
+
         Intent intent = googleSignInClient.getSignInIntent();
         startActivityForResult(intent,RC_SIGN_IN);
     }
@@ -145,7 +153,7 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == RC_SIGN_IN){
+        if(requestCode==RC_SIGN_IN){
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
@@ -167,7 +175,9 @@ public class SignInActivity extends AppCompatActivity {
                     String email = datauser.getEmail();
                     String name=datauser.getDisplayName();
                     User data = new User(email,name);
-                    database.getReference().child("Registered users").child(datauser.getUid()).setValue(data);
+                    database = FirebaseDatabase.getInstance();
+                    reference = database.getReference("Registered users");
+                    reference.child(datauser.getUid()).setValue(data);
                     Intent intent = new Intent(SignInActivity.this,MainActivity.class);
                     startActivity(intent);
                 }
@@ -227,6 +237,7 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onSuccess(AuthResult authResult) {
                 Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                startActivity(intent);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
@@ -234,7 +245,7 @@ public class SignInActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                etPassword.setError("Sai mật khẩu");
+                Toast.makeText(SignInActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
