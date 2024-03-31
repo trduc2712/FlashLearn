@@ -245,8 +245,8 @@ public class MainActivity extends AppCompatActivity {
                 .collection("flashcard_sets").document("default").collection("flashcards");
 
         Map<String, Object> flashcard = new HashMap<>();
-        flashcard.put("question", "Câu hỏi");
-        flashcard.put("answer", "Đáp án");
+        flashcard.put("question", "");
+        flashcard.put("answer", "");
 
         flashcardsRef.document().set(flashcard)
                 .addOnCompleteListener(task -> {
