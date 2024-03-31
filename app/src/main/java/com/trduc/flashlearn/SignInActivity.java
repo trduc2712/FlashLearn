@@ -185,7 +185,7 @@ public class SignInActivity extends AppCompatActivity {
                     Toast.makeText(SignInActivity.this,"Đăng nhập thành công",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(SignInActivity.this,"Somethiem",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignInActivity.this,"Vui lòng kiểm tra lại",Toast.LENGTH_SHORT).show();
                 }
             }
         });
