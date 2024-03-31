@@ -7,24 +7,418 @@
     android:layout_height="match_parent"
     tools:context=".SettingActivity"
     android:id="@+id/drawerLayout">
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        app:layout_editor_absoluteX="1dp"
+        app:layout_editor_absoluteY="1dp"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <include
-            layout="@layout/toolbar"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Setting"
-            android:layout_gravity="center"
-            android:layout_marginTop="400dp"
-            android:textColor="@color/pink0"
-            android:textSize="36dp"/>
+            <include
+                layout="@layout/toolbar" />
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tổng quan"
+                android:textSize="17sp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/pink0"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ngôn ngữ"
+                        android:textColor="@color/black"
+                        android:id="@+id/txt_setting_ngonngu"
+                        android:textSize="17sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tiếng việt"
+                        android:layout_below="@id/txt_setting_ngonngu"
+                        android:textColor="@color/gray"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thông báo có thẻ cần ôn tập"
+                        android:textColor="@color/black"
+                        android:id="@+id/txt_setting_ontap"
+                        android:textSize="17sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hiển thị thông báo khi bạn có thẻ cần ôn tập"
+                        android:textColor="@color/gray"
+                        android:layout_below="@id/txt_setting_ontap"/>
+                    <Switch
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:gravity="right"
+                        android:thumb="@drawable/thumb"
+                        android:track="@drawable/track"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thiết lập thứ tự"
+                        android:textColor="@color/black"
+                        android:id="@+id/txt_setting_thietlap"
+                        android:textSize="17sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thứ tự ABC"
+                        android:textColor="@color/gray"
+                        android:layout_below="@id/txt_setting_thietlap"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cài đặt ôn tập"
+                android:textSize="17sp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/pink0"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chỉ hiển thị hình ảnh cho định nghĩa"
+                        android:textColor="@color/black"
+                        android:id="@+id/txt_setting_hinhanh"
+                        android:layout_marginRight="50dp"
+                        android:textSize="17sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="50dp"
+                        android:text="Ấn văn bản định nghĩa cho thẻ có chứa hình ảnh trong khi ôn tập"
+                        android:layout_below="@id/txt_setting_hinhanh"
+                        android:textColor="@color/gray"/>
+                    <Switch
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:thumb="@drawable/thumb"
+                        android:track="@drawable/track"
+                        android:gravity="right"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hiển thị định nghĩa đầu tiên"
+                        android:textColor="@color/black"
+                        android:id="@+id/txt_setting_dinhnghia"
+                        android:textSize="17sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="50dp"
+                        android:text="Hiển thị định nghĩa thẻ đầu tiên khi thực hành"
+                        android:layout_below="@id/txt_setting_dinhnghia"
+                        android:textColor="@color/gray"/>
+                    <Switch
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:thumb="@drawable/thumb"
+                        android:track="@drawable/track"
+                        android:gravity="right"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Xáo trộn thẻ"
+                        android:textColor="@color/black"
+                        android:id="@+id/txt_setting_xoatron"
+                        android:textSize="17sp"/>
+                    <Switch
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:thumb="@drawable/thumb"
+                        android:track="@drawable/track"
+                        android:gravity="right"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Số lượng thẻ mỗi vòng"
+                        android:textColor="@color/black"
+                        android:id="@+id/txt_setting_soluongthe"
+                        android:textSize="17sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="50dp"
+                        android:text="10 thẻ"
+                        android:textColor="@color/gray"
+                        android:layout_below="@id/txt_setting_soluongthe"/>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đặt trước 5 thẻ"
+                        android:textColor="@color/black"
+                        android:id="@+id/txt_setting_dattruocthe"
+                        android:textSize="17sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="50dp"
+                        android:text="Sau khi nối tất cả các cặp thẻ, chỉ thêm 5 thẻ mới cho vòng tiếp theo"
+                        android:layout_below="@id/txt_setting_dattruocthe"
+                        android:textColor="@color/gray"/>
+                    <Switch
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:thumb="@drawable/thumb"
+                        android:track="@drawable/track"
+                        android:gravity="right"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ôn tập bằng âm thanh"
+                android:textSize="17sp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/pink0"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đọc thuật ngữ"
+                        android:textColor="@color/black"
+                        android:id="@+id/txt_setting_docthuatngu"
+                        android:textSize="17sp"/>
+                    <Switch
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:thumb="@drawable/thumb"
+                        android:track="@drawable/track"
+                        android:gravity="right"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đọc định nghĩa"
+                        android:textColor="@color/black"
+                        android:id="@+id/txt_setting_docdinhnghia"
+                        android:textSize="17sp"/>
+                    <Switch
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:thumb="@drawable/thumb"
+                        android:track="@drawable/track"
+                        android:gravity="right"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tốc độ đọc"
+                        android:textColor="@color/black"
+                        android:id="@+id/txt_setting_tocdodoc"
+                        android:textSize="17sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="50dp"
+                        android:text="Bình thường"
+                        android:textColor="@color/gray"
+                        android:layout_below="@id/txt_setting_tocdodoc"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sao lưu"
+                android:textSize="17sp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/pink0"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tạo bản sao"
+                        android:textColor="@color/black"
+                        android:id="@+id/txt_setting_taobansao"
+                        android:textSize="17sp"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Khôi phục"
+                        android:textColor="@color/black"
+                        android:id="@+id/txt_setting_khoiphuc"
+                        android:textSize="17sp"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Khác"
+                android:textSize="17sp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/pink0"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Điều khoản sử dụng"
+                        android:textColor="@color/black"
+                        android:id="@+id/txt_setting_dieukhoan"
+                        android:textSize="17sp"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chính sách bảo mật"
+                        android:textColor="@color/black"
+                        android:id="@+id/txt_setting_chínhachbaomat"
+                        android:textSize="17sp"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <include-->
+<!--            layout="@layout/toolbar" />-->
+<!--    </LinearLayout>-->
 
     <RelativeLayout
         android:layout_width="300dp"

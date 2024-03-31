@@ -13,7 +13,7 @@
         android:background="@color/white"
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ivProfilePicture"
             android:layout_width="75sp"
             android:layout_height="75sp"
@@ -42,9 +42,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1sp"
-        android:background="@color/black">
-
+        android:layout_height="1dp"
+        android:background="@color/gray">
     </View>
 
     <LinearLayout
@@ -75,6 +74,43 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/allcart"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Tất cả thẻ"
+                android:drawableLeft="@drawable/list_solid"
+                android:textSize="15sp"
+                android:drawablePadding="8dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/color"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Màu nền"
+                android:drawableLeft="@drawable/pen_solid"
+                android:textSize="15sp"
+                android:drawablePadding="8dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/setting"
             android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
@@ -90,20 +126,45 @@
                 android:drawablePadding="8dp"/>
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/contact"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Liên hệ"
+                android:drawableLeft="@drawable/envelope_solid"
+                android:textSize="15sp"
+                android:drawablePadding="8dp"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            android:layout_marginTop="20dp">
+        </View>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/share"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:text="Chia sẻ"
+                android:text="Chia sẻ ứng dụng"
                 android:textSize="15sp"
                 android:drawableLeft="@drawable/share_icon"
                 android:drawablePadding="8dp"/>
@@ -128,6 +189,49 @@
                 android:drawablePadding="8dp"/>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/security"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Chính sách bảo mật"
+                android:drawableLeft="@drawable/shield_halved_solid"
+                android:textSize="15sp"
+                android:drawablePadding="8dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/support"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Hỗ trợ"
+                android:drawableLeft="@drawable/handshake_angle_solid"
+                android:textSize="15sp"
+                android:drawablePadding="8dp"/>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            android:layout_marginTop="30dp">
+        </View>
 
         <LinearLayout
             android:layout_width="wrap_content"
