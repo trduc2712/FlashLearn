@@ -52,7 +52,7 @@ public class SignInActivity extends AppCompatActivity {
     DatabaseReference reference;
     CheckBox cbRemember;
     TextView tvForgotPassword, tvSignUp;
-    int RC_SIGN_IN = 20;
+
     SharedPreferences sharedPreferences;
     boolean isPasswordVisible = false;
 
@@ -127,7 +127,9 @@ public class SignInActivity extends AppCompatActivity {
         bGoogleSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 loginGG();
+                GoogleSignIn.getClient(SignInActivity.this,GoogleSignInOptions.DEFAULT_SIGN_IN).signOut();
             }
         });
 
@@ -147,13 +149,13 @@ public class SignInActivity extends AppCompatActivity {
     public void loginGG(){
 
         Intent intent = googleSignInClient.getSignInIntent();
-        startActivityForResult(intent,RC_SIGN_IN);
+        startActivityForResult(intent,1234);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==RC_SIGN_IN){
+        if(requestCode==1234){
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
@@ -180,6 +182,7 @@ public class SignInActivity extends AppCompatActivity {
                     reference.child(datauser.getUid()).setValue(data);
                     Intent intent = new Intent(SignInActivity.this,MainActivity.class);
                     startActivity(intent);
+                    Toast.makeText(SignInActivity.this,"Đăng nhập thành công",Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Toast.makeText(SignInActivity.this,"Somethiem",Toast.LENGTH_SHORT).show();
