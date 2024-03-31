@@ -9,35 +9,41 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="33sp">
+        android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/etQuestion"
-            android:layout_width="wrap_content"
-            android:background="@drawable/black_rounded_border_4sp"
-            android:layout_height="150sp"
-            android:width="175sp"
-            android:padding="15sp"
-            android:gravity="center"
-            android:textSize="15sp"
-            android:inputType="textMultiLine" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15sp"
+            android:gravity="center">
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/etQuestion"
+                android:layout_width="139.5sp"
+                android:layout_height="75sp"
+                android:layout_marginRight="7.5sp"
+                android:background="@drawable/black_rounded_border_4sp"
+                android:gravity="center"
+                android:inputType="textMultiLine"
+                android:padding="15sp"
+                android:textSize="15sp"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
 
-        <EditText
-            android:id="@+id/etAnswer"
-            android:layout_width="wrap_content"
-            android:background="@drawable/black_rounded_border_4sp"
-            android:layout_height="150sp"
-            android:padding="15sp"
-            android:width="175sp"
-            android:gravity="center"
-            android:textSize="15sp"
-            android:inputType="textMultiLine" />
+            <EditText
+                android:id="@+id/etAnswer"
+                android:layout_width="139.5sp"
+                android:layout_height="75sp"
+                android:layout_marginLeft="7.5sp"
+                android:background="@drawable/black_rounded_border_4sp"
+                android:gravity="center"
+                android:inputType="textMultiLine"
+                android:padding="15sp"
+                android:textSize="15sp"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
