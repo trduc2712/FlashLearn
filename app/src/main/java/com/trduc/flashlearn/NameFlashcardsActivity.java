@@ -56,10 +56,11 @@ public class NameFlashcardsActivity extends AppCompatActivity {
         if (currentUser != null) {
             final String userEmail = currentUser.getEmail();
 
-            final Map<String, Object> flashcardSet = new HashMap<>();
-            flashcardSet.put("name", flashcardSetsName);
+            final String flashcardSetsId = UUID.randomUUID().toString();
 
-            String flashcardSetsId = UUID.randomUUID().toString();
+            final Map<String, Object> flashcardSet = new HashMap<>();
+            flashcardSet.put("id", flashcardSetsId);
+            flashcardSet.put("name", flashcardSetsName);
 
             db.collection("users")
                     .document(userEmail)
@@ -69,40 +70,29 @@ public class NameFlashcardsActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Map<String, Object> updateData = new HashMap<>();
-                            updateData.put("id", flashcardSetsId);
+                            Map<String, Object> flashcard = new HashMap<>();
+                            flashcard.put("question", "");
+                            flashcard.put("answer", "");
 
                             db.collection("users")
                                     .document(userEmail)
                                     .collection("flashcard_sets")
                                     .document(flashcardSetsId)
-                                    .update(updateData)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    .collection("flashcards")
+                                    .add(flashcard)
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                         @Override
-                                        public void onSuccess(Void aVoid) {
+                                        public void onSuccess(DocumentReference documentReference) {
                                             startActivity(new Intent(NameFlashcardsActivity.this, CreateFlashcardsActivity.class)
                                                     .putExtra("flashcardSetsId", flashcardSetsId)
                                             );
                                             finish();
                                         }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-
-                                        }
                                     });
                         }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-
-                        }
                     });
-        } else {
-
         }
     }
+
 
 }
