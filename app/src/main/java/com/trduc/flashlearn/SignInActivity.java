@@ -147,7 +147,6 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     public void loginGG(){
-
         Intent intent = googleSignInClient.getSignInIntent();
         startActivityForResult(intent,1234);
     }
@@ -182,7 +181,7 @@ public class SignInActivity extends AppCompatActivity {
                     reference.child(datauser.getUid()).setValue(data);
                     Intent intent = new Intent(SignInActivity.this,MainActivity.class);
                     startActivity(intent);
-                    Toast.makeText(SignInActivity.this,"Đăng nhập thành công",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SignInActivity.this,"Đăng nhập thành công",Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Toast.makeText(SignInActivity.this,"Vui lòng kiểm tra lại",Toast.LENGTH_SHORT).show();
