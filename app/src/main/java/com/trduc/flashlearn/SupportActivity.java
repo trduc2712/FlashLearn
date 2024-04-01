@@ -26,7 +26,7 @@ public class SupportActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu;
-    LinearLayout home, setting, share, about, sign_out;
+    LinearLayout home, setting, share, about, sign_out,allcart;
     TextView tvEmail, tvUsername,tvTittle;
 
     @Override
@@ -54,6 +54,12 @@ public class SupportActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 redirectActivity(SupportActivity.this, SettingActivity.class);
+            }
+        });
+        allcart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(SupportActivity.this, AllCartActivity.class);
             }
         });
         share.setOnClickListener(new View.OnClickListener() {
@@ -87,9 +93,10 @@ public class SupportActivity extends AppCompatActivity {
         setting = findViewById(R.id.setting);
         share = findViewById(R.id.share);
         tvEmail = findViewById(R.id.tvEmail);
+        allcart = findViewById(R.id.allcart);
         tvUsername = findViewById(R.id.tvUsername);
         tvTittle=findViewById(R.id.tvTittle);
-        tvTittle.setText("Thông tin về ứng dụng");
+        tvTittle.setText("Hỗ trợ");
     }
 
     public static void openDrawer(DrawerLayout drawerLayout) {

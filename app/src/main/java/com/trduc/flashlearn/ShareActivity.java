@@ -27,7 +27,7 @@ public class ShareActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView menu;
     TextView tvEmail, tvUsername,tvTittle;
-    LinearLayout home, setting, share, about, sign_out;
+    LinearLayout home, setting, share, about, sign_out,allcart;
 
 
     @Override
@@ -53,6 +53,12 @@ public class ShareActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 redirectActivity(ShareActivity.this, SettingActivity.class);
+            }
+        });
+        allcart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(ShareActivity.this, AllCartActivity.class);
             }
         });
         share.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +94,7 @@ public class ShareActivity extends AppCompatActivity {
         share = findViewById(R.id.share);
         tvEmail = findViewById(R.id.tvEmail);
         tvUsername = findViewById(R.id.tvUsername);
+        allcart = findViewById(R.id.allcart);
         tvTittle=findViewById(R.id.tvTittle);
         tvTittle.setText("Chia sẻ ứng dụng");
     }

@@ -27,7 +27,7 @@ public class AllCartActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView menu;
     LinearLayout home, setting, share, about, sign_out, allcart;
-    TextView tvEmail, tvUsername;
+    TextView tvEmail, tvUsername,tvTittle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +96,8 @@ public class AllCartActivity extends AppCompatActivity {
         tvEmail = findViewById(R.id.tvEmail);
         tvUsername = findViewById(R.id.tvUsername);
         allcart = findViewById(R.id.allcart);
+        tvTittle=findViewById(R.id.tvTittle);
+        tvTittle.setText("Setting");
 
     }
 

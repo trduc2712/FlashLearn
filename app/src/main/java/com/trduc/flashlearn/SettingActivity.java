@@ -26,7 +26,7 @@ public class SettingActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu;
-    LinearLayout home, setting, share, about, logout;
+    LinearLayout home, setting, share, about, logout,allcart;
 
     TextView tvTittle;
     TextView tvEmail, tvUsername;
@@ -50,6 +50,12 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 redirectActivity(SettingActivity.this, MainActivity.class);
+            }
+        });
+        allcart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(SettingActivity.this, AllCartActivity.class);
             }
         });
         setting.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +106,7 @@ public class SettingActivity extends AppCompatActivity {
         logout = findViewById(R.id.sign_out);
         tvEmail = findViewById(R.id.tvEmail);
         tvUsername = findViewById(R.id.tvUsername);
+        allcart = findViewById(R.id.allcart);
         tvTittle=findViewById(R.id.tvTittle);
         tvTittle.setText("Setting");
     }
