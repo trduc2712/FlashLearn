@@ -52,4 +52,6 @@ dependencies {
     implementation ("androidx.recyclerview:recyclerview-selection:1.1.0")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
 
+    implementation ("com.github.dhaval2404:imagepicker:2.1")
+
 }

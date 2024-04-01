@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ public class ShareActivity extends AppCompatActivity {
     ImageView menu;
     TextView tvEmail, tvUsername;
     LinearLayout home, setting, share, about, sign_out;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
