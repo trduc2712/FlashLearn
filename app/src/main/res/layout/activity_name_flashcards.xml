@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Hãy chọn chủ đề và điền tên nhé"
+            android:text="Hãy chọn chủ đề và điền tên"
             android:textColor="@color/pink0"
             android:textSize="30sp"
             android:textStyle="bold" />
