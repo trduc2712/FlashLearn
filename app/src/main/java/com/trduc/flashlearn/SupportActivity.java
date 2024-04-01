@@ -9,7 +9,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,7 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class AboutActivity extends AppCompatActivity {
+public class SupportActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu;
@@ -33,7 +32,7 @@ public class AboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.activity_support);
 
 
         initUi();
@@ -42,7 +41,7 @@ public class AboutActivity extends AppCompatActivity {
         allcart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(AboutActivity.this, AllCartActivity.class);
+                redirectActivity(SupportActivity.this, AllCartActivity.class);
             }
         });
         menu.setOnClickListener(new View.OnClickListener() {
@@ -54,19 +53,19 @@ public class AboutActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(AboutActivity.this, MainActivity.class);
+                redirectActivity(SupportActivity.this, MainActivity.class);
             }
         });
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(AboutActivity.this, SettingActivity.class);
+                redirectActivity(SupportActivity.this, SettingActivity.class);
             }
         });
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(AboutActivity.this, ShareActivity.class);
+                redirectActivity(SupportActivity.this, ShareActivity.class);
             }
         });
         about.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +78,7 @@ public class AboutActivity extends AppCompatActivity {
         sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(AboutActivity.this, "Đăng xuất", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SupportActivity.this, "Đăng xuất", Toast.LENGTH_SHORT).show();
             }
         });
     }

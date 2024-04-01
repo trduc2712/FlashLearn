@@ -73,7 +73,7 @@ public class AllCartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                redirectActivity(AllCartActivity.this, AboutActivity.class);
+                redirectActivity(AllCartActivity.this, SupportActivity.class);
             }
         });
 

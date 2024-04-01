@@ -200,7 +200,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:text="Về chúng tôi"
+                android:text="Hỗ trợ"
                 android:textSize="15sp"
                 android:drawableLeft="@drawable/about_icon"
                 android:drawablePadding="8dp"/>

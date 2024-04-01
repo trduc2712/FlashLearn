@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AboutActivity"
+            android:name=".SupportActivity"
             android:exported="false" />
         <activity
             android:name=".ShareActivity"
