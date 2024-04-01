@@ -48,15 +48,9 @@ public class LearnActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (tvContent.getText().toString().equals(answer)) {
-                    // Chuyển sang câu hỏi
-                    tvContent.setText(question);
-                    tvContent.setTextColor(getResources().getColor(R.color.pink0));
-                    tvContent.setBackgroundResource(R.drawable.white_background_question);
+                    switchToQuestion();
                 } else {
-                    // Chuyển sang câu trả lời
-                    tvContent.setText(answer);
-                    tvContent.setTextColor(getResources().getColor(android.R.color.white));
-                    tvContent.setBackgroundResource(R.drawable.pink0_background_answer);
+                    switchToAnswer();
                 }
             }
         });
@@ -64,9 +58,7 @@ public class LearnActivity extends AppCompatActivity {
         ivForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tvContent.setText(question);
-                tvContent.setTextColor(getResources().getColor(R.color.pink0));
-                tvContent.setBackgroundResource(R.drawable.white_background_question);
+                switchToQuestion();
                 currentFlashcardIndex++;
                 loadFlashcard(currentFlashcardIndex);
             }
@@ -75,15 +67,27 @@ public class LearnActivity extends AppCompatActivity {
         ivBackward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tvContent.setText(question);
-                tvContent.setTextColor(getResources().getColor(R.color.pink0));
-                tvContent.setBackgroundResource(R.drawable.white_background_question);
+                switchToQuestion();
                 if (currentFlashcardIndex > 0) {
                     currentFlashcardIndex--;
                     loadFlashcard(currentFlashcardIndex);
                 }
             }
         });
+    }
+
+    private void switchToQuestion() {
+        // Chuyển sang câu hỏi
+        tvContent.setText(question);
+        tvContent.setTextColor(getResources().getColor(R.color.pink0));
+        tvContent.setBackgroundResource(R.drawable.white_background_question);
+    }
+
+    private void switchToAnswer() {
+        // Chuyển sang câu trả lời
+        tvContent.setText(answer);
+        tvContent.setTextColor(getResources().getColor(android.R.color.white));
+        tvContent.setBackgroundResource(R.drawable.pink0_background_answer);
     }
 
     private void loadFlashcard(int index) {
