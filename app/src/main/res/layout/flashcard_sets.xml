@@ -8,7 +8,7 @@
 
     <Button
         android:background="@drawable/pink0_rounded_border_4sp"
-        android:id="@+id/tvFlashcardSetsName"
+        android:id="@+id/bFlashcardSetsName"
         android:layout_width="match_parent"
         android:layout_height="48sp"
         android:text="Flashcard Sets Name"

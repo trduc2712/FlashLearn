@@ -93,21 +93,21 @@ public class NameFlashcardsActivity extends AppCompatActivity {
                     .get()
                     .addOnSuccessListener(queryDocumentSnapshots -> {
                         int numFlashcardSets = queryDocumentSnapshots.size();
-                        String flashcardSetsId = String.valueOf(numFlashcardSets + 1);
+                        char newFlashcardSetId = (char) ('a' + numFlashcardSets);
 
                         final Map<String, Object> flashcardSet = new HashMap<>();
-                        flashcardSet.put("id", flashcardSetsId);
+                        flashcardSet.put("id", String.valueOf(newFlashcardSetId));
                         flashcardSet.put("name", flashcardSetsName);
                         flashcardSet.put("topic", selectedChoice);
 
                         db.collection("users")
                                 .document(userEmail)
                                 .collection("flashcard_sets")
-                                .document(flashcardSetsId)
+                                .document(String.valueOf(newFlashcardSetId))
                                 .set(flashcardSet)
                                 .addOnSuccessListener(aVoid -> {
                                     startActivity(new Intent(NameFlashcardsActivity.this, CreateFlashcardsActivity.class)
-                                            .putExtra("flashcardSetsId", flashcardSetsId)
+                                            .putExtra("flashcardSetsId", String.valueOf(newFlashcardSetId))
                                     );
                                     finish();
                                 })
