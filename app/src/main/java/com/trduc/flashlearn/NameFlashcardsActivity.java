@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -26,19 +29,34 @@ public class NameFlashcardsActivity extends AppCompatActivity {
     Button bContinue;
     EditText etFlashcardSetsName;
     FirebaseFirestore db;
+    Spinner sTopic;
+    String[] choices = {"Không có", "Từ vựng", "Toán học", "Lịch sử", "Địa lý"};
+    String selectedChoice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name_flashcards);
 
+        sTopic = findViewById(R.id.sTopic);
         bContinue = findViewById(R.id.bContinue);
         etFlashcardSetsName = findViewById(R.id.etFlashcardSetsName);
         db = FirebaseFirestore.getInstance();
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.custom_spinner_item, choices);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner spinner = findViewById(R.id.sTopic);
+        spinner.setAdapter(adapter);
+
         bContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String flashcardSetsTopic = sTopic.getSelectedItem().toString();
+                if (flashcardSetsTopic.equals("Không có")) {
+                    Toast.makeText(NameFlashcardsActivity.this, "Vui lòng chọn chủ đề", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 String flashcardSetsName = etFlashcardSetsName.getText().toString();
                 if (!flashcardSetsName.isEmpty()) {
                     createNewFlashcardSet(flashcardSetsName);
@@ -47,6 +65,19 @@ public class NameFlashcardsActivity extends AppCompatActivity {
                 }
             }
         });
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedChoice = choices[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
     private void createNewFlashcardSet(final String flashcardSetsName) {
@@ -61,6 +92,7 @@ public class NameFlashcardsActivity extends AppCompatActivity {
             final Map<String, Object> flashcardSet = new HashMap<>();
             flashcardSet.put("id", flashcardSetsId);
             flashcardSet.put("name", flashcardSetsName);
+            flashcardSet.put("topic", selectedChoice);
 
             db.collection("users")
                     .document(userEmail)

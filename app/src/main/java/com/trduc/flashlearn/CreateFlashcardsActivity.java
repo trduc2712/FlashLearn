@@ -91,48 +91,53 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
                 String answer = etAnswer.getText().toString().trim();
 
                 if (question.isEmpty() || answer.isEmpty()) {
-                    Toast.makeText(CreateFlashcardsActivity.this, "Vui lòng nhập câu hỏi và đáp án", Toast.LENGTH_SHORT).show();
-                    return;
+                    if (question.isEmpty()) {
+                        Toast.makeText(CreateFlashcardsActivity.this, "Vui lòng nhập câu hỏi", Toast.LENGTH_SHORT).show();
+                        return;
+                    } else {
+                        Toast.makeText(CreateFlashcardsActivity.this, "Vui lòng nhập đáp án", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
 
                 FirebaseUser currentUser = mAuth.getCurrentUser();
                 if (currentUser != null) {
-                    Flashcard newFlashcard = new Flashcard(question, answer);
-
                     db.collection("users")
                             .document(currentUser.getEmail())
                             .collection("flashcard_sets")
                             .document(flashcardSetsId)
                             .collection("flashcards")
-                            .add(newFlashcard)
-                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            .get()
+                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                 @Override
-                                public void onSuccess(DocumentReference documentReference) {
-//                                    Toast.makeText(CreateFlashcardsActivity.this, "Đã thêm flashcard mới", Toast.LENGTH_SHORT).show();
-                                    etQuestion.setText("");
-                                    etAnswer.setText("");
+                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                    int numFlashcards = queryDocumentSnapshots.size();
+                                    String newFlashcardId = String.valueOf(numFlashcards + 1); // Tạo ID mới dựa trên số lượng flashcards hiện có
+
+                                    Flashcard newFlashcard = new Flashcard(question, answer);
 
                                     db.collection("users")
                                             .document(currentUser.getEmail())
                                             .collection("flashcard_sets")
                                             .document(flashcardSetsId)
                                             .collection("flashcards")
-                                            .get()
-                                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                            .document(newFlashcardId) // Gán ID mới cho flashcard
+                                            .set(newFlashcard)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
-                                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                                    flashcardList.clear();
-                                                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                                                        Flashcard flashcard = document.toObject(Flashcard.class);
-                                                        flashcardList.add(flashcard);
-                                                    }
+                                                public void onSuccess(Void aVoid) {
+
+                                                    // Xử lý khi thêm flashcard thành công
+                                                    etQuestion.setText("");
+                                                    etAnswer.setText("");
+                                                    flashcardList.add(newFlashcard);
                                                     adapter.notifyDataSetChanged();
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
-                                                    Toast.makeText(CreateFlashcardsActivity.this, "Không thể cập nhật danh sách flashcards", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(CreateFlashcardsActivity.this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                                 }
                                             });
                                 }
@@ -140,9 +145,10 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(CreateFlashcardsActivity.this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(CreateFlashcardsActivity.this, "Không thể cập nhật danh sách flashcards", Toast.LENGTH_SHORT).show();
                                 }
                             });
+
                 } else {
                     Toast.makeText(CreateFlashcardsActivity.this, "Không thể lấy dữ liệu người dùng", Toast.LENGTH_SHORT).show();
                 }
