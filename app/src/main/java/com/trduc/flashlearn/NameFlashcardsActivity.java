@@ -87,33 +87,34 @@ public class NameFlashcardsActivity extends AppCompatActivity {
         if (currentUser != null) {
             final String userEmail = currentUser.getEmail();
 
-            final String flashcardSetsId = UUID.randomUUID().toString();
-
-            final Map<String, Object> flashcardSet = new HashMap<>();
-            flashcardSet.put("id", flashcardSetsId);
-            flashcardSet.put("name", flashcardSetsName);
-            flashcardSet.put("topic", selectedChoice);
-
             db.collection("users")
                     .document(userEmail)
                     .collection("flashcard_sets")
-                    .document(flashcardSetsId)
-                    .set(flashcardSet)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            startActivity(new Intent(NameFlashcardsActivity.this, CreateFlashcardsActivity.class)
-                                    .putExtra("flashcardSetsId", flashcardSetsId)
-                            );
-                            finish();
-                        }
+                    .get()
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        int numFlashcardSets = queryDocumentSnapshots.size();
+                        String flashcardSetsId = String.valueOf(numFlashcardSets + 1);
+
+                        final Map<String, Object> flashcardSet = new HashMap<>();
+                        flashcardSet.put("id", flashcardSetsId);
+                        flashcardSet.put("name", flashcardSetsName);
+                        flashcardSet.put("topic", selectedChoice);
+
+                        db.collection("users")
+                                .document(userEmail)
+                                .collection("flashcard_sets")
+                                .document(flashcardSetsId)
+                                .set(flashcardSet)
+                                .addOnSuccessListener(aVoid -> {
+                                    startActivity(new Intent(NameFlashcardsActivity.this, CreateFlashcardsActivity.class)
+                                            .putExtra("flashcardSetsId", flashcardSetsId)
+                                    );
+                                    finish();
+                                })
+                                .addOnFailureListener(e -> Toast.makeText(NameFlashcardsActivity.this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show());
                     })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(NameFlashcardsActivity.this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    .addOnFailureListener(e -> Toast.makeText(NameFlashcardsActivity.this, "Không thể lấy dữ liệu flashcard_sets", Toast.LENGTH_SHORT).show());
         }
     }
+
 }

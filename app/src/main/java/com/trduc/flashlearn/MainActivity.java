@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     ImageView menu, ivProfilePicture;
     LinearLayout home, setting, share, about, sign_out, allcart;
     TextView tvEmail, tvUsername,tvTittle;
-    private boolean doubleBackToExitPressedOnce = false;
     Button bCreateFlashcards, bAllFlashcardSets;
     FirebaseAuth auth;
     FirebaseFirestore db;
@@ -75,18 +74,21 @@ public class MainActivity extends AppCompatActivity {
                 redirectActivity(MainActivity.this, SettingActivity.class);
             }
         });
+
         allcart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(MainActivity.this, AllCartActivity.class);
             }
         });
+
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(MainActivity.this, ShareActivity.class);
             }
         });
+
         about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,20 +145,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
-            return;
-        }
-
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Nhấn trở về một lần nữa để thoát", Toast.LENGTH_SHORT).show();
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce=false;
-            }
-        }, 2000);
+        super.onBackPressed();
+        finishAffinity();
     }
 
     public static void openDrawer(DrawerLayout drawerLayout) {
@@ -181,8 +171,6 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         closeDrawer(drawerLayout);
     }
-
-
 
     private void showInformationUser() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
