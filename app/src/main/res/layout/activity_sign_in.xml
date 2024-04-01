@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity"
     android:background="@color/white">
 
     <LinearLayout
@@ -12,10 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
-        android:paddingTop="24sp"
-        android:paddingBottom="24sp"
-        android:paddingLeft="33sp"
-        android:paddingRight="33sp">
+        android:padding="30sp" >
 
         <TextView
             android:id="@+id/tvTitle"
@@ -47,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:paddingRight="10sp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15sp"
             android:hint="Mật khẩu"
             android:inputType="textPassword"
             android:paddingLeft="10sp"
@@ -100,6 +96,7 @@
             android:backgroundTint="@color/pink0"
             android:background="@drawable/pink0_rounded_border_4sp"
             android:text="Đăng nhập"
+            android:elevation="10dp"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="20sp"
@@ -127,7 +124,7 @@
             android:id="@+id/bGoogleSignIn"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/google_sign_in_background"
             android:textAllCaps="false"
             android:textSize="20sp" />

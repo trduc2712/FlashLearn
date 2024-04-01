@@ -91,6 +91,10 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
                 String answer = etAnswer.getText().toString().trim();
 
                 if (question.isEmpty() || answer.isEmpty()) {
+                    if (question.isEmpty() && answer.isEmpty()) {
+                        Toast.makeText(CreateFlashcardsActivity.this, "Vui lòng nhập câu hỏi và đáp án", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     if (question.isEmpty()) {
                         Toast.makeText(CreateFlashcardsActivity.this, "Vui lòng nhập câu hỏi", Toast.LENGTH_SHORT).show();
                         return;
@@ -168,8 +172,12 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
         bCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CreateFlashcardsActivity.this, MainActivity.class);
-                startActivity(intent);
+                if (flashcardList.size() > 0) {
+                    Intent intent = new Intent(CreateFlashcardsActivity.this, MainActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(CreateFlashcardsActivity.this, "Hãy tạo ít nhất một flashcard", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

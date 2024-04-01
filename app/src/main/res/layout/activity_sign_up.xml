@@ -12,10 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
-        android:paddingTop="24sp"
-        android:paddingBottom="24sp"
-        android:paddingLeft="33sp"
-        android:paddingRight="33sp">
+        android:padding="30sp" >
 
         <TextView
             android:id="@+id/tvTitle"
@@ -46,7 +43,7 @@
             android:paddingRight="10sp"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:hint="Tên người dùng"
             android:inputType="text"
             android:paddingLeft="10sp"
@@ -60,7 +57,7 @@
             android:paddingRight="10sp"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:hint="Mật khẩu"
             android:inputType="textPassword"
             android:paddingLeft="10sp"
@@ -74,7 +71,7 @@
             android:layout_height="48dp"
             android:drawableRight="@drawable/eye"
             android:paddingRight="10sp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:hint="Nhập lại mật khẩu"
             android:inputType="textPassword"
             android:background="@drawable/grey_rounded_border_4sp"
@@ -86,7 +83,7 @@
             android:id="@+id/bSignUp"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:backgroundTint="@color/pink0"
             android:background="@drawable/pink0_rounded_border_4sp"
             android:text="Đăng ký"
