@@ -2,6 +2,7 @@ package com.trduc.flashlearn;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -9,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
@@ -30,7 +32,7 @@ public class SettingActivity extends AppCompatActivity {
 
     TextView tvTittle;
     TextView tvEmail, tvUsername;
-    Switch aSwitch;
+    Switch swt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,12 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
         initUi();
         showInformationUser();
+        if( AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES){
+            swt.setChecked(true);
+        }
+        else {
+            swt.setChecked(false);
+        }
 
 
         menu.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +85,17 @@ public class SettingActivity extends AppCompatActivity {
                 redirectActivity(SettingActivity.this, SupportActivity.class);
             }
         });
+        swt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                }
+                else if(!isChecked){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+            }
+        });
 
 //        logout.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -109,6 +128,7 @@ public class SettingActivity extends AppCompatActivity {
         allcart = findViewById(R.id.allcart);
         tvTittle=findViewById(R.id.tvTittle);
         tvTittle.setText("Setting");
+        swt=findViewById(R.id.darkmode);
     }
     public static void openDrawer(DrawerLayout drawerLayout) {
         drawerLayout.openDrawer(GravityCompat.START);

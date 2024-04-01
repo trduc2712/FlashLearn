@@ -6,4 +6,8 @@
     </style>
 
     <style name="Theme.FlashLearn" parent="Base.Theme.FlashLearn" />
+    <style name="Backgroud"><item name="android:background">@color/white</item></style>
+    <style name="BackgroudInit"><item name="android:backgroundTint">@color/white</item></style>
+    <style name="TextColor"><item name="android:textColor">@color/black</item></style>
+
 </resources>

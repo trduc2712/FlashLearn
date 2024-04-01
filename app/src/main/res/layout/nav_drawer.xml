@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    style="@style/Backgroud"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -12,7 +13,7 @@
         android:orientation="vertical"
         android:gravity="bottom"
         android:padding="15dp"
-        android:background="@color/white"
+        style="@style/Backgroud"
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,7 +37,7 @@
             android:layout_marginTop="7sp"
             android:text="Tên người dùng"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            style="@style/TextColor"
             android:textSize="20sp"/>
 
         <TextView
@@ -46,7 +47,7 @@
             android:layout_marginTop="7sp"
             android:text="Địa chỉ email"
             android:textSize="15sp"
-            android:textColor="@color/black" />
+            style="@style/TextColor" />
 
     </LinearLayout>
 
@@ -59,7 +60,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        style="@style/Backgroud"
         android:orientation="vertical">
 
         <LinearLayout
@@ -73,7 +74,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                style="@style/TextColor"
                 android:text="Trang chủ"
                 android:drawableLeft="@drawable/house_icon"
                 android:textSize="15sp"
@@ -92,38 +93,39 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                style="@style/TextColor"
                 android:text="Tất cả thẻ"
                 android:drawableLeft="@drawable/list_solid"
                 android:textSize="15sp"
                 android:drawablePadding="8dp"/>
 
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/color"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal" >
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:id="@+id/color"-->
+        <!--            android:layout_marginStart="15dp"-->
+        <!--            android:layout_marginTop="15dp"-->
+        <!--            android:orientation="horizontal" >-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Chế độ tối"
-                android:drawableLeft="@drawable/pen_solid"
-                android:textSize="15sp"
-                android:drawablePadding="8dp"/>
-            <Switch
-                android:layout_width="match_parent"
-                android:layout_height="15sp"
-                android:gravity="right"
-                android:layout_marginRight="40dp"
-                android:thumb="@drawable/thumb"
-                android:track="@drawable/track"/>
+        <!--            <TextView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                style="@style/TextColor"-->
+        <!--                android:text="Chế độ tối"-->
+        <!--                android:drawableLeft="@drawable/pen_solid"-->
+        <!--                android:textSize="15sp"-->
+        <!--                android:drawablePadding="8dp"/>-->
+        <!--            <Switch-->
+        <!--                android:id="@+id/darkmode"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="15sp"-->
+        <!--                android:gravity="right"-->
+        <!--                android:layout_marginRight="40dp"-->
+        <!--                android:thumb="@drawable/thumb"-->
+        <!--                android:track="@drawable/track"/>-->
 
-        </LinearLayout>
+        <!--        </LinearLayout>-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -136,7 +138,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                style="@style/TextColor"
                 android:text="Cài đặt"
                 android:drawableLeft="@drawable/setting_icon"
                 android:textSize="15sp"
@@ -154,7 +156,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                style="@style/TextColor"
                 android:text="Liên hệ"
                 android:drawableLeft="@drawable/envelope_solid"
                 android:textSize="15sp"
@@ -180,7 +182,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                style="@style/TextColor"
                 android:text="Chia sẻ ứng dụng"
                 android:textSize="15sp"
                 android:drawableLeft="@drawable/share_icon"
@@ -199,7 +201,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                style="@style/TextColor"
                 android:text="Hỗ trợ"
                 android:textSize="15sp"
                 android:drawableLeft="@drawable/about_icon"
@@ -218,7 +220,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                style="@style/TextColor"
                 android:text="Chính sách bảo mật"
                 android:drawableLeft="@drawable/shield_halved_solid"
                 android:textSize="15sp"
@@ -236,7 +238,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                style="@style/TextColor"
                 android:text="Hỗ trợ"
                 android:drawableLeft="@drawable/handshake_angle_solid"
                 android:textSize="15sp"
@@ -261,7 +263,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                style="@style/TextColor"
                 android:text="Đăng xuất"
                 android:drawableLeft="@drawable/sign_out_icon"
                 android:textSize="15sp"
