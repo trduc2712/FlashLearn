@@ -26,16 +26,14 @@ public class ShareActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu;
-    TextView tvEmail, tvUsername;
+    TextView tvEmail, tvUsername,tvTittle;
     LinearLayout home, setting, share, about, sign_out;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share);
-
-
-
         initUi();
         showInformationUser();
 
@@ -60,7 +58,9 @@ public class ShareActivity extends AppCompatActivity {
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recreate();
+
+//                recreate();
+                closeDrawer(drawerLayout);
             }
         });
         about.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +88,8 @@ public class ShareActivity extends AppCompatActivity {
         share = findViewById(R.id.share);
         tvEmail = findViewById(R.id.tvEmail);
         tvUsername = findViewById(R.id.tvUsername);
+        tvTittle=findViewById(R.id.tvTittle);
+        tvTittle.setText("Chia sẻ ứng dụng");
     }
     private void showInformationUser() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

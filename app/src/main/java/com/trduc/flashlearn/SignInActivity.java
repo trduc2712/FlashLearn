@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -183,6 +184,7 @@ public class SignInActivity extends AppCompatActivity {
                     Intent intent = new Intent(SignInActivity.this,MainActivity.class);
                     startActivity(intent);
                     Toast.makeText(SignInActivity.this,"Đăng nhập thành công",Toast.LENGTH_SHORT).show();
+                    showDiaglog();
                 }
                 else {
                     Toast.makeText(SignInActivity.this,"Vui lòng kiểm tra lại",Toast.LENGTH_SHORT).show();
@@ -190,7 +192,13 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
     }
-
+    void showDiaglog(){
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Đăng nhập");
+        progressDialog.setMessage("Loadingg .....");
+        progressDialog.setMax(20);
+        progressDialog.show();
+    }
     void init() {
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);

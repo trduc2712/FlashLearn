@@ -30,7 +30,7 @@ public class SettingActivity extends AppCompatActivity {
     ImageView menu;
     LinearLayout home, setting, share, about, logout;
 
-    TextView textView;
+    TextView tvTittle;
     TextView tvEmail, tvUsername;
     Switch aSwitch;
 
@@ -57,7 +57,8 @@ public class SettingActivity extends AppCompatActivity {
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recreate();
+                closeDrawer(drawerLayout);
+//                recreate();
             }
         });
         share.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +102,8 @@ public class SettingActivity extends AppCompatActivity {
         logout = findViewById(R.id.sign_out);
         tvEmail = findViewById(R.id.tvEmail);
         tvUsername = findViewById(R.id.tvUsername);
+        tvTittle=findViewById(R.id.tvTittle);
+        tvTittle.setText("Setting");
     }
     public static void openDrawer(DrawerLayout drawerLayout) {
         drawerLayout.openDrawer(GravityCompat.START);

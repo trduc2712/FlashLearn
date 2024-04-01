@@ -27,7 +27,7 @@ public class AboutActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView menu;
     LinearLayout home, setting, share, about, sign_out;
-    TextView tvEmail, tvUsername;
+    TextView tvEmail, tvUsername,tvTittle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,8 @@ public class AboutActivity extends AppCompatActivity {
         about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recreate();
+                closeDrawer(drawerLayout);
+//                recreate();
             }
         });
 
@@ -87,6 +88,8 @@ public class AboutActivity extends AppCompatActivity {
         share = findViewById(R.id.share);
         tvEmail = findViewById(R.id.tvEmail);
         tvUsername = findViewById(R.id.tvUsername);
+        tvTittle=findViewById(R.id.tvTittle);
+        tvTittle.setText("Thông tin về ứng dụng");
     }
 
     public static void openDrawer(DrawerLayout drawerLayout) {

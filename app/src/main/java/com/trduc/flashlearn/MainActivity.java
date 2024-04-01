@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView menu, ivProfilePicture;
     LinearLayout home, setting, share, about, sign_out;
-    TextView tvEmail, tvUsername;
+    TextView tvEmail, tvUsername,tvTittle;
     private boolean doubleBackToExitPressedOnce = false;
     Button bCreateFlashcards;
     FirebaseAuth auth;
@@ -48,22 +48,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        db = FirebaseFirestore.getInstance();
-        auth = FirebaseAuth.getInstance();
-        ivProfilePicture = findViewById(R.id.ivProfilePicture);
-        drawerLayout = findViewById(R.id.drawerLayout);
-        menu = findViewById(R.id.menu);
-        home = findViewById(R.id.home);
-        about = findViewById(R.id.about);
-        sign_out = findViewById(R.id.sign_out);
-        setting = findViewById(R.id.setting);
-        share = findViewById(R.id.share);
-        bCreateFlashcards = findViewById(R.id.bCreateFlashcards);
         initUi();
         showInformationUser();
         addNewUserToFirestore();
-
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +61,9 @@ public class MainActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recreate();
+
+//                recreate();
+                closeDrawer(drawerLayout);
             }
         });
 
@@ -115,6 +104,22 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    private void initUi(){
+        tvEmail = findViewById(R.id.tvEmail);
+        tvUsername = findViewById(R.id.tvUsername);
+        db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+        ivProfilePicture = findViewById(R.id.ivProfilePicture);
+        drawerLayout = findViewById(R.id.drawerLayout);
+        menu = findViewById(R.id.menu);
+        home = findViewById(R.id.home);
+        about = findViewById(R.id.about);
+        sign_out = findViewById(R.id.sign_out);
+        setting = findViewById(R.id.setting);
+        share = findViewById(R.id.share);
+        tvTittle=findViewById(R.id.tvTittle);
+        bCreateFlashcards = findViewById(R.id.bCreateFlashcards);
     }
 
     @Override
@@ -158,10 +163,7 @@ public class MainActivity extends AppCompatActivity {
         closeDrawer(drawerLayout);
     }
 
-    private void initUi(){
-        tvEmail = findViewById(R.id.tvEmail);
-        tvUsername = findViewById(R.id.tvUsername);
-    }
+
 
     private void showInformationUser() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
