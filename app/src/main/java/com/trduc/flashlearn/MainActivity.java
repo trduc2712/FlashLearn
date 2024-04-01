@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu, ivProfilePicture;
-    LinearLayout home, setting, share, about, sign_out;
+    LinearLayout home, setting, share, about, sign_out, allcart;
     TextView tvEmail, tvUsername;
     private boolean doubleBackToExitPressedOnce = false;
     Button bCreateFlashcards;
@@ -62,11 +62,20 @@ public class MainActivity extends AppCompatActivity {
         setting = findViewById(R.id.setting);
         share = findViewById(R.id.share);
         bCreateFlashcards = findViewById(R.id.bCreateFlashcards);
+
+        allcart = findViewById(R.id.allcart);
+
         initUi();
         showInformationUser();
         addNewUserToFirestore();
 
 
+        allcart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(MainActivity.this, AllCartActivity.class);
+            }
+        });
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

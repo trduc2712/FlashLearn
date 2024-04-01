@@ -29,7 +29,7 @@ public class SettingActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu;
-    LinearLayout home, setting, share, about, logout;
+    LinearLayout home, setting, share, about, logout, allcart;
 
     TextView textView;
     TextView tvEmail, tvUsername;
@@ -44,6 +44,12 @@ public class SettingActivity extends AppCompatActivity {
         showInformationUser();
 
 
+        allcart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(SettingActivity.this, AllCartActivity.class);
+            }
+        });
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,24 +80,6 @@ public class SettingActivity extends AppCompatActivity {
                 redirectActivity(SettingActivity.this, AboutActivity.class);
             }
         });
-
-//        logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(SettingActivity.this, "Logout", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
-//        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if(aSwitch.isChecked()) {
-//                    textView.setText("On");
-//                } else {
-//                    textView.setText("Off");
-//                }
-//            }
-//        });
     }
     private void initUi(){
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -103,6 +91,8 @@ public class SettingActivity extends AppCompatActivity {
         logout = findViewById(R.id.sign_out);
         tvEmail = findViewById(R.id.tvEmail);
         tvUsername = findViewById(R.id.tvUsername);
+        allcart = findViewById(R.id.allcart);
+
     }
     public static void openDrawer(DrawerLayout drawerLayout) {
         drawerLayout.openDrawer(GravityCompat.START);

@@ -27,7 +27,7 @@ public class AboutActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu;
-    LinearLayout home, setting, share, about, sign_out;
+    LinearLayout home, setting, share, about, sign_out, allcart;
     TextView tvEmail, tvUsername;
 
     @Override
@@ -39,6 +39,12 @@ public class AboutActivity extends AppCompatActivity {
         initUi();
         showInformationUser();
 
+        allcart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(AboutActivity.this, AllCartActivity.class);
+            }
+        });
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +94,8 @@ public class AboutActivity extends AppCompatActivity {
         share = findViewById(R.id.share);
         tvEmail = findViewById(R.id.tvEmail);
         tvUsername = findViewById(R.id.tvUsername);
+        allcart = findViewById(R.id.allcart);
+
     }
 
     public static void openDrawer(DrawerLayout drawerLayout) {
