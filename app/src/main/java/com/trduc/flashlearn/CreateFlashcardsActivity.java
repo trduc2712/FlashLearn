@@ -222,4 +222,14 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        deleteFlashcardSet(flashcardSetsId);
+        deleteAllFlashcards();
+        Intent intent = new Intent(CreateFlashcardsActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 }
