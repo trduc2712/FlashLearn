@@ -35,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu, ivProfilePicture;
-    LinearLayout home, setting, share, about, sign_out,allcart;
+    LinearLayout home, setting, share, about, sign_out, allcart;
     TextView tvEmail, tvUsername,tvTittle;
     private boolean doubleBackToExitPressedOnce = false;
-    Button bCreateFlashcards;
+    Button bCreateFlashcards, bAllFlashcardSets;
     FirebaseAuth auth;
     FirebaseFirestore db;
 
@@ -108,8 +108,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        bAllFlashcardSets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AllFlashcardSetsActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
     private void initUi(){
+        bAllFlashcardSets = findViewById(R.id.bAllFlashcardSets);
         tvEmail = findViewById(R.id.tvEmail);
         tvUsername = findViewById(R.id.tvUsername);
         db = FirebaseFirestore.getInstance();
@@ -216,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
                                 .addOnCompleteListener(task1 -> {
                                     if (task1.isSuccessful()) {
                                         System.out.println("Da them nguoi dung moi thanh cong");
-                                        addFlashcardSetsForUser(userEmail);
+//                                        addFlashcardSetsForUser(userEmail);
                                     } else {
                                         Toast.makeText(MainActivity.this, "Failed to add user to Firestore", Toast.LENGTH_SHORT).show();
                                     }
@@ -229,23 +239,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void addFlashcardSetsForUser(String userEmail) {
-        CollectionReference flashcardSetsRef = db.collection("users").document(userEmail).collection("flashcard_sets");
-
-        Map<String, Object> flashcardSet = new HashMap<>();
-        flashcardSet.put("id", "default");
-        flashcardSet.put("name", "Default Flashcard Set");
-
-        flashcardSetsRef.document("default").set(flashcardSet)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        System.out.println("Da them collection flashcard_sets cho nguoi dung moi");
-                        addFlashcardsForUser(userEmail);
-                    } else {
-                        Toast.makeText(MainActivity.this, "Failed to add flashcard sets to Firestore", Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
+//    private void addFlashcardSetsForUser(String userEmail) {
+//        CollectionReference flashcardSetsRef = db.collection("users").document(userEmail).collection("flashcard_sets");
+//
+//        Map<String, Object> flashcardSet = new HashMap<>();
+//        flashcardSet.put("id", "default");
+//        flashcardSet.put("name", "Default Flashcard Set");
+//
+//        flashcardSetsRef.document("default").set(flashcardSet)
+//                .addOnCompleteListener(task -> {
+//                    if (task.isSuccessful()) {
+//                        System.out.println("Da them collection flashcard_sets cho nguoi dung moi");
+//                        addFlashcardsForUser(userEmail);
+//                    } else {
+//                        Toast.makeText(MainActivity.this, "Failed to add flashcard sets to Firestore", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//    }
 
     private void addFlashcardsForUser(String userEmail) {
         CollectionReference flashcardsRef = db.collection("users").document(userEmail)

@@ -31,6 +31,21 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
+        <Button
+            android:id="@+id/bAllFlashcardSets"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="30sp"
+            android:layout_marginRight="30sp"
+            android:layout_marginTop="30sp"
+            android:backgroundTint="@color/pink0"
+            android:background="@drawable/pink0_rounded_border_4sp"
+            android:text="Học một bộ flashcard"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
     </LinearLayout>
 
     <RelativeLayout

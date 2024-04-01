@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <Button
+        android:background="@drawable/pink0_rounded_border_4sp"
+        android:id="@+id/tvFlashcardSetsName"
+        android:layout_width="match_parent"
+        android:layout_height="48sp"
+        android:text="Flashcard Sets Name"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:layout_marginBottom="15sp"/>
+
+</LinearLayout>
