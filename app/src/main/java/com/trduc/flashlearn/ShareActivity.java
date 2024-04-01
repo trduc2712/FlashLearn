@@ -66,7 +66,7 @@ public class ShareActivity extends AppCompatActivity {
         about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(ShareActivity.this, AboutActivity.class);
+                redirectActivity(ShareActivity.this, SupportActivity.class);
             }
         });
 
