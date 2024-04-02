@@ -26,7 +26,7 @@ public class SecurityActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu;
-    LinearLayout home, setting, share, about, sign_out,allcart, security;
+    LinearLayout home, setting, share, about, sign_out,allcart, security, question;
     TextView tvEmail, tvUsername,tvTittle;
 
     @Override
@@ -81,6 +81,12 @@ public class SecurityActivity extends AppCompatActivity {
                closeDrawer(drawerLayout);
             }
         });
+        question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(SecurityActivity.this, QuestionActivity.class);;
+            }
+        });
 
         sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +107,7 @@ public class SecurityActivity extends AppCompatActivity {
         tvEmail = findViewById(R.id.tvEmail);
         allcart = findViewById(R.id.allcart);
         security = findViewById(R.id.security);
+        question = findViewById(R.id.question);
         tvUsername = findViewById(R.id.tvUsername);
         tvTittle=findViewById(R.id.tvTittle);
         tvTittle.setText("Hỗ trợ");

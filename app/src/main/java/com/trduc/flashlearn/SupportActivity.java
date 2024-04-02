@@ -26,7 +26,7 @@ public class SupportActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu;
-    LinearLayout home, setting, share, about, sign_out,allcart, security;
+    LinearLayout home, setting, share, about, sign_out,allcart, security, question;
     TextView tvEmail, tvUsername,tvTittle;
 
     @Override
@@ -75,6 +75,12 @@ public class SupportActivity extends AppCompatActivity {
 //                recreate();
             }
         });
+        question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(SupportActivity.this, QuestionActivity.class);;
+            }
+        });
 
         sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +106,7 @@ public class SupportActivity extends AppCompatActivity {
         share = findViewById(R.id.share);
         security = findViewById(R.id.security);
         tvEmail = findViewById(R.id.tvEmail);
+        question = findViewById(R.id.question);
         allcart = findViewById(R.id.allcart);
         tvUsername = findViewById(R.id.tvUsername);
         tvTittle=findViewById(R.id.tvTittle);
