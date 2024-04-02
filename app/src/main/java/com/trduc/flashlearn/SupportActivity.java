@@ -26,7 +26,7 @@ public class SupportActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu;
-    LinearLayout home, setting, share, about, sign_out,allcart;
+    LinearLayout home, setting, share, about, sign_out,allcart, security, question;
     TextView tvEmail, tvUsername,tvTittle;
 
     @Override
@@ -75,11 +75,23 @@ public class SupportActivity extends AppCompatActivity {
 //                recreate();
             }
         });
+        question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(SupportActivity.this, QuestionActivity.class);;
+            }
+        });
 
         sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(SupportActivity.this, "Đăng xuất", Toast.LENGTH_SHORT).show();
+            }
+        });
+        security.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(SupportActivity.this, SecurityActivity.class);
             }
         });
     }
@@ -88,11 +100,13 @@ public class SupportActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayout);
         menu = findViewById(R.id.menu);
         home = findViewById(R.id.home);
-        about = findViewById(R.id.about);
+        about = findViewById(R.id.support);
         sign_out = findViewById(R.id.sign_out);
         setting = findViewById(R.id.setting);
         share = findViewById(R.id.share);
+        security = findViewById(R.id.security);
         tvEmail = findViewById(R.id.tvEmail);
+        question = findViewById(R.id.question);
         allcart = findViewById(R.id.allcart);
         tvUsername = findViewById(R.id.tvUsername);
         tvTittle=findViewById(R.id.tvTittle);

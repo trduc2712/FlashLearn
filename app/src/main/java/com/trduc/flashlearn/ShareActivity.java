@@ -27,7 +27,7 @@ public class ShareActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView menu;
     TextView tvEmail, tvUsername,tvTittle;
-    LinearLayout home, setting, share, about, sign_out,allcart;
+    LinearLayout home, setting, share, about, sign_out,allcart, security, question;
 
 
     @Override
@@ -75,6 +75,18 @@ public class ShareActivity extends AppCompatActivity {
                 redirectActivity(ShareActivity.this, SupportActivity.class);
             }
         });
+        security.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(ShareActivity.this, SecurityActivity.class);
+            }
+        });
+        question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(ShareActivity.this, QuestionActivity.class);;
+            }
+        });
 
         sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,13 +100,15 @@ public class ShareActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayout);
         menu = findViewById(R.id.menu);
         home = findViewById(R.id.home);
-        about = findViewById(R.id.about);
+        about = findViewById(R.id.support);
         sign_out = findViewById(R.id.sign_out);
         setting = findViewById(R.id.setting);
         share = findViewById(R.id.share);
+        security = findViewById(R.id.security);
         tvEmail = findViewById(R.id.tvEmail);
         tvUsername = findViewById(R.id.tvUsername);
         allcart = findViewById(R.id.allcart);
+        question = findViewById(R.id.question);
         tvTittle=findViewById(R.id.tvTittle);
         tvTittle.setText("Chia sẻ ứng dụng");
     }

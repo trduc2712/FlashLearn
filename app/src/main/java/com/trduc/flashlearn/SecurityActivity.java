@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class AllCartActivity extends AppCompatActivity {
+public class SecurityActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu;
@@ -32,7 +32,7 @@ public class AllCartActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_cart);
+        setContentView(R.layout.activity_security);
 
 
         initUi();
@@ -47,52 +47,51 @@ public class AllCartActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(AllCartActivity.this, MainActivity.class);
-            }
-        });
-
-        allcart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                recreate();
+                redirectActivity(SecurityActivity.this, MainActivity.class);
             }
         });
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(AllCartActivity.this, SettingActivity.class);
+                redirectActivity(SecurityActivity.this, SettingActivity.class);
+            }
+        });
+        allcart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(SecurityActivity.this, AllCartActivity.class);
             }
         });
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(AllCartActivity.this, ShareActivity.class);
+                redirectActivity(SecurityActivity.this, ShareActivity.class);
             }
         });
         about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                redirectActivity(AllCartActivity.this, SupportActivity.class);
+                redirectActivity(SecurityActivity.this, SupportActivity.class);;
+//                recreate();
+            }
+        });
+        security.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               closeDrawer(drawerLayout);
+            }
+        });
+        question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(SecurityActivity.this, QuestionActivity.class);;
             }
         });
 
         sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(AllCartActivity.this, "Đăng xuất", Toast.LENGTH_SHORT).show();
-            }
-        });
-        security.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(AllCartActivity.this, SecurityActivity.class);
-            }
-        });
-        question.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(AllCartActivity.this, QuestionActivity.class);;
+                Toast.makeText(SecurityActivity.this, "Đăng xuất", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -105,14 +104,13 @@ public class AllCartActivity extends AppCompatActivity {
         sign_out = findViewById(R.id.sign_out);
         setting = findViewById(R.id.setting);
         share = findViewById(R.id.share);
-        security = findViewById(R.id.security);
         tvEmail = findViewById(R.id.tvEmail);
+        allcart = findViewById(R.id.allcart);
+        security = findViewById(R.id.security);
         question = findViewById(R.id.question);
         tvUsername = findViewById(R.id.tvUsername);
-        allcart = findViewById(R.id.allcart);
         tvTittle=findViewById(R.id.tvTittle);
-        tvTittle.setText("Setting");
-
+        tvTittle.setText("Hỗ trợ");
     }
 
     public static void openDrawer(DrawerLayout drawerLayout) {
