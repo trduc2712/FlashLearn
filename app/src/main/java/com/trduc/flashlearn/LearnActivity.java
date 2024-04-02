@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,17 +14,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.trduc.flashlearn.R;
 
 public class LearnActivity extends AppCompatActivity {
 
     ImageView ivForward, ivBackward;
-    TextView tvContent;
+    TextView tvContent, tvCurrentFlashcard;
     String flashcardSetsId;
     int currentFlashcardIndex = 0;
+    int totalFlashcards = 0;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
     String question, answer;
+    SeekBar seekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,9 @@ public class LearnActivity extends AppCompatActivity {
 
         ivForward = findViewById(R.id.ivForward);
         ivBackward = findViewById(R.id.ivBackward);
+        tvCurrentFlashcard = findViewById(R.id.tvCurrentFlashcard);
         tvContent = findViewById(R.id.tvContent);
+        seekBar = findViewById(R.id.seekBar);
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -42,7 +46,22 @@ public class LearnActivity extends AppCompatActivity {
             flashcardSetsId = intent.getStringExtra("flashcardSetsId");
         }
 
-        loadFlashcard(currentFlashcardIndex);
+        getFlashcardCount();
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                currentFlashcardIndex = progress;
+                loadFlashcard(currentFlashcardIndex);
+                updateCurrentFlashcardTextView();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
 
         tvContent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,8 +78,10 @@ public class LearnActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 switchToQuestion();
-                currentFlashcardIndex++;
-                loadFlashcard(currentFlashcardIndex);
+                if (currentFlashcardIndex < totalFlashcards - 1) {
+                    currentFlashcardIndex++;
+                    seekBar.setProgress(currentFlashcardIndex);
+                }
             }
         });
 
@@ -70,10 +91,33 @@ public class LearnActivity extends AppCompatActivity {
                 switchToQuestion();
                 if (currentFlashcardIndex > 0) {
                     currentFlashcardIndex--;
-                    loadFlashcard(currentFlashcardIndex);
+                    seekBar.setProgress(currentFlashcardIndex);
                 }
             }
         });
+    }
+
+    private void getFlashcardCount() {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        db.collection("users")
+                .document(currentUser.getEmail())
+                .collection("flashcard_sets")
+                .document(flashcardSetsId)
+                .collection("flashcards")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    totalFlashcards = queryDocumentSnapshots.size();
+                    seekBar.setMax(totalFlashcards - 1);
+                    updateCurrentFlashcardTextView();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(LearnActivity.this, "Failed to get flashcard count", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    private void updateCurrentFlashcardTextView() {
+        String currentFlashcardText = (currentFlashcardIndex + 1) + "/" + totalFlashcards;
+        tvCurrentFlashcard.setText(currentFlashcardText);
     }
 
     private void switchToQuestion() {
@@ -106,19 +150,14 @@ public class LearnActivity extends AppCompatActivity {
                                 question = documentSnapshot.getString("question");
                                 answer = documentSnapshot.getString("answer");
                                 tvContent.setText(question);
-                            } else {
-
                             }
                         } else {
-                            Toast.makeText(LearnActivity.this, "Hết flashcard rồi!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LearnActivity.this, "End of flashcards!", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-
                     }
                 })
                 .addOnFailureListener(e -> {
-
+                    Toast.makeText(LearnActivity.this, "Failed to load flashcard", Toast.LENGTH_SHORT).show();
                 });
     }
-
 }
