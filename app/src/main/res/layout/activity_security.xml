@@ -8,23 +8,308 @@
     tools:context=".SecurityActivity"
     android:id="@+id/drawerLayout">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        app:layout_editor_absoluteX="1dp"
+        app:layout_editor_absoluteY="1dp"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/Backgroud"
+            android:orientation="vertical">
 
-        <include
-            layout="@layout/toolbar"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bảo mật"
-            android:layout_gravity="center"
-            android:layout_marginTop="400dp"
-            android:textColor="@color/pink0"
-            android:textSize="36dp"/>
+            <include
+                layout="@layout/toolbar" />
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chính sách quyền riêng tư"
+                android:textSize="17sp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/pink0" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Cập nhật lần cuối: 9.5.2023"/>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Tại Flashcards World, chúng tôi tôn trọng quyền riêng tư của bạn và cam kết bảo vệ nó thông qua việc tuân thủ chính sách này. Chính sách này mô tả các loại thông tin chúng tôi có thể thu thập từ bạn hoặc bạn có thể cung cấp khi bạn sử dụng ứng dụng di động Flashcards World dành cho Android và các thông lệ của chúng tôi về việc thu thập, sử dụng, duy trì, bảo vệ và tiết lộ thông tin đó."/>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Vui lòng đọc kỹ chính sách này để hiểu các chính sách và thực tiễn của chúng tôi liên quan đến thông tin của bạn cũng như cách chúng tôi sẽ xử lý thông tin đó. Bằng cách sử dụng Ứng dụng, bạn đồng ý với các điều khoản và điều kiện của Chính sách quyền riêng tư này. Chính sách này có thể thay đổi theo thời gian. Việc bạn tiếp tục sử dụng Ứng dụng sau khi chúng tôi thực hiện các thay đổi được coi là chấp nhận những thay đổi đó, vì vậy vui lòng kiểm tra chính sách định kỳ để biết các bản cập nhật."/>
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thông tin chúng tôi thu thập và cách chúng tôi thu thập thông tin đó"
+                android:textSize="17sp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/pink0" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Chúng tôi thu thập một số loại thông tin từ và về người dùng Ứng dụng của chúng tôi, bao gồm:"/>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Tên và địa chỉ email (tùy chọn): Nếu bạn chọn cung cấp thông tin đó, chúng tôi sẽ thu thập tên và địa chỉ email của bạn nhằm mục đích cung cấp cho bạn các dịch vụ và hỗ trợ được cá nhân hóa."/>
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cách chúng tôi sử dụng thông tin của bạn"
+                android:textSize="17sp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/pink0" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Chúng tôi sử dụng thông tin mà chúng tôi thu thập về bạn hoặc thông tin bạn cung cấp cho chúng tôi, bao gồm mọi thông tin cá nhân:"/>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Để cung cấp cho bạn Ứng dụng và các dịch vụ của nó."/>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Để thông báo cho bạn về những thay đổi đối với Ứng dụng của chúng tôi hoặc bất kỳ sản phẩm hoặc dịch vụ nào chúng tôi cung cấp hoặc cung cấp thông qua Ứng dụng đó."/>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Để cho phép bạn tham gia các tính năng tương tác trên Ứng dụng của chúng tôi."/>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Để cung cấp hỗ trợ khách hàng và trả lời các câu hỏi của bạn."/>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tiết lộ thông tin của bạn"
+                android:textSize="17sp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/pink0" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Chúng tôi không chia sẻ, bán hoặc tiết lộ thông tin cá nhân của bạn cho các mục đích khác ngoài những mục đích được nêu trong Chính sách quyền riêng tư này. Chúng tôi không chia sẻ thông tin cá nhân của bạn với bên thứ ba vì mục đích tiếp thị trực tiếp của họ."/>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lưu giữ và xóa dữ liệu"
+                android:textSize="17sp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/pink0" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Dữ liệu của bạn sẽ được lưu giữ trong khoảng thời gian cần thiết để hoàn thành các mục đích thu thập dữ liệu và bạn có thể yêu cầu xóa dữ liệu của mình bất kỳ lúc nào."/>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Những thay đổi đối với chính sách quyền riêng tư của chúng tôi"
+                android:textSize="17sp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/pink0" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Chính sách của chúng tôi là đăng bất kỳ thay đổi nào chúng tôi thực hiện đối với chính sách bảo mật của mình trên trang này. Nếu chúng tôi thực hiện những thay đổi quan trọng về cách chúng tôi xử lý thông tin cá nhân của người dùng, chúng tôi sẽ thông báo cho bạn qua thông báo trên Ứng dụng. Ngày chính sách quyền riêng tư được sửa đổi lần cuối được xác định ở đầu trang. Bạn có trách nhiệm đảm bảo chúng tôi có địa chỉ email cập nhật, hoạt động và có thể gửi được cho bạn và định kỳ truy cập chính sách quyền riêng tư này để kiểm tra mọi thay đổi."/>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thông tin liên hệ"
+                android:textSize="17sp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/pink0" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Để đặt câu hỏi hoặc nhận xét về chính sách quyền riêng tư này và các biện pháp bảo mật của chúng tôi, bạn có thể liên hệ với chúng tôi tại: flashcards@gmail.com"/>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Bằng cách sử dụng Ứng dụng, bạn biểu thị sự chấp nhận Chính sách quyền riêng tư này. Nếu bạn không đồng ý với Chính sách quyền riêng tư này, vui lòng không sử dụng Ứng dụng. Việc bạn tiếp tục sử dụng Ứng dụng sau khi đăng các thay đổi đối với Chính sách quyền riêng tư này sẽ được coi là bạn chấp nhận những thay đổi đó."/>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
 
     <RelativeLayout
         android:layout_width="300dp"
