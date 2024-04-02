@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu, ivProfilePicture;
-    LinearLayout home, setting, share, about, sign_out, allcart;
+    LinearLayout home, setting, share, about, sign_out,allcart, security;
     TextView tvEmail, tvUsername,tvTittle;
     Button bCreateFlashcards, bAllFlashcardSets;
     FirebaseAuth auth;
@@ -86,6 +86,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 redirectActivity(MainActivity.this, ShareActivity.class);
+            }
+        });
+        security.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(MainActivity.this, SecurityActivity.class);
             }
         });
 
@@ -138,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
         sign_out = findViewById(R.id.sign_out);
         setting = findViewById(R.id.setting);
         share = findViewById(R.id.share);
+        security = findViewById(R.id.security);
         allcart = findViewById(R.id.allcart);
         tvTittle=findViewById(R.id.tvTittle);
         bCreateFlashcards = findViewById(R.id.bCreateFlashcards);

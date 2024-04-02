@@ -22,18 +22,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ShareActivity extends AppCompatActivity {
+public class SecurityActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu;
-    TextView tvEmail, tvUsername,tvTittle;
     LinearLayout home, setting, share, about, sign_out,allcart, security;
-
+    TextView tvEmail, tvUsername,tvTittle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_share);
+        setContentView(R.layout.activity_security);
+
+
         initUi();
         showInformationUser();
 
@@ -46,46 +47,45 @@ public class ShareActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(ShareActivity.this, MainActivity.class);
+                redirectActivity(SecurityActivity.this, MainActivity.class);
             }
         });
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(ShareActivity.this, SettingActivity.class);
+                redirectActivity(SecurityActivity.this, SettingActivity.class);
             }
         });
         allcart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(ShareActivity.this, AllCartActivity.class);
+                redirectActivity(SecurityActivity.this, AllCartActivity.class);
             }
         });
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                recreate();
-                closeDrawer(drawerLayout);
+                redirectActivity(SecurityActivity.this, ShareActivity.class);
             }
         });
         about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(ShareActivity.this, SupportActivity.class);
+                redirectActivity(SecurityActivity.this, SupportActivity.class);;
+//                recreate();
             }
         });
         security.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(ShareActivity.this, SecurityActivity.class);
+               closeDrawer(drawerLayout);
             }
         });
 
         sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ShareActivity.this, "Đăng xuất", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SecurityActivity.this, "Đăng xuất", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -98,12 +98,35 @@ public class ShareActivity extends AppCompatActivity {
         sign_out = findViewById(R.id.sign_out);
         setting = findViewById(R.id.setting);
         share = findViewById(R.id.share);
-        security = findViewById(R.id.security);
         tvEmail = findViewById(R.id.tvEmail);
-        tvUsername = findViewById(R.id.tvUsername);
         allcart = findViewById(R.id.allcart);
+        security = findViewById(R.id.security);
+        tvUsername = findViewById(R.id.tvUsername);
         tvTittle=findViewById(R.id.tvTittle);
-        tvTittle.setText("Chia sẻ ứng dụng");
+        tvTittle.setText("Hỗ trợ");
+    }
+
+    public static void openDrawer(DrawerLayout drawerLayout) {
+        drawerLayout.openDrawer(GravityCompat.START);
+    }
+
+    public static void closeDrawer(DrawerLayout drawerLayout) {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+    }
+
+    public static void redirectActivity(Activity activity, Class secondActivity) {
+        Intent intent = new Intent(activity, secondActivity);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        activity.startActivity(intent);
+        activity.finish();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        closeDrawer(drawerLayout);
     }
     private void showInformationUser() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -129,28 +152,5 @@ public class ShareActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    public static void openDrawer(DrawerLayout drawerLayout) {
-        drawerLayout.openDrawer(GravityCompat.START);
-    }
-
-    public static void closeDrawer(DrawerLayout drawerLayout) {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-    }
-
-    public static void redirectActivity(Activity activity, Class secondActivity) {
-        Intent intent = new Intent(activity, secondActivity);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        activity.startActivity(intent);
-        activity.finish();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        closeDrawer(drawerLayout);
     }
 }

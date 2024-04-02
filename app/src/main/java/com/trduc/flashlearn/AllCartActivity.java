@@ -26,7 +26,7 @@ public class AllCartActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu;
-    LinearLayout home, setting, share, about, sign_out, allcart;
+    LinearLayout home, setting, share, about, sign_out,allcart, security;
     TextView tvEmail, tvUsername,tvTittle;
 
     @Override
@@ -83,6 +83,12 @@ public class AllCartActivity extends AppCompatActivity {
                 Toast.makeText(AllCartActivity.this, "Đăng xuất", Toast.LENGTH_SHORT).show();
             }
         });
+        security.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(AllCartActivity.this, SecurityActivity.class);
+            }
+        });
     }
 
     private void initUi() {
@@ -93,6 +99,7 @@ public class AllCartActivity extends AppCompatActivity {
         sign_out = findViewById(R.id.sign_out);
         setting = findViewById(R.id.setting);
         share = findViewById(R.id.share);
+        security = findViewById(R.id.security);
         tvEmail = findViewById(R.id.tvEmail);
         tvUsername = findViewById(R.id.tvUsername);
         allcart = findViewById(R.id.allcart);
