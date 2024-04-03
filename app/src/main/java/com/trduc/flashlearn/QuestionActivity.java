@@ -27,7 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class QuestionActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
-    ImageView menu, ivProfilePicture;
+    ImageView ivBars, ivProfilePicture;
     LinearLayout lnHome, lnCreate, lnSignOut, lnEditFlashcardSets, lnAdd, lnDelete, lnEdit, lnSetting, lnSubItem;
     LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport;
     TextView tvEmail, tvUsername, tvTittle;
@@ -44,7 +44,7 @@ public class QuestionActivity extends AppCompatActivity {
         initUi();
         showInformationUser();
 
-        menu.setOnClickListener(new View.OnClickListener() {
+        ivBars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openDrawer(drawerLayout);
@@ -117,16 +117,15 @@ public class QuestionActivity extends AppCompatActivity {
         tvUsername = findViewById(R.id.tvUsername);
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
-        tvTittle=findViewById(R.id.tvTittle);
+        tvTittle=findViewById(R.id.tvTitle);
         lnSetting = findViewById(R.id.lnSetting);
 
         drawerLayout = findViewById(R.id.drawerLayout);
-        menu = findViewById(R.id.menu);
+        ivBars = findViewById(R.id.ivBars);
         lnSupport = findViewById(R.id.lnSupport);
         lnShare = findViewById(R.id.lnShare);
         lnQuestion = findViewById(R.id.lnQuestion);
         lnSecurity = findViewById(R.id.lnSecurity);
-        tvTittle=findViewById(R.id.tvTittle);
         tvTittle.setText("Câu hỏi thường gặp");
     }
 

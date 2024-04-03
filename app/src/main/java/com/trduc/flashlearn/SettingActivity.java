@@ -29,7 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class SettingActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
-    ImageView menu, ivProfilePicture;
+    ImageView ivBars, ivProfilePicture;
     LinearLayout lnHome, lnCreate, lnSignOut, lnEditFlashcardSets, lnAdd, lnDelete, lnEdit, lnSetting, lnSubItem;
     LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport;
     TextView tvEmail, tvUsername,tvTittle;
@@ -53,7 +53,7 @@ public class SettingActivity extends AppCompatActivity {
         }
 
 
-        menu.setOnClickListener(new View.OnClickListener() {
+        ivBars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openDrawer(drawerLayout);
@@ -142,11 +142,11 @@ public class SettingActivity extends AppCompatActivity {
         tvUsername = findViewById(R.id.tvUsername);
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
-        tvTittle=findViewById(R.id.tvTittle);
+        tvTittle=findViewById(R.id.tvTitle);
         lnSetting = findViewById(R.id.lnSetting);
 
         drawerLayout = findViewById(R.id.drawerLayout);
-        menu = findViewById(R.id.menu);
+        ivBars = findViewById(R.id.ivBars);
         lnSupport = findViewById(R.id.lnSupport);
         lnShare = findViewById(R.id.lnShare);
         lnQuestion = findViewById(R.id.lnQuestion);

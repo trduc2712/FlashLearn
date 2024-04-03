@@ -11,11 +11,11 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/menu"
-        android:src="@drawable/bars_icon"/>
+        android:id="@+id/ivBars"
+        android:src="@drawable/ic_bars"/>
 
     <TextView
-        android:id="@+id/tvTittle"
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"

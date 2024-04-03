@@ -8,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -42,14 +43,15 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
-    ImageView menu, ivProfilePicture;
+    ImageView ivBars, ivProfilePicture;
     LinearLayout lnHome, lnCreate, lnSignOut, lnEditFlashcardSets, lnAdd, lnDelete, lnEdit, lnSetting, lnSubItem;
-    LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport;
-    TextView tvEmail, tvUsername,tvTittle;
+    LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport, lnChangeNameFlashcardSets;
+    TextView tvEmail, tvUsername, tvTitle;
     FirebaseFirestore db;
     ListView lvAllFlashcardSets;
     FirebaseAuth auth;
     AllFlashcardSetsAdapter adapter;
+    String choice = "Learn flashcard sets";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +61,12 @@ public class MainActivity extends AppCompatActivity {
         showInformationUser();
         addNewUserToFirestore();
 
-        menu.setOnClickListener(new View.OnClickListener() {
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("choice", choice);
+        editor.apply();
+
+        ivBars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openDrawer(drawerLayout);
@@ -125,6 +132,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        lnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddFlashcardsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         ArrayList<FlashcardSets> flashcardSetsList = new ArrayList<>();
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -170,6 +185,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        lnChangeNameFlashcardSets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choice = "Change flashcard sets's name";
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("choice", choice);
+                editor.apply();
+                Intent intent = new Intent(MainActivity.this, AllFlashcardSetsActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
     private void initUi(){
         lnHome = findViewById(R.id.lnHome);
@@ -186,15 +214,15 @@ public class MainActivity extends AppCompatActivity {
         tvUsername = findViewById(R.id.tvUsername);
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
-        tvTittle=findViewById(R.id.tvTittle);
+        tvTitle=findViewById(R.id.tvTitle);
         lnSetting = findViewById(R.id.lnSetting);
-
         drawerLayout = findViewById(R.id.drawerLayout);
-        menu = findViewById(R.id.menu);
+        ivBars = findViewById(R.id.ivBars);
         lnSupport = findViewById(R.id.lnSupport);
         lnShare = findViewById(R.id.lnShare);
         lnQuestion = findViewById(R.id.lnQuestion);
         lnSecurity = findViewById(R.id.lnSecurity);
+        lnChangeNameFlashcardSets = findViewById(R.id.lnChangeNameFlashcardSets);
     }
 
     @Override
@@ -272,7 +300,6 @@ public class MainActivity extends AppCompatActivity {
                                 .addOnCompleteListener(task1 -> {
                                     if (task1.isSuccessful()) {
                                         System.out.println("Da them nguoi dung moi thanh cong");
-//                                        addFlashcardSetsForUser(userEmail);
                                     } else {
                                         Toast.makeText(MainActivity.this, "Failed to add user to Firestore", Toast.LENGTH_SHORT).show();
                                     }
@@ -283,42 +310,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-    }
-
-//    private void addFlashcardSetsForUser(String userEmail) {
-//        CollectionReference flashcardSetsRef = db.collection("users").document(userEmail).collection("flashcard_sets");
-//
-//        Map<String, Object> flashcardSet = new HashMap<>();
-//        flashcardSet.put("id", "default");
-//        flashcardSet.put("name", "Default Flashcard Set");
-//
-//        flashcardSetsRef.document("default").set(flashcardSet)
-//                .addOnCompleteListener(task -> {
-//                    if (task.isSuccessful()) {
-//                        System.out.println("Da them collection flashcard_sets cho nguoi dung moi");
-//                        addFlashcardsForUser(userEmail);
-//                    } else {
-//                        Toast.makeText(MainActivity.this, "Failed to add flashcard sets to Firestore", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//    }
-
-    private void addFlashcardsForUser(String userEmail) {
-        CollectionReference flashcardsRef = db.collection("users").document(userEmail)
-                .collection("flashcard_sets").document("default").collection("flashcards");
-
-        Map<String, Object> flashcard = new HashMap<>();
-        flashcard.put("question", "");
-        flashcard.put("answer", "");
-
-        flashcardsRef.document().set(flashcard)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        System.out.println("Da them collection flashcards cho nguoi dung moi");
-                    } else {
-                        Toast.makeText(MainActivity.this, "Failed to add flashcards to Firestore", Toast.LENGTH_SHORT).show();
-                    }
-                });
     }
 
 }
