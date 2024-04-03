@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,19 +22,24 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class QuestionActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
-    ImageView menu;
-    LinearLayout home, setting, share, about, sign_out,allcart, security, question;
-    TextView tvEmail, tvUsername,tvTittle;
+    ImageView menu, ivProfilePicture;
+    LinearLayout lnHome, lnCreate, lnSignOut, lnEditFlashcardSets, lnAdd, lnDelete, lnEdit, lnSetting, lnSubItem;
+    LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport;
+    TextView tvEmail, tvUsername, tvTittle;
+    FirebaseFirestore db;
+    ListView lvAllFlashcardSets;
+    FirebaseAuth auth;
+    AllFlashcardSetsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
-
 
         initUi();
         showInformationUser();
@@ -44,51 +50,51 @@ public class QuestionActivity extends AppCompatActivity {
                 openDrawer(drawerLayout);
             }
         });
-        home.setOnClickListener(new View.OnClickListener() {
+
+        lnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(QuestionActivity.this, MainActivity.class);
             }
         });
-        setting.setOnClickListener(new View.OnClickListener() {
+
+        lnSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(QuestionActivity.this, SettingActivity.class);
             }
         });
-        allcart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //redirectActivity(QuestionActivity.this, AllCartActivity.class);
-            }
-        });
-        share.setOnClickListener(new View.OnClickListener() {
+
+        lnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(QuestionActivity.this, ShareActivity.class);
             }
         });
-        about.setOnClickListener(new View.OnClickListener() {
+
+        lnSupport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(QuestionActivity.this, SupportActivity.class);
 //                recreate();
             }
         });
-        security.setOnClickListener(new View.OnClickListener() {
+
+        lnSecurity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(QuestionActivity.this, SecurityActivity.class);;
             }
         });
-        question.setOnClickListener(new View.OnClickListener() {
+
+        lnQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 closeDrawer(drawerLayout);
             }
         });
 
-        sign_out.setOnClickListener(new View.OnClickListener() {
+        lnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(QuestionActivity.this, "Đăng xuất", Toast.LENGTH_SHORT).show();
@@ -97,18 +103,29 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
     private void initUi() {
+        lnHome = findViewById(R.id.lnHome);
+        lnCreate = findViewById(R.id.lnCreate);
+        lvAllFlashcardSets = findViewById(R.id.lvAllFlashcardSets);
+        lnSignOut = findViewById(R.id.lnSignOut);
+        lnEditFlashcardSets = findViewById(R.id.lnEditFlashcardSets);
+        lnAdd = findViewById(R.id.lnAdd);
+        lnDelete = findViewById(R.id.lnDelete);
+        lnEdit = findViewById(R.id.lnEdit);
+        lnSubItem = findViewById(R.id.lnSubItem);
+        ivProfilePicture = findViewById(R.id.ivProfilePicture);
+        tvEmail = findViewById(R.id.tvEmail);
+        tvUsername = findViewById(R.id.tvUsername);
+        db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+        tvTittle=findViewById(R.id.tvTittle);
+        lnSetting = findViewById(R.id.lnSetting);
+
         drawerLayout = findViewById(R.id.drawerLayout);
         menu = findViewById(R.id.menu);
-        //home = findViewById(R.id.home);
-        about = findViewById(R.id.support);
-        //sign_out = findViewById(R.id.lnSignOut);
-        setting = findViewById(R.id.setting);
-        share = findViewById(R.id.share);
-        tvEmail = findViewById(R.id.tvEmail);
-        //allcart = findViewById(R.id.allcart);
-        security = findViewById(R.id.security);
-        question = findViewById(R.id.question);
-        tvUsername = findViewById(R.id.tvUsername);
+        lnSupport = findViewById(R.id.lnSupport);
+        lnShare = findViewById(R.id.lnShare);
+        lnQuestion = findViewById(R.id.lnQuestion);
+        lnSecurity = findViewById(R.id.lnSecurity);
         tvTittle=findViewById(R.id.tvTittle);
         tvTittle.setText("Câu hỏi thường gặp");
     }

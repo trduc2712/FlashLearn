@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -23,16 +24,20 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SettingActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
-    ImageView menu;
-    LinearLayout home, setting, share, about, sign_out,allcart, security, question;
-
-    TextView tvTittle;
-    TextView tvEmail, tvUsername;
-    Switch swt;
+    ImageView menu, ivProfilePicture;
+    LinearLayout lnHome, lnCreate, lnSignOut, lnEditFlashcardSets, lnAdd, lnDelete, lnEdit, lnSetting, lnSubItem;
+    LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport;
+    TextView tvEmail, tvUsername,tvTittle;
+    FirebaseFirestore db;
+    ListView lvAllFlashcardSets;
+    FirebaseAuth auth;
+    AllFlashcardSetsAdapter adapter;
+    Switch sDarkMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +46,10 @@ public class SettingActivity extends AppCompatActivity {
         initUi();
         showInformationUser();
         if( AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES){
-            swt.setChecked(true);
+            sDarkMode.setChecked(true);
         }
         else {
-            swt.setChecked(false);
+            sDarkMode.setChecked(false);
         }
 
 
@@ -54,50 +59,45 @@ public class SettingActivity extends AppCompatActivity {
                 openDrawer(drawerLayout);
             }
         });
-        home.setOnClickListener(new View.OnClickListener() {
+        lnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(SettingActivity.this, MainActivity.class);
             }
         });
-        allcart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //redirectActivity(SettingActivity.this, AllCartActivity.class);
-            }
-        });
-        setting.setOnClickListener(new View.OnClickListener() {
+
+        lnSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 closeDrawer(drawerLayout);
 //                recreate();
             }
         });
-        share.setOnClickListener(new View.OnClickListener() {
+        lnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(SettingActivity.this, ShareActivity.class);
             }
         });
-        security.setOnClickListener(new View.OnClickListener() {
+        lnSecurity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(SettingActivity.this, SecurityActivity.class);
             }
         });
-        question.setOnClickListener(new View.OnClickListener() {
+        lnQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(SettingActivity.this, QuestionActivity.class);;
             }
         });
-        about.setOnClickListener(new View.OnClickListener() {
+        lnSupport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(SettingActivity.this, SupportActivity.class);
             }
         });
-        swt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        sDarkMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
@@ -128,21 +128,30 @@ public class SettingActivity extends AppCompatActivity {
 //        });
     }
     private void initUi(){
+        lnHome = findViewById(R.id.lnHome);
+        lnCreate = findViewById(R.id.lnCreate);
+        lvAllFlashcardSets = findViewById(R.id.lvAllFlashcardSets);
+        lnSignOut = findViewById(R.id.lnSignOut);
+        lnEditFlashcardSets = findViewById(R.id.lnEditFlashcardSets);
+        lnAdd = findViewById(R.id.lnAdd);
+        lnDelete = findViewById(R.id.lnDelete);
+        lnEdit = findViewById(R.id.lnEdit);
+        lnSubItem = findViewById(R.id.lnSubItem);
+        ivProfilePicture = findViewById(R.id.ivProfilePicture);
+        tvEmail = findViewById(R.id.tvEmail);
+        tvUsername = findViewById(R.id.tvUsername);
+        db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+        tvTittle=findViewById(R.id.tvTittle);
+        lnSetting = findViewById(R.id.lnSetting);
+
         drawerLayout = findViewById(R.id.drawerLayout);
         menu = findViewById(R.id.menu);
-        //home = findViewById(R.id.home);
-        about = findViewById(R.id.support);
-        setting = findViewById(R.id.setting);
-        share = findViewById(R.id.share);
-        //sign_out = findViewById(R.id.sign_out);
-        security = findViewById(R.id.security);
-        tvEmail = findViewById(R.id.tvEmail);
-        question = findViewById(R.id.question);
-        tvUsername = findViewById(R.id.tvUsername);
-        //allcart = findViewById(R.id.allcart);
-        tvTittle=findViewById(R.id.tvTittle);
-        tvTittle.setText("Setting");
-        swt=findViewById(R.id.darkmode);
+        lnSupport = findViewById(R.id.lnSupport);
+        lnShare = findViewById(R.id.lnShare);
+        lnQuestion = findViewById(R.id.lnQuestion);
+        lnSecurity = findViewById(R.id.lnSecurity);
+        sDarkMode=findViewById(R.id.sDarkMode);
     }
     public static void openDrawer(DrawerLayout drawerLayout) {
         drawerLayout.openDrawer(GravityCompat.START);

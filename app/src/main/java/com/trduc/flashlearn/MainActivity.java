@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu, ivProfilePicture;
-    LinearLayout lnHome, lnCreate, lnSignOut, lnEditFlashcardSets, lnAdd, lnDelete, lnEdit, setting, share, about, security, question, lnSubItem;
+    LinearLayout lnHome, lnCreate, lnSignOut, lnEditFlashcardSets, lnAdd, lnDelete, lnEdit, lnSetting, lnSubItem;
+    LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport;
     TextView tvEmail, tvUsername,tvTittle;
     FirebaseFirestore db;
     ListView lvAllFlashcardSets;
@@ -72,33 +73,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        setting.setOnClickListener(new View.OnClickListener() {
+        lnSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(MainActivity.this, SettingActivity.class);
             }
         });
 
-        share.setOnClickListener(new View.OnClickListener() {
+        lnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(MainActivity.this, ShareActivity.class);
             }
         });
-        security.setOnClickListener(new View.OnClickListener() {
+        lnSecurity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(MainActivity.this, SecurityActivity.class);
             }
         });
 
-        about.setOnClickListener(new View.OnClickListener() {
+        lnSupport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(MainActivity.this, SupportActivity.class);
             }
         });
-        question.setOnClickListener(new View.OnClickListener() {
+        lnQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(MainActivity.this, QuestionActivity.class);;
@@ -186,15 +187,14 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         tvTittle=findViewById(R.id.tvTittle);
+        lnSetting = findViewById(R.id.lnSetting);
 
         drawerLayout = findViewById(R.id.drawerLayout);
         menu = findViewById(R.id.menu);
-        about = findViewById(R.id.support);
-        setting = findViewById(R.id.setting);
-        share = findViewById(R.id.share);
-        question = findViewById(R.id.question);
-        security = findViewById(R.id.security);
-
+        lnSupport = findViewById(R.id.lnSupport);
+        lnShare = findViewById(R.id.lnShare);
+        lnQuestion = findViewById(R.id.lnQuestion);
+        lnSecurity = findViewById(R.id.lnSecurity);
     }
 
     @Override

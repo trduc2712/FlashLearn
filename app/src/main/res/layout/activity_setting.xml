@@ -48,7 +48,7 @@
                         style="@style/TextColor"
                         android:textSize="17sp"/>
                     <Switch
-                        android:id="@+id/darkmode"
+                        android:id="@+id/sDarkMode"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:thumb="@drawable/thumb"
