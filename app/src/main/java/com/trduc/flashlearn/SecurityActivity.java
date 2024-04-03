@@ -30,7 +30,7 @@ public class SecurityActivity extends AppCompatActivity {
     ImageView ivBars, ivProfilePicture;
     LinearLayout lnHome, lnCreate, lnSignOut, lnEditFlashcardSets, lnAdd, lnDelete, lnEdit, lnSetting, lnSubItem;
     LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport;
-    TextView tvEmail, tvUsername,tvTittle;
+    TextView tvEmail, tvUsername, tvTitle;
     FirebaseFirestore db;
     ListView lvAllFlashcardSets;
     FirebaseAuth auth;
@@ -118,9 +118,9 @@ public class SecurityActivity extends AppCompatActivity {
         tvUsername = findViewById(R.id.tvUsername);
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
-        tvTittle=findViewById(R.id.tvTitle);
+        tvTitle = findViewById(R.id.tvTitle);
+        tvTitle.setText("Chính sách bảo mật");
         lnSetting = findViewById(R.id.lnSetting);
-
         drawerLayout = findViewById(R.id.drawerLayout);
         ivBars = findViewById(R.id.ivBars);
         lnSupport = findViewById(R.id.lnSupport);

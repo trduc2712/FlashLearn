@@ -30,7 +30,7 @@ public class QuestionActivity extends AppCompatActivity {
     ImageView ivBars, ivProfilePicture;
     LinearLayout lnHome, lnCreate, lnSignOut, lnEditFlashcardSets, lnAdd, lnDelete, lnEdit, lnSetting, lnSubItem;
     LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport;
-    TextView tvEmail, tvUsername, tvTittle;
+    TextView tvEmail, tvUsername, tvTitle;
     FirebaseFirestore db;
     ListView lvAllFlashcardSets;
     FirebaseAuth auth;
@@ -117,16 +117,15 @@ public class QuestionActivity extends AppCompatActivity {
         tvUsername = findViewById(R.id.tvUsername);
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
-        tvTittle=findViewById(R.id.tvTitle);
+        tvTitle=findViewById(R.id.tvTitle);
+        tvTitle.setText("Câu hỏi thường gặp");
         lnSetting = findViewById(R.id.lnSetting);
-
         drawerLayout = findViewById(R.id.drawerLayout);
         ivBars = findViewById(R.id.ivBars);
         lnSupport = findViewById(R.id.lnSupport);
         lnShare = findViewById(R.id.lnShare);
         lnQuestion = findViewById(R.id.lnQuestion);
         lnSecurity = findViewById(R.id.lnSecurity);
-        tvTittle.setText("Câu hỏi thường gặp");
     }
 
     public static void openDrawer(DrawerLayout drawerLayout) {
