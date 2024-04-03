@@ -19,7 +19,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="15sp"
-            android:text="X / X"
             android:textSize="15sp"
             android:textColor="@color/pink0"
             android:textStyle="bold"/>
@@ -40,9 +39,9 @@
             android:layout_marginBottom="30sp"
             android:background="@drawable/pink0_rounded_border_4sp"
             android:gravity="center"
-            android:text="Câu hỏi"
             android:textColor="@color/pink0"
             android:textSize="20sp"
+            android:padding="15sp"
             android:textStyle="bold" />
 
         <TextView

@@ -59,7 +59,7 @@ public class SupportActivity extends AppCompatActivity {
         allcart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(SupportActivity.this, AllCartActivity.class);
+                //redirectActivity(SupportActivity.this, AllCartActivity.class);
             }
         });
         share.setOnClickListener(new View.OnClickListener() {
@@ -99,15 +99,15 @@ public class SupportActivity extends AppCompatActivity {
     private void initUi() {
         drawerLayout = findViewById(R.id.drawerLayout);
         menu = findViewById(R.id.menu);
-        home = findViewById(R.id.home);
+        //home = findViewById(R.id.home);
         about = findViewById(R.id.support);
-        sign_out = findViewById(R.id.sign_out);
+        //sign_out = findViewById(R.id.sign_out);
         setting = findViewById(R.id.setting);
         share = findViewById(R.id.share);
         security = findViewById(R.id.security);
         tvEmail = findViewById(R.id.tvEmail);
         question = findViewById(R.id.question);
-        allcart = findViewById(R.id.allcart);
+        //allcart = findViewById(R.id.allcart);
         tvUsername = findViewById(R.id.tvUsername);
         tvTittle=findViewById(R.id.tvTittle);
         tvTittle.setText("Hỗ trợ");

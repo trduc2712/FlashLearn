@@ -51,55 +51,202 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray">
-    </View>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        style="@style/Backgroud"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/pink0">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/home"
+            android:id="@+id/lnHome"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
             android:orientation="horizontal" >
 
-            <TextView
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextColor"
+                android:src="@drawable/ic_home"
+                android:layout_marginRight="10sp" />
+
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_gravity="center"
                 android:text="Trang chủ"
-                android:drawableLeft="@drawable/house_icon"
-                android:textSize="15sp"
-                android:drawablePadding="8dp"/>
+                android:textSize="15sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/allcart"
+            android:id="@+id/lnCreate"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
             android:orientation="horizontal" >
 
-            <TextView
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextColor"
-                android:text="Tất cả thẻ"
-                android:drawableLeft="@drawable/list_solid"
-                android:textSize="15sp"
-                android:drawablePadding="8dp"/>
+                android:src="@drawable/ic_plus"
+                android:layout_marginRight="10sp" />
+
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:text="Tạo một bộ flashcard"
+                android:textSize="15sp" />
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lnEditFlashcardSets"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_pencil"
+                    android:layout_marginRight="10sp" />
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:text="Chỉnh sửa một bộ flashcard"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lnSubItem"
+                android:visibility="gone"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lnAdd"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="34sp"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_pencil"
+                        android:layout_marginRight="10sp" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"
+                        android:text="Thêm flashcard"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lnDelete"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="34sp"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_pencil"
+                        android:layout_marginRight="10sp" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"
+                        android:text="Xoá flashcard"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lnEdit"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="34sp"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_pencil"
+                        android:layout_marginRight="10sp" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"
+                        android:text="Sửa flashcard"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/allcart"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:orientation="horizontal" >-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                style="@style/TextColor"-->
+<!--                android:text="Tất cả thẻ"-->
+<!--                android:drawableLeft="@drawable/list_solid"-->
+<!--                android:textSize="15sp"-->
+<!--                android:drawablePadding="8dp"/>-->
+
+<!--        </LinearLayout>-->
+
         <!--        <LinearLayout-->
         <!--            android:layout_width="match_parent"-->
         <!--            android:layout_height="wrap_content"-->
@@ -128,7 +275,7 @@
         <!--        </LinearLayout>-->
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/setting"
             android:layout_marginStart="15dp"
@@ -140,11 +287,12 @@
                 android:layout_height="wrap_content"
                 style="@style/TextColor"
                 android:text="Cài đặt"
-                android:drawableLeft="@drawable/setting_icon"
+                android:drawableLeft="@drawable/ic_setting"
                 android:textSize="15sp"
                 android:drawablePadding="8dp"/>
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -164,19 +312,12 @@
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray"
-            android:layout_marginTop="20dp">
-        </View>
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/share"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <TextView
@@ -185,7 +326,7 @@
                 style="@style/TextColor"
                 android:text="Chia sẻ ứng dụng"
                 android:textSize="15sp"
-                android:drawableLeft="@drawable/share_icon"
+                android:drawableLeft="@drawable/ic_share"
                 android:drawablePadding="8dp"/>
 
         </LinearLayout>
@@ -245,29 +386,30 @@
                 android:drawablePadding="8dp"/>
 
         </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray"
-            android:layout_marginTop="30dp">
-        </View>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/sign_out"
+            android:id="@+id/lnSignOut"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal" >
 
-            <TextView
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextColor"
+                android:src="@drawable/ic_sign_out"
+                android:layout_marginRight="10sp" />
+
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_gravity="center"
                 android:text="Đăng xuất"
-                android:drawableLeft="@drawable/sign_out_icon"
-                android:textSize="15sp"
-                android:drawablePadding="8dp"/>
+                android:textSize="15sp" />
 
         </LinearLayout>
 

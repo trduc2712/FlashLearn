@@ -14,10 +14,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,7 +32,10 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,13 +43,12 @@ public class MainActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu, ivProfilePicture;
-    LinearLayout home, setting, share, about, sign_out,allcart, security, question;
+    LinearLayout lnHome, lnCreate, lnSignOut, lnEditFlashcardSets, lnAdd, lnDelete, lnEdit, setting, share, about, security, question, lnSubItem;
     TextView tvEmail, tvUsername,tvTittle;
-    Button bCreateFlashcards, bAllFlashcardSets;
-    FirebaseAuth auth;
     FirebaseFirestore db;
-
-
+    ListView lvAllFlashcardSets;
+    FirebaseAuth auth;
+    AllFlashcardSetsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         initUi();
         showInformationUser();
         addNewUserToFirestore();
+
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,11 +65,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        home.setOnClickListener(new View.OnClickListener() {
+        lnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                recreate();
                 closeDrawer(drawerLayout);
             }
         });
@@ -72,13 +76,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 redirectActivity(MainActivity.this, SettingActivity.class);
-            }
-        });
-
-        allcart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(MainActivity.this, AllCartActivity.class);
             }
         });
 
@@ -108,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        sign_out.setOnClickListener(new View.OnClickListener() {
+        lnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
@@ -119,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        bCreateFlashcards.setOnClickListener(new View.OnClickListener() {
+        lnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, NameFlashcardsActivity.class);
@@ -127,34 +124,77 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        bAllFlashcardSets.setOnClickListener(new View.OnClickListener() {
+        ArrayList<FlashcardSets> flashcardSetsList = new ArrayList<>();
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+
+        if (currentUser != null) {
+            String userEmail = currentUser.getEmail();
+            if (userEmail != null) {
+                db.collection("users")
+                        .document(userEmail)
+                        .collection("flashcard_sets")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                                    FlashcardSets flashcardSets = document.toObject(FlashcardSets.class);
+                                    flashcardSetsList.add(flashcardSets);
+                                }
+                                adapter.notifyDataSetChanged();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(MainActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
+        }
+
+        adapter = new AllFlashcardSetsAdapter(flashcardSetsList);
+        lvAllFlashcardSets.setAdapter(adapter);
+
+        lnEditFlashcardSets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AllFlashcardSetsActivity.class);
-                startActivity(intent);
+                if (lnSubItem.getVisibility() == View.GONE) {
+                    lnSubItem.setVisibility(View.VISIBLE);
+                } else {
+                    lnSubItem.setVisibility(View.GONE);
+                }
             }
         });
 
     }
     private void initUi(){
-        bAllFlashcardSets = findViewById(R.id.bAllFlashcardSets);
+        lnHome = findViewById(R.id.lnHome);
+        lnCreate = findViewById(R.id.lnCreate);
+        lvAllFlashcardSets = findViewById(R.id.lvAllFlashcardSets);
+        lnSignOut = findViewById(R.id.lnSignOut);
+        lnEditFlashcardSets = findViewById(R.id.lnEditFlashcardSets);
+        lnAdd = findViewById(R.id.lnAdd);
+        lnDelete = findViewById(R.id.lnDelete);
+        lnEdit = findViewById(R.id.lnEdit);
+        lnSubItem = findViewById(R.id.lnSubItem);
+        ivProfilePicture = findViewById(R.id.ivProfilePicture);
         tvEmail = findViewById(R.id.tvEmail);
         tvUsername = findViewById(R.id.tvUsername);
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
-        ivProfilePicture = findViewById(R.id.ivProfilePicture);
+        tvTittle=findViewById(R.id.tvTittle);
+
         drawerLayout = findViewById(R.id.drawerLayout);
         menu = findViewById(R.id.menu);
-        home = findViewById(R.id.home);
         about = findViewById(R.id.support);
-        sign_out = findViewById(R.id.sign_out);
         setting = findViewById(R.id.setting);
         share = findViewById(R.id.share);
         question = findViewById(R.id.question);
         security = findViewById(R.id.security);
-        allcart = findViewById(R.id.allcart);
-        tvTittle=findViewById(R.id.tvTittle);
-        bCreateFlashcards = findViewById(R.id.bCreateFlashcards);
+
     }
 
     @Override
