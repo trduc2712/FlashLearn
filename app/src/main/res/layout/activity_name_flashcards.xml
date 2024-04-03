@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    style="@style/Backgroud">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/Backgroud"
         android:layout_gravity="center"
         android:orientation="vertical"
         android:padding="30sp" >
@@ -27,6 +28,7 @@
             android:id="@+id/sTopic"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            style="@style/TextColor"
             android:layout_marginTop="30dp"
             android:paddingLeft="10sp"
             android:background="@drawable/grey_rounded_border_4sp" />

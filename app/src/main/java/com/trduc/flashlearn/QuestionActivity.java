@@ -110,7 +110,7 @@ public class QuestionActivity extends AppCompatActivity {
         question = findViewById(R.id.question);
         tvUsername = findViewById(R.id.tvUsername);
         tvTittle=findViewById(R.id.tvTittle);
-        tvTittle.setText("Hỗ trợ");
+        tvTittle.setText("Câu hỏi thường gặp");
     }
 
     public static void openDrawer(DrawerLayout drawerLayout) {
