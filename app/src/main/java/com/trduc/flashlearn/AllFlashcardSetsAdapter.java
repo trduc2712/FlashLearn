@@ -2,6 +2,8 @@ package com.trduc.flashlearn;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -52,12 +54,18 @@ public class AllFlashcardSetsAdapter extends BaseAdapter {
         }
 
         FlashcardSets flashcardSets = (FlashcardSets) getItem(position);
-        ((TextView) view.findViewById(R.id.bFlashcardSetsName)).setText(String.format("%s", flashcardSets.getName()));
+        ((Button) view.findViewById(R.id.bFlashcardSetsName)).setText(String.format("%s", flashcardSets.getName()));
 
         Button bFlashcardSetsName = view.findViewById(R.id.bFlashcardSetsName);
         SharedPreferences preferences = parent.getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String choice = preferences.getString("choice", "");
         System.out.println(choice);
+
+        if (choice.equals("Search a flashcard sets")) {
+            Context context = view.getContext();
+            Intent intent = new Intent(context, SearchActivity.class);
+            context.startActivity(intent);
+        }
         bFlashcardSetsName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView ivBars, ivProfilePicture;
     LinearLayout lnHome, lnCreate, lnSignOut, lnEditFlashcardSets, lnAdd, lnDelete, lnEdit, lnSetting, lnSubItem;
-    LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport, lnChangeNameFlashcardSets;
+    LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport, lnChangeNameFlashcardSets, lnSearch;
     TextView tvEmail, tvUsername, tvTitle;
     FirebaseFirestore db;
     ListView lvAllFlashcardSets;
@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 redirectActivity(MainActivity.this, ShareActivity.class);
             }
         });
+
         lnSecurity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 redirectActivity(MainActivity.this, SupportActivity.class);
             }
         });
+
         lnQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -198,6 +200,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        lnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choice = "Search a flashcard sets";
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("choice", choice);
+                editor.apply();
+                Intent intent = new Intent(MainActivity.this, AllFlashcardSetsActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
     private void initUi(){
         lnHome = findViewById(R.id.lnHome);
@@ -223,6 +238,7 @@ public class MainActivity extends AppCompatActivity {
         lnQuestion = findViewById(R.id.lnQuestion);
         lnSecurity = findViewById(R.id.lnSecurity);
         lnChangeNameFlashcardSets = findViewById(R.id.lnChangeNameFlashcardSets);
+        lnSearch = findViewById(R.id.lnSearch);
     }
 
     @Override

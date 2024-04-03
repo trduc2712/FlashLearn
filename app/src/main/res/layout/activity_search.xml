@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/Backgroud">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Backgroud"
+        android:orientation="vertical"
+        android:paddingTop="30sp"
+        android:paddingRight="30sp"
+        android:paddingLeft="30sp"
+        android:paddingBottom="30sp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Tìm kiếm một bộ flashcard"
+            android:textColor="@color/pink0"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="15sp"/>
+
+        <EditText
+            android:id="@+id/etFlashcardSetsName"
+            android:layout_width="match_parent"
+            android:paddingRight="10sp"
+            android:layout_height="48dp"
+            android:background="@drawable/grey_rounded_border_4sp"
+            android:textColorHint="#B2B4B3"
+            android:hint="Tên bộ flashcard bạn muốn tìm"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="10sp"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/bSearch"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="@color/pink0"
+            android:background="@drawable/pink0_rounded_border_4sp"
+            android:text="Tìm kiếm"
+            android:elevation="10dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ListView
+            android:layout_marginTop="15sp"
+            android:id="@+id/lvSearchFlashcardSets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>
