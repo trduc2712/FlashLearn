@@ -23,6 +23,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +53,7 @@ public class SignInActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference reference;
     CheckBox cbRemember;
+
     TextView tvForgotPassword, tvSignUp;
 
     SharedPreferences sharedPreferences;
@@ -163,7 +165,8 @@ public class SignInActivity extends AppCompatActivity {
                 firebaseauth(account.getIdToken());
             }
             catch (Exception e){
-                Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Lỗi",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -183,7 +186,6 @@ public class SignInActivity extends AppCompatActivity {
                     reference.child(datauser.getUid()).setValue(data);
                     Intent intent = new Intent(SignInActivity.this,MainActivity.class);
                     startActivity(intent);
-                    Toast.makeText(SignInActivity.this,"Đăng nhập thành công",Toast.LENGTH_SHORT).show();
                     showDiaglog();
                 }
                 else {
@@ -251,6 +253,7 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(intent);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                showDiaglog();
                 finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -274,31 +277,5 @@ public class SignInActivity extends AppCompatActivity {
             editor.apply();
         }
 
-//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
-//        Query checkUserDatabase = reference.orderByChild("username").equalTo(userUsername);
-//        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if (snapshot.exists()){
-//                    loginUsername.setError(null);
-//                    String passwordFromDB = snapshot.child(userUsername).child("password").getValue(String.class);
-//                    if (passwordFromDB.equals(userPassword)) {
-//                        loginUsername.setError(null);
-//
-//                        Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-//                        startActivity(intent);
-//                    } else {
-//                        loginPassword.setError("Sai mật khẩu");
-//                        loginPassword.requestFocus();
-//                    }
-//                } else {
-//                    loginUsername.setError("Người dùng không tồn tại");
-//                    loginUsername.requestFocus();
-//                }
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//            }
-//        });
     }
 }

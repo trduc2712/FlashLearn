@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -164,6 +165,7 @@ public class SupportActivity extends AppCompatActivity {
                 User userprofile = snapshot.getValue(User.class);
                 String email = user.getEmail();
                 String name = userprofile.getUsername();
+                Glide.with(SupportActivity.this).load(user.getPhotoUrl()).into(ivProfilePicture);
                 tvEmail.setText(email);
                 tvUsername.setText(name);
             }
