@@ -63,7 +63,7 @@ public class SettingActivity extends AppCompatActivity {
             sDarkMode.setChecked(false);
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, languages);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.simple_spinner, languages);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_language.setAdapter(adapter);
         spinner_language.setSelection(0);
