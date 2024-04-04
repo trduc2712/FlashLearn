@@ -10,12 +10,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,7 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class SettingActivity extends AppCompatActivity {
+public class SettingActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     DrawerLayout drawerLayout;
     ImageView ivBars, ivProfilePicture;
@@ -38,6 +42,8 @@ public class SettingActivity extends AppCompatActivity {
     FirebaseAuth auth;
     AllFlashcardSetsAdapter adapter;
     Switch sDarkMode;
+
+    Spinner spinner_language;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +58,11 @@ public class SettingActivity extends AppCompatActivity {
             sDarkMode.setChecked(false);
         }
 
-
+        spinner_language = findViewById(R.id.spinner_language);
+        ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.language, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_language.setAdapter(adapter);
+        spinner_language.setOnItemSelectedListener(this);
         ivBars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,6 +162,7 @@ public class SettingActivity extends AppCompatActivity {
         lnQuestion = findViewById(R.id.lnQuestion);
         lnSecurity = findViewById(R.id.lnSecurity);
         sDarkMode=findViewById(R.id.sDarkMode);
+        spinner_language=findViewById(R.id.spinner_language);
     }
     public static void openDrawer(DrawerLayout drawerLayout) {
         drawerLayout.openDrawer(GravityCompat.START);
@@ -199,5 +210,16 @@ public class SettingActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String selected_language = parent.getItemAtPosition(position).toString();
+        Toast.makeText(this, selected_language, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

@@ -71,12 +71,12 @@
                         style="@style/TextColor"
                         android:id="@+id/txt_setting_ngonngu"
                         android:textSize="17sp"/>
-                    <TextView
+                    <Spinner
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tiếng việt"
-                        android:layout_below="@id/txt_setting_ngonngu"
-                        android:textColor="@color/gray"/>
+                        android:layout_height="48dp"
+                        android:id="@+id/spinner_language"
+                        android:layout_marginLeft="-7dp"
+                        android:layout_below="@+id/txt_setting_ngonngu" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView

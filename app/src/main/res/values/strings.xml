@@ -3,4 +3,9 @@
     <string name="open_nav">Open Navigation Drawer</string>
     <string name="close_nav">Close Navigation Drawer</string>
     <string name="default_web_client_id">382070999281-thkcs7ku9v3679k8ar60u6fhdlcpt1t6.apps.googleusercontent.com</string>
+
+    <string-array name="language">
+        <item>Tiếng Anh</item>
+        <item>Tiếng Việt</item>
+    </string-array>
 </resources>
