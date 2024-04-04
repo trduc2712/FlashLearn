@@ -1,9 +1,9 @@
 package com.trduc.flashlearn;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,12 +11,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -45,13 +41,38 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         tvTitle = findViewById(R.id.tvTitle);
-        bSearch = findViewById(R.id.bSearch);
         etFlashcardSetsName = findViewById(R.id.etFlashcardSetsName);
         flashcardSetsList = new ArrayList<>();
         lvSearchFlashcardSets = findViewById(R.id.lvSearchFlashcardSets);
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        adapter = new SearchAdapter(flashcardSetsList);
+
+        etFlashcardSetsName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String searchKeyword = s.toString().trim();
+                if (!searchKeyword.isEmpty()) {
+                    searchFlashcardSets(searchKeyword);
+                } else {
+                    flashcardSetsList.clear();
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+
 
         if (currentUser != null) {
             String userEmail = currentUser.getEmail();
@@ -63,6 +84,7 @@ public class SearchActivity extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                flashcardSetsList.clear();
                                 for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                                     FlashcardSets flashcardSets = document.toObject(FlashcardSets.class);
                                     flashcardSetsList.add(flashcardSets);
@@ -78,22 +100,8 @@ public class SearchActivity extends AppCompatActivity {
                         });
             }
         }
-
-        adapter = new SearchAdapter(flashcardSetsList);
-
-        bSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String searchKeyword = etFlashcardSetsName.getText().toString().trim();
-                if (!searchKeyword.isEmpty()) {
-                    searchFlashcardSets(searchKeyword);
-                } else {
-                    Toast.makeText(SearchActivity.this, "Vui lòng nhập tên bộ flashcard cần tìm", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -102,7 +110,6 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void searchFlashcardSets(String keyword) {
-        flashcardSetsList.clear();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         db.collection("users")
                 .document(currentUser.getEmail())
@@ -111,12 +118,22 @@ public class SearchActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        // Clear the list here only when starting a new search
+                        if (!flashcardSetsList.isEmpty()) {
+                            flashcardSetsList.clear();
+                        }
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                             FlashcardSets flashcardSets = document.toObject(FlashcardSets.class);
                             String setName = flashcardSets.getName().toLowerCase();
                             if (setName.contains(keyword.toLowerCase())) {
                                 flashcardSetsList.add(flashcardSets);
                             }
+                        }
+                        int i = 0;
+                        for (FlashcardSets flashcardSets : flashcardSetsList) {
+                            System.out.print(i + ": ");
+                            System.out.println(flashcardSets.getName());
+                            i++;
                         }
                         adapter.notifyDataSetChanged();
                         lvSearchFlashcardSets.setAdapter(adapter);
