@@ -8,6 +8,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -31,7 +33,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class SettingActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+import java.util.Locale;
+
+public class SettingActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView ivBars, ivProfilePicture;
@@ -43,6 +47,7 @@ public class SettingActivity extends AppCompatActivity implements AdapterView.On
     FirebaseAuth auth;
     AllFlashcardSetsAdapter adapter;
     Switch sDarkMode;
+    private static final String[] languages = {"Select Language", "Tiếng Anh", "Tiếng Việt"};
 
     Spinner spinner_language;
 
@@ -52,18 +57,36 @@ public class SettingActivity extends AppCompatActivity implements AdapterView.On
         setContentView(R.layout.activity_setting);
         initUi();
         showInformationUser();
-        if( AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES){
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             sDarkMode.setChecked(true);
-        }
-        else {
+        } else {
             sDarkMode.setChecked(false);
         }
 
-        spinner_language = findViewById(R.id.spinner_language);
-        ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.language, R.layout.simple_spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, languages);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_language.setAdapter(adapter);
-        spinner_language.setOnItemSelectedListener(this);
+        spinner_language.setSelection(0);
+        spinner_language.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selected_language = parent.getItemAtPosition(position).toString();
+                if (selected_language.equals("Tiếng Anh")) {
+                    setLocal(SettingActivity.this, "en");
+                    finish();
+                    startActivity(getIntent());
+                } else if (selected_language.equals("Tiếng Việt")) {
+                    setLocal(SettingActivity.this, "vi");
+                    finish();
+                    startActivity(getIntent());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         ivBars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,7 +122,8 @@ public class SettingActivity extends AppCompatActivity implements AdapterView.On
         lnQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(SettingActivity.this, QuestionActivity.class);;
+                redirectActivity(SettingActivity.this, QuestionActivity.class);
+                ;
             }
         });
         lnSupport.setOnClickListener(new View.OnClickListener() {
@@ -111,10 +135,9 @@ public class SettingActivity extends AppCompatActivity implements AdapterView.On
         sDarkMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                }
-                else if(!isChecked){
+                } else if (!isChecked) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 }
             }
@@ -138,7 +161,8 @@ public class SettingActivity extends AppCompatActivity implements AdapterView.On
 //            }
 //        });
     }
-    private void initUi(){
+
+    private void initUi() {
         lnHome = findViewById(R.id.lnHome);
         lnCreate = findViewById(R.id.lnCreate);
         lvAllFlashcardSets = findViewById(R.id.lvAllFlashcardSets);
@@ -162,15 +186,16 @@ public class SettingActivity extends AppCompatActivity implements AdapterView.On
         lnShare = findViewById(R.id.lnShare);
         lnQuestion = findViewById(R.id.lnQuestion);
         lnSecurity = findViewById(R.id.lnSecurity);
-        sDarkMode=findViewById(R.id.sDarkMode);
-        spinner_language=findViewById(R.id.spinner_language);
+        sDarkMode = findViewById(R.id.sDarkMode);
+        spinner_language = findViewById(R.id.spinner_language);
     }
+
     public static void openDrawer(DrawerLayout drawerLayout) {
         drawerLayout.openDrawer(GravityCompat.START);
     }
 
     public static void closeDrawer(DrawerLayout drawerLayout) {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
     }
@@ -187,6 +212,7 @@ public class SettingActivity extends AppCompatActivity implements AdapterView.On
         super.onPause();
         closeDrawer(drawerLayout);
     }
+
     private void showInformationUser() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
@@ -212,16 +238,15 @@ public class SettingActivity extends AppCompatActivity implements AdapterView.On
 
             }
         });
-    }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String selected_language = parent.getItemAtPosition(position).toString();
-        Toast.makeText(this, selected_language, Toast.LENGTH_SHORT).show();
     }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
+    public void setLocal(Activity activity, String langCode) {
+        Locale locale = new Locale(langCode);
+        locale.setDefault(locale);
+        Resources resources = activity.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
 
     }
 }

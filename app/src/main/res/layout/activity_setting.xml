@@ -25,7 +25,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tổng quan"
+                android:text="@string/txt_overview"
                 android:textSize="17sp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
@@ -44,7 +44,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Chế độ tối"
+                        android:text="@string/txt_dark_mode"
                         style="@style/TextColor"
                         android:textSize="17sp"/>
                     <Switch
@@ -64,19 +64,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp">
+
                     <TextView
+                        android:id="@+id/txt_setting_ngonngu"
+                        style="@style/TextColor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ngôn ngữ"
-                        style="@style/TextColor"
-                        android:id="@+id/txt_setting_ngonngu"
-                        android:textSize="17sp"/>
+                        android:text="@string/txt_language"
+                        android:textSize="17sp" />
+
                     <Spinner
                         android:layout_width="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_height="48dp"
                         android:id="@+id/spinner_language"
-                        android:layout_marginLeft="-7dp"
                         android:layout_below="@+id/txt_setting_ngonngu" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -91,14 +92,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Thông báo có thẻ cần ôn tập"
+                        android:text="@string/txt_notice"
+                        android:layout_marginRight="20dp"
                         style="@style/TextColor"
                         android:id="@+id/txt_setting_ontap"
                         android:textSize="17sp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hiển thị thông báo khi bạn có thẻ cần ôn tập"
+                        android:text="@string/txt_sub_notice"
                         android:textColor="@color/gray"
                         android:layout_below="@id/txt_setting_ontap"/>
                     <Switch
@@ -121,14 +123,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Thiết lập thứ tự"
+                        android:text="@string/txt_set_oder"
                         style="@style/TextColor"
                         android:id="@+id/txt_setting_thietlap"
                         android:textSize="17sp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Thứ tự ABC"
+                        android:text="@string/txt_sub_set_oder"
                         android:textColor="@color/gray"
                         android:layout_below="@id/txt_setting_thietlap"/>
                 </RelativeLayout>

@@ -5,7 +5,20 @@
     <string name="default_web_client_id">382070999281-thkcs7ku9v3679k8ar60u6fhdlcpt1t6.apps.googleusercontent.com</string>
 
     <string-array name="language">
-        <item>Tiếng Anh</item>
-        <item>Tiếng Việt</item>
+        <item name="select_english">Tiếng Anh</item>
+        <item name="select_vietnamese">Tiếng Việt</item>
     </string-array>
+
+
+    <string name="select_english">Tiếng Anh</string>
+    <string name="select_vietnamese">Tiếng Việt</string>
+
+    <string name="txt_overview">Tổng quan</string>
+    <string name="txt_language">Ngôn ngữ</string>
+    <string name="txt_dark_mode">Chế độ tối</string>
+
+    <string name="txt_notice">Thông báo có thẻ cần ôn tập</string>
+    <string name="txt_sub_notice">Hiển thị thông báo khi có thẻ cần ôn tập</string>
+    <string name="txt_set_oder">Thiết lập thứ tự</string>
+    <string name="txt_sub_set_oder">Thiết lập thứ tự ABC</string>
 </resources>
