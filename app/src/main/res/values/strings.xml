@@ -20,5 +20,5 @@
     <string name="txt_notice">Thông báo có thẻ cần ôn tập</string>
     <string name="txt_sub_notice">Hiển thị thông báo khi có thẻ cần ôn tập</string>
     <string name="txt_set_oder">Thiết lập thứ tự</string>
-    <string name="txt_sub_set_oder">Thiết lập thứ tự ABC</string>
+    <string name="txt_sub_set_oder">Thiết lập thứ tự theo ABC</string>
 </resources>
