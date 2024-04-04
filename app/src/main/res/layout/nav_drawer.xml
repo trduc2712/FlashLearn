@@ -41,7 +41,7 @@
                 android:layout_marginTop="7.5sp"
                 android:text="Tên người dùng"
                 android:textStyle="bold"
-                style="@style/TextColor"
+                style="@style/TextColorMenu1"
                 android:textSize="20sp"/>
 
             <TextView
@@ -51,14 +51,14 @@
                 android:layout_marginTop="7.5sp"
                 android:text="Địa chỉ email"
                 android:textSize="15sp"
-                style="@style/TextColor" />
+                style="@style/TextColorMenu1" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/pink0"
+            style="@style/BackgroudMenu"
             android:orientation="vertical">
 
             <LinearLayout
@@ -81,7 +81,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="Trang chủ"
-                    android:textColor="@color/white"
+                    style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -107,7 +107,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="Tạo một bộ flashcard"
-                    android:textColor="@color/white"
+                    style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -137,7 +137,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="Chỉnh sửa một bộ flashcard"
-                        android:textColor="@color/white"
+                        style="@style/TextColorMenu"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
@@ -170,7 +170,7 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:text="Thêm flashcard"
-                            android:textColor="@color/white"
+                            style="@style/TextColorMenu"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
@@ -196,7 +196,7 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:text="Sửa flashcard"
-                            android:textColor="@color/white"
+                            style="@style/TextColorMenu"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
@@ -222,7 +222,7 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:text="Xoá flashcard"
-                            android:textColor="@color/white"
+                            style="@style/TextColorMenu"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
@@ -248,7 +248,7 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:text="Đổi tên một bộ flashcard"
-                            android:textColor="@color/white"
+                            style="@style/TextColorMenu"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
@@ -274,7 +274,7 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:text="Xóa một bộ flashcard"
-                            android:textColor="@color/white"
+                            style="@style/TextColorMenu"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
@@ -305,7 +305,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="Cài đặt"
-                    android:textColor="@color/white"
+                    style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -332,7 +332,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="Tìm kiếm một bộ flashcard"
-                    android:textColor="@color/white"
+                    style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -359,7 +359,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="Lọc theo chủ đề"
-                    android:textColor="@color/white"
+                    style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -385,7 +385,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="Chia sẻ ứng dụng"
-                    android:textColor="@color/white"
+                    style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -411,7 +411,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="Hỗ trợ"
-                    android:textColor="@color/white"
+                    style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -437,7 +437,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="Chính sách bảo mật"
-                    android:textColor="@color/white"
+                    style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -463,7 +463,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="Câu hỏi thường gặp"
-                    android:textColor="@color/white"
+                    style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -490,14 +490,20 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="Đăng xuất"
-                    android:textColor="@color/white"
+                    style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp">
+
+        </LinearLayout>
 
     </LinearLayout>
+
 
 </ScrollView>
