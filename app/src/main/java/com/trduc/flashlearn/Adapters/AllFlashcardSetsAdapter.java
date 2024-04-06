@@ -202,5 +202,4 @@ public class AllFlashcardSetsAdapter extends BaseAdapter {
         }
     }
 
-
 }

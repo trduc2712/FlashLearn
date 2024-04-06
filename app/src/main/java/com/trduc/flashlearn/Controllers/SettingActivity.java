@@ -251,7 +251,6 @@ public class SettingActivity extends AppCompatActivity {
         Configuration config = resources.getConfiguration();
         config.setLocale(locale);
         resources.updateConfiguration(config, resources.getDisplayMetrics());
-
     }
 
     private void showInformationUser() {

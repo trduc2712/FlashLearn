@@ -285,6 +285,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         loadFlashcardSets();
+        choice = "Learn flashcard sets";
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("choice", choice);
+        editor.apply();
     }
 
     @Override
@@ -379,7 +384,7 @@ public class MainActivity extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(MainActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+
                             }
                         });
             }
