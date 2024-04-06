@@ -8,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -42,13 +43,15 @@ public class SettingActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView ivBars, ivProfilePicture;
     LinearLayout lnHome, lnCreate, lnSignOut, lnEditFlashcardSets, lnAdd, lnDelete, lnEdit, lnSetting, lnSubItem;
-    LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport;
+    LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport, lnSearch;
     TextView tvEmail, tvUsername, tvTitle;
     FirebaseFirestore db;
     ListView lvAllFlashcardSets;
     FirebaseAuth auth;
     AllFlashcardSetsAdapter adapter;
     Switch sDarkMode;
+
+    String choice = "Learn flashcard sets";
     private static final String[] languages = {"Select Language", "Tiếng Anh", "Tiếng Việt"};
 
     Spinner spinner_language;
@@ -89,12 +92,14 @@ public class SettingActivity extends AppCompatActivity {
 
             }
         });
+
         ivBars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openDrawer(drawerLayout);
             }
         });
+
         lnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,31 +114,46 @@ public class SettingActivity extends AppCompatActivity {
 //                recreate();
             }
         });
+
         lnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(SettingActivity.this, ShareActivity.class);
             }
         });
+
         lnSecurity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(SettingActivity.this, SecurityActivity.class);
             }
         });
+
         lnQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(SettingActivity.this, QuestionActivity.class);
-                ;
             }
         });
+
+        lnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(SettingActivity.this, SignInActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         lnSupport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 redirectActivity(SettingActivity.this, SupportActivity.class);
             }
         });
+
         sDarkMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -145,23 +165,32 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
-//        logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(SettingActivity.this, "Logout", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        lnEditFlashcardSets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (lnSubItem.getVisibility() == View.GONE) {
+                    lnSubItem.setVisibility(View.VISIBLE);
+                } else {
+                    lnSubItem.setVisibility(View.GONE);
+                }
+            }
+        });
 
-//        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if(aSwitch.isChecked()) {
-//                    textView.setText("On");
-//                } else {
-//                    textView.setText("Off");
-//                }
-//            }
-//        });
+        lnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choice = "Search a flashcard sets";
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("choice", choice);
+                editor.apply();
+                Intent intent = new Intent(SettingActivity.this, AllFlashcardSetsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
     }
 
     private void initUi() {
@@ -174,6 +203,7 @@ public class SettingActivity extends AppCompatActivity {
         lnDelete = findViewById(R.id.lnDelete);
         lnEdit = findViewById(R.id.lnEdit);
         lnSubItem = findViewById(R.id.lnSubItem);
+        lnSearch = findViewById(R.id.lnSearch);
         ivProfilePicture = findViewById(R.id.ivProfilePicture);
         tvEmail = findViewById(R.id.tvEmail);
         tvUsername = findViewById(R.id.tvUsername);
