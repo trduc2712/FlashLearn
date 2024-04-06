@@ -78,14 +78,14 @@ public class SettingActivity extends AppCompatActivity {
                 String selected_language = parent.getItemAtPosition(position).toString();
                 if (selected_language.equals("EN")) {
                     setLocal(SettingActivity.this, "en");
+                    Toast.makeText(getApplicationContext(), "English", Toast.LENGTH_SHORT).show();
                     finish();
                     startActivity(getIntent());
-                    Toast.makeText(getApplicationContext(), "English", Toast.LENGTH_SHORT).show();
                 } else if (selected_language.equals("VI")) {
                     setLocal(SettingActivity.this, "vi");
+                    Toast.makeText(getApplicationContext(), "Việt Nam", Toast.LENGTH_SHORT).show();
                     finish();
                     startActivity(getIntent());
-                    Toast.makeText(getApplicationContext(), "Việt Nam", Toast.LENGTH_SHORT).show();
                 }
             }
 
