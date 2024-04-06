@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView ivBars, ivProfilePicture;
     LinearLayout lnHome, lnCreate, lnSignOut, lnEditFlashcardSets, lnAdd, lnDelete, lnEdit, lnSetting, lnSubItem;
-    LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport, lnChangeNameFlashcardSets, lnSearch;
+    LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport, lnChangeNameFlashcardSets, lnSearch, lnPratice;
     TextView tvEmail, tvUsername, tvTitle;
     FirebaseFirestore db;
     ListView lvAllFlashcardSets;
@@ -162,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
                                     FlashcardSets flashcardSets = document.toObject(FlashcardSets.class);
                                     flashcardSetsList.add(flashcardSets);
                                 }
+                                lvAllFlashcardSets.setAdapter(adapter);
                                 adapter.notifyDataSetChanged();
                             }
                         })
@@ -209,7 +210,20 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("choice", choice);
                 editor.apply();
-                Intent intent = new Intent(MainActivity.this, AllFlashcardSetsActivity.class);
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        lnEditFlashcardSets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                choice = "Delete a flashcard sets";
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("choice", choice);
+                editor.apply();
+                Intent intent = new Intent(MainActivity.this, DeleteFlashcardSetsActivity.class);
                 startActivity(intent);
             }
         });
@@ -231,6 +245,7 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         tvTitle=findViewById(R.id.tvTitle);
+        lnPratice = findViewById(R.id.lnPratice);
         tvTitle.setText("Trang chủ");
         lnSetting = findViewById(R.id.lnSetting);
         drawerLayout = findViewById(R.id.drawerLayout);

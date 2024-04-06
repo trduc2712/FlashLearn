@@ -147,7 +147,6 @@
                     android:id="@+id/lnSubItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     android:orientation="vertical" >
 
                     <LinearLayout
@@ -366,6 +365,33 @@
             </LinearLayout>
 
             <LinearLayout
+
+                android:id="@+id/lnPratice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10sp"
+                    android:src="@drawable/ic_book" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Luyện tập"
+                    style="@style/TextColorMenu"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/lnShare"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -498,10 +524,10 @@
 
         </LinearLayout>
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="140dp">-->
-<!--        </LinearLayout>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp">
+        </LinearLayout>
 
     </LinearLayout>
 
