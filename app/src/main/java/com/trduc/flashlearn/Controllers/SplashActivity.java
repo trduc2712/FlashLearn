@@ -1,4 +1,4 @@
-package com.trduc.flashlearn;
+package com.trduc.flashlearn.Controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,7 @@ import android.os.Handler;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.trduc.flashlearn.R;
 
 public class SplashActivity extends AppCompatActivity {
 

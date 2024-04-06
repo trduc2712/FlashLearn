@@ -1,10 +1,9 @@
-package com.trduc.flashlearn;
+package com.trduc.flashlearn.Controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -21,6 +20,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.trduc.flashlearn.Adapters.SearchAdapter;
+import com.trduc.flashlearn.Models.FlashcardSets;
+import com.trduc.flashlearn.R;
 
 import java.util.ArrayList;
 

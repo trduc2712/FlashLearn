@@ -1,25 +1,17 @@
-package com.trduc.flashlearn;
+package com.trduc.flashlearn.Controllers;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,10 +24,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.trduc.flashlearn.Adapters.AllFlashcardSetsAdapter;
+import com.trduc.flashlearn.Models.User;
+import com.trduc.flashlearn.R;
 
-import java.util.Locale;
-
-public class SettingActivity extends AppCompatActivity {
+public class QuestionActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView ivBars, ivProfilePicture;
@@ -46,120 +39,71 @@ public class SettingActivity extends AppCompatActivity {
     ListView lvAllFlashcardSets;
     FirebaseAuth auth;
     AllFlashcardSetsAdapter adapter;
-    Switch sDarkMode;
-    private static final String[] languages = {"Select Language", "Tiếng Anh", "Tiếng Việt"};
-
-    Spinner spinner_language;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
+        setContentView(R.layout.activity_question);
+
         initUi();
         showInformationUser();
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            sDarkMode.setChecked(true);
-        } else {
-            sDarkMode.setChecked(false);
-        }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.simple_spinner, languages);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_language.setAdapter(adapter);
-        spinner_language.setSelection(0);
-        spinner_language.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selected_language = parent.getItemAtPosition(position).toString();
-                if (selected_language.equals("Tiếng Anh")) {
-                    setLocal(SettingActivity.this, "en");
-                    finish();
-                    startActivity(getIntent());
-                } else if (selected_language.equals("Tiếng Việt")) {
-                    setLocal(SettingActivity.this, "vi");
-                    finish();
-                    startActivity(getIntent());
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
         ivBars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openDrawer(drawerLayout);
             }
         });
+
         lnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(SettingActivity.this, MainActivity.class);
+                redirectActivity(QuestionActivity.this, MainActivity.class);
             }
         });
 
         lnSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                closeDrawer(drawerLayout);
-//                recreate();
+                redirectActivity(QuestionActivity.this, SettingActivity.class);
             }
         });
+
         lnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(SettingActivity.this, ShareActivity.class);
+                redirectActivity(QuestionActivity.this, ShareActivity.class);
             }
         });
-        lnSecurity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(SettingActivity.this, SecurityActivity.class);
-            }
-        });
-        lnQuestion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(SettingActivity.this, QuestionActivity.class);
-                ;
-            }
-        });
+
         lnSupport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(SettingActivity.this, SupportActivity.class);
+                redirectActivity(QuestionActivity.this, SupportActivity.class);
+//                recreate();
             }
         });
-        sDarkMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+        lnSecurity.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                } else if (!isChecked) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                }
+            public void onClick(View v) {
+                redirectActivity(QuestionActivity.this, SecurityActivity.class);;
             }
         });
 
-//        logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(SettingActivity.this, "Logout", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        lnQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeDrawer(drawerLayout);
+            }
+        });
 
-//        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if(aSwitch.isChecked()) {
-//                    textView.setText("On");
-//                } else {
-//                    textView.setText("Off");
-//                }
-//            }
-//        });
+        lnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(QuestionActivity.this, "Đăng xuất", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initUi() {
@@ -177,8 +121,8 @@ public class SettingActivity extends AppCompatActivity {
         tvUsername = findViewById(R.id.tvUsername);
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
-        tvTitle = findViewById(R.id.tvTitle);
-        tvTitle.setText("Cài đặt");
+        tvTitle=findViewById(R.id.tvTitle);
+        tvTitle.setText("Câu hỏi thường gặp");
         lnSetting = findViewById(R.id.lnSetting);
         drawerLayout = findViewById(R.id.drawerLayout);
         ivBars = findViewById(R.id.ivBars);
@@ -186,8 +130,6 @@ public class SettingActivity extends AppCompatActivity {
         lnShare = findViewById(R.id.lnShare);
         lnQuestion = findViewById(R.id.lnQuestion);
         lnSecurity = findViewById(R.id.lnSecurity);
-        sDarkMode = findViewById(R.id.sDarkMode);
-        spinner_language = findViewById(R.id.spinner_language);
     }
 
     public static void openDrawer(DrawerLayout drawerLayout) {
@@ -195,7 +137,7 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     public static void closeDrawer(DrawerLayout drawerLayout) {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
     }
@@ -212,16 +154,6 @@ public class SettingActivity extends AppCompatActivity {
         super.onPause();
         closeDrawer(drawerLayout);
     }
-    public void setLocal(Activity activity, String langCode) {
-        Locale locale = new Locale(langCode);
-        locale.setDefault(locale);
-        Resources resources = activity.getResources();
-        Configuration config = resources.getConfiguration();
-        config.setLocale(locale);
-        resources.updateConfiguration(config, resources.getDisplayMetrics());
-
-    }
-
     private void showInformationUser() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
@@ -237,7 +169,7 @@ public class SettingActivity extends AppCompatActivity {
                 User userprofile = snapshot.getValue(User.class);
                 String email = user.getEmail();
                 String name = userprofile.getUsername();
-                Glide.with(SettingActivity.this).load(user.getPhotoUrl()).into(ivProfilePicture);
+                Glide.with(QuestionActivity.this).load(user.getPhotoUrl()).into(ivProfilePicture);
                 tvEmail.setText(email);
                 tvUsername.setText(name);
             }
@@ -247,7 +179,5 @@ public class SettingActivity extends AppCompatActivity {
 
             }
         });
-
     }
-
 }

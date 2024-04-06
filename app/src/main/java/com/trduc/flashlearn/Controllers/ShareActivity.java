@@ -1,4 +1,4 @@
-package com.trduc.flashlearn;
+package com.trduc.flashlearn.Controllers;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +15,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,8 +23,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.trduc.flashlearn.Adapters.AllFlashcardSetsAdapter;
+import com.trduc.flashlearn.Models.User;
+import com.trduc.flashlearn.R;
 
-public class SecurityActivity extends AppCompatActivity {
+public class ShareActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView ivBars, ivProfilePicture;
@@ -40,9 +42,7 @@ public class SecurityActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_security);
-
-
+        setContentView(R.layout.activity_share);
         initUi();
         showInformationUser();
 
@@ -56,50 +56,49 @@ public class SecurityActivity extends AppCompatActivity {
         lnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(SecurityActivity.this, MainActivity.class);
+                redirectActivity(ShareActivity.this, MainActivity.class);
             }
         });
 
         lnSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(SecurityActivity.this, SettingActivity.class);
+                redirectActivity(ShareActivity.this, SettingActivity.class);
             }
         });
 
         lnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(SecurityActivity.this, ShareActivity.class);
+                closeDrawer(drawerLayout);
             }
         });
 
         lnSupport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(SecurityActivity.this, SupportActivity.class);;
-//                recreate();
+                redirectActivity(ShareActivity.this, SupportActivity.class);
             }
         });
 
         lnSecurity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               closeDrawer(drawerLayout);
+                redirectActivity(ShareActivity.this, SecurityActivity.class);
             }
         });
 
         lnQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(SecurityActivity.this, QuestionActivity.class);;
+                redirectActivity(ShareActivity.this, QuestionActivity.class);;
             }
         });
 
         lnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(SecurityActivity.this, "Đăng xuất", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ShareActivity.this, "Đăng xuất", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -119,8 +118,8 @@ public class SecurityActivity extends AppCompatActivity {
         tvUsername = findViewById(R.id.tvUsername);
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
-        tvTitle = findViewById(R.id.tvTitle);
-        tvTitle.setText("Chính sách bảo mật");
+        tvTitle=findViewById(R.id.tvTitle);
+        tvTitle.setText("Chia sẻ ứng dụng");
         lnSetting = findViewById(R.id.lnSetting);
         drawerLayout = findViewById(R.id.drawerLayout);
         ivBars = findViewById(R.id.ivBars);
@@ -128,6 +127,31 @@ public class SecurityActivity extends AppCompatActivity {
         lnShare = findViewById(R.id.lnShare);
         lnQuestion = findViewById(R.id.lnQuestion);
         lnSecurity = findViewById(R.id.lnSecurity);
+    }
+    private void showInformationUser() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            return;
+        }
+
+        String userID = user.getUid();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Registered users");
+        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User userprofile = snapshot.getValue(User.class);
+                String email = user.getEmail();
+                String name = userprofile.getUsername();
+                tvEmail.setText(email);
+                tvUsername.setText(name);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     public static void openDrawer(DrawerLayout drawerLayout) {
@@ -151,31 +175,5 @@ public class SecurityActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         closeDrawer(drawerLayout);
-    }
-    private void showInformationUser() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) {
-            return;
-        }
-
-        String userID = user.getUid();
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Registered users");
-        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User userprofile = snapshot.getValue(User.class);
-                String email = user.getEmail();
-                String name = userprofile.getUsername();
-                Glide.with(SecurityActivity.this).load(user.getPhotoUrl()).into(ivProfilePicture);
-                tvEmail.setText(email);
-                tvUsername.setText(name);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 }

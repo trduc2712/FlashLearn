@@ -1,4 +1,4 @@
-package com.trduc.flashlearn;
+package com.trduc.flashlearn.Controllers;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,8 +24,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.trduc.flashlearn.Adapters.AllFlashcardSetsAdapter;
+import com.trduc.flashlearn.Models.User;
+import com.trduc.flashlearn.R;
 
-public class QuestionActivity extends AppCompatActivity {
+public class SecurityActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView ivBars, ivProfilePicture;
@@ -40,7 +43,8 @@ public class QuestionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question);
+        setContentView(R.layout.activity_security);
+
 
         initUi();
         showInformationUser();
@@ -55,28 +59,28 @@ public class QuestionActivity extends AppCompatActivity {
         lnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(QuestionActivity.this, MainActivity.class);
+                redirectActivity(SecurityActivity.this, MainActivity.class);
             }
         });
 
         lnSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(QuestionActivity.this, SettingActivity.class);
+                redirectActivity(SecurityActivity.this, SettingActivity.class);
             }
         });
 
         lnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(QuestionActivity.this, ShareActivity.class);
+                redirectActivity(SecurityActivity.this, ShareActivity.class);
             }
         });
 
         lnSupport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(QuestionActivity.this, SupportActivity.class);
+                redirectActivity(SecurityActivity.this, SupportActivity.class);;
 //                recreate();
             }
         });
@@ -84,21 +88,21 @@ public class QuestionActivity extends AppCompatActivity {
         lnSecurity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(QuestionActivity.this, SecurityActivity.class);;
+               closeDrawer(drawerLayout);
             }
         });
 
         lnQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                closeDrawer(drawerLayout);
+                redirectActivity(SecurityActivity.this, QuestionActivity.class);;
             }
         });
 
         lnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(QuestionActivity.this, "Đăng xuất", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SecurityActivity.this, "Đăng xuất", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -118,8 +122,8 @@ public class QuestionActivity extends AppCompatActivity {
         tvUsername = findViewById(R.id.tvUsername);
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
-        tvTitle=findViewById(R.id.tvTitle);
-        tvTitle.setText("Câu hỏi thường gặp");
+        tvTitle = findViewById(R.id.tvTitle);
+        tvTitle.setText("Chính sách bảo mật");
         lnSetting = findViewById(R.id.lnSetting);
         drawerLayout = findViewById(R.id.drawerLayout);
         ivBars = findViewById(R.id.ivBars);
@@ -166,7 +170,7 @@ public class QuestionActivity extends AppCompatActivity {
                 User userprofile = snapshot.getValue(User.class);
                 String email = user.getEmail();
                 String name = userprofile.getUsername();
-                Glide.with(QuestionActivity.this).load(user.getPhotoUrl()).into(ivProfilePicture);
+                Glide.with(SecurityActivity.this).load(user.getPhotoUrl()).into(ivProfilePicture);
                 tvEmail.setText(email);
                 tvUsername.setText(name);
             }

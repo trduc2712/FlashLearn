@@ -1,6 +1,5 @@
-package com.trduc.flashlearn;
+package com.trduc.flashlearn.Controllers;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,16 +12,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.trduc.flashlearn.R;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 public class NameFlashcardsActivity extends AppCompatActivity {
 
@@ -30,7 +26,8 @@ public class NameFlashcardsActivity extends AppCompatActivity {
     EditText etFlashcardSetsName;
     FirebaseFirestore db;
     Spinner sTopic;
-    String[] choices = {"Không có", "Từ vựng", "Toán học", "Lịch sử", "Địa lý"};
+    String[] choices = {"", "Toán học", "Văn học", "Ngôn ngữ", "Vật lý", "Hoá học", "Sinh học", "Lịch sử", "Địa lý", "Nghệ thuật",
+    "Thể thao", "Y học", "Công nghê", "Ca dao tục ngữ", "Chính trị", "Tài chính", "Tâm lý", "Kinh doanh", "Kỹ thuật"};
     String selectedChoice;
 
     @Override
@@ -52,7 +49,7 @@ public class NameFlashcardsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String flashcardSetsTopic = sTopic.getSelectedItem().toString();
-                if (flashcardSetsTopic.equals("Không có")) {
+                if (flashcardSetsTopic.equals("")) {
                     Toast.makeText(NameFlashcardsActivity.this, "Vui lòng chọn chủ đề", Toast.LENGTH_SHORT).show();
                     return;
                 }

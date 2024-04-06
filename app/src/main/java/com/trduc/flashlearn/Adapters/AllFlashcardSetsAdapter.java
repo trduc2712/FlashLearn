@@ -1,8 +1,4 @@
-package com.trduc.flashlearn;
-
-import static android.content.Context.MODE_PRIVATE;
-
-import static androidx.core.content.ContextCompat.startActivity;
+package com.trduc.flashlearn.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,12 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.content.SharedPreferences;
 
-import androidx.activity.result.contract.ActivityResultContracts;
+import com.trduc.flashlearn.Controllers.ChangeFlashcardSetsNameActivity;
+import com.trduc.flashlearn.Controllers.LearnActivity;
+import com.trduc.flashlearn.Models.FlashcardSets;
+import com.trduc.flashlearn.R;
+import com.trduc.flashlearn.Controllers.SearchActivity;
 
 import java.util.ArrayList;
 

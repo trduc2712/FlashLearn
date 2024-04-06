@@ -1,14 +1,12 @@
-package com.trduc.flashlearn;
+package com.trduc.flashlearn.Adapters;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
+
+import com.trduc.flashlearn.Models.Flashcard;
+import com.trduc.flashlearn.R;
 
 import java.util.ArrayList;
 

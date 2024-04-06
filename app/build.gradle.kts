@@ -30,6 +30,13 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    sourceSets {
+        getByName("main") {
+            resources {
+                srcDirs("src\\main\\resources", "src\\main\\java\\com.trduc.flashlearn\\Models")
+            }
+        }
+    }
 }
 
 dependencies {
