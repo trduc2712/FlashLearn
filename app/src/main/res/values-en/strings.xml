@@ -28,6 +28,7 @@
     <string name="nav_setting">Setting</string>
     <string name="nav_search">Search for a set of flashcards</string>
     <string name="nav_filter">Filter by topic</string>
+    <string name="nav_practice">Practice</string>
     <string name="nav_share">Share the application</string>
     <string name="nav_support">Support</string>
     <string name="nav_privacy_policy">Privacy policy</string>
