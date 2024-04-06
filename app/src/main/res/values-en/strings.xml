@@ -13,6 +13,29 @@
     <string name="select_english">English</string>
     <string name="select_vietnamese">Vietnamese</string>
 
+    //nav drawer
+
+    <string name="nav_home">Home</string>
+    <string name="nav_create_card">Create a set of flashcarts</string>
+
+    <string name="nav_set_edit">Edit a set of flashcards</string>
+    <string name="nav_add_card">Add flashcard</string>
+    <string name="nav_edit_card">Edit flashcard</string>
+    <string name="nav_delete_card">Delete flashcard</string>
+    <string name="nav_rename_set_card">Rename a set of flashcards</string>
+    <string name="nav_delete_set_card">Delete a set of flashcards</string>
+
+    <string name="nav_setting">Setting</string>
+    <string name="nav_search">Search for a set of flashcards</string>
+    <string name="nav_filter">Filter by topic</string>
+    <string name="nav_share">Share the application</string>
+    <string name="nav_support">Support</string>
+    <string name="nav_privacy_policy">Privacy policy</string>
+    <string name="nav_question">Frequently asked questions</string>
+    <string name="nav_logout">Log out</string>
+
+
+    //Tong quan
     <string name="txt_overview">Overview</string>
     <string name="txt_language">Language</string>
     <string name="txt_dark_mode">Dark mode</string>
@@ -21,4 +44,37 @@
 
     <string name="txt_set_oder">Set oder</string>
     <string name="txt_sub_set_oder">Set ABC order</string>
+
+    // cai dat on tap
+    <string name="txt_setting_review">Review settings</string>
+    <string name="txt_setting_review1">Show images for definition only</string>
+    <string name="txt_setting_sub_review1">
+Press the definition text for the card containing the image while reviewing</string>
+
+    <string name="txt_setting_review2">Displays the first tag definition</string>
+    <string name="txt_setting_sub_review2">Show the first tag definition when practicing</string>
+
+    <string name="txt_mix_card">Shuffle the cards</string>
+    <string name="txt_card_round">Number of cards per round</string>
+    <string name="txt_sub_card_round">10 cards</string>
+
+    <string name="txt_pre_oder_card">Pre-order 5 cards</string>
+    <string name="txt_sub_pre_oder_card">After matching all pairs of cards, add only 5 new cards for the next round</string>
+
+    //On tao bang am thanh
+    <string name="txt_review_audio">Review with audio</string>
+    <string name="txt_terms">Read the terminology</string>
+    <string name="txt_define">Read the definition</string>
+    <string name="txt_reading_speed">Reading speed</string>
+    <string name="txt_sub_reading_speed">Normal</string>
+
+    //Sao luu
+    <string name="txt_backup">Backup</string>
+    <string name="txt_make_copy">Create a copy</string>
+    <string name="txt_restore">Restore</string>
+
+    //Khac
+    <string name="txt_other">Other</string>
+    <string name="txt_terms_of_use">Terms of use</string>
+    <string name="txt_privacy_policy">Privacy policy</string>
 </resources>

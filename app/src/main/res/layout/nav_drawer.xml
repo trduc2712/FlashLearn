@@ -76,12 +76,12 @@
                     android:src="@drawable/ic_home" />
 
                 <TextView
+                    style="@style/TextColorMenu"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Trang chủ"
-                    style="@style/TextColorMenu"
+                    android:text="@string/nav_home"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -106,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Tạo một bộ flashcard"
+                    android:text="@string/nav_create_card"
                     style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -132,12 +132,12 @@
                         android:src="@drawable/ic_pen" />
 
                     <TextView
+                        style="@style/TextColorMenu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="Chỉnh sửa một bộ flashcard"
-                        style="@style/TextColorMenu"
+                        android:text="@string/nav_set_edit"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
@@ -169,7 +169,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="Thêm flashcard"
+                            android:text="@string/nav_add_card"
                             style="@style/TextColorMenu"
                             android:textSize="15sp"
                             android:textStyle="bold" />
@@ -195,7 +195,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="Sửa flashcard"
+                            android:text="@string/nav_edit_card"
                             style="@style/TextColorMenu"
                             android:textSize="15sp"
                             android:textStyle="bold" />
@@ -221,7 +221,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="Xoá flashcard"
+                            android:text="@string/nav_delete_card"
                             style="@style/TextColorMenu"
                             android:textSize="15sp"
                             android:textStyle="bold" />
@@ -247,7 +247,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="Đổi tên một bộ flashcard"
+                            android:text="@string/nav_rename_set_card"
                             style="@style/TextColorMenu"
                             android:textSize="15sp"
                             android:textStyle="bold" />
@@ -273,7 +273,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="Xóa một bộ flashcard"
+                            android:text="@string/nav_delete_set_card"
                             style="@style/TextColorMenu"
                             android:textSize="15sp"
                             android:textStyle="bold" />
@@ -304,7 +304,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Cài đặt"
+                    android:text="@string/nav_setting"
                     style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -331,7 +331,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Tìm kiếm một bộ flashcard"
+                    android:text="@string/nav_search"
                     style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -358,7 +358,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Lọc theo chủ đề"
+                    android:text="@string/nav_filter"
                     style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -384,7 +384,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Chia sẻ ứng dụng"
+                    android:text="@string/nav_share"
                     style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -410,7 +410,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Hỗ trợ"
+                    android:text="@string/nav_support"
                     style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -436,7 +436,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Chính sách bảo mật"
+                    android:text="@string/nav_privacy_policy"
                     style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -462,7 +462,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Câu hỏi thường gặp"
+                    android:text="@string/nav_question"
                     style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -489,7 +489,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Đăng xuất"
+                    android:text="@string/nav_question"
                     style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />

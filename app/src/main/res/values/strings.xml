@@ -13,6 +13,27 @@
     <string name="select_english">Tiếng Anh</string>
     <string name="select_vietnamese">Tiếng Việt</string>
 
+    //nav_drawer
+    <string name="nav_home">Trang chủ</string>
+    <string name="nav_create_card">Tạo một bộ flashcard</string>
+    <string name="nav_set_edit">Chỉnh sửa một bộ flashcard</string>
+    <string name="nav_add_card">Thêm flashcard</string>
+    <string name="nav_edit_card">Sửa flashcard</string>
+    <string name="nav_delete_card">Xóa flashcard</string>
+    <string name="nav_rename_set_card">Đổi tên một bộ flashcard</string>
+    <string name="nav_delete_set_card">Xóa một bộ flashcard</string>
+
+    <string name="nav_setting">Cài đặt</string>
+    <string name="nav_search">Tìm kiếm một bộ flashcard</string>
+
+    <string name="nav_filter">Lọc theo chủ đề</string>
+    <string name="nav_share">Chia sẻ ứng dụng</string>
+    <string name="nav_support">Hỗ trợ</string>
+    <string name="nav_privacy_policy">Chính sách bảo mật</string>
+    <string name="nav_question">Câu hỏi thường gặp</string>
+    <string name="nav_logout">Đăng xuất</string>
+
+    //Tong quan
     <string name="txt_overview">Tổng quan</string>
     <string name="txt_language">Ngôn ngữ</string>
     <string name="txt_dark_mode">Chế độ tối</string>
@@ -21,4 +42,36 @@
     <string name="txt_sub_notice">Hiển thị thông báo khi có thẻ cần ôn tập</string>
     <string name="txt_set_oder">Thiết lập thứ tự</string>
     <string name="txt_sub_set_oder">Thiết lập thứ tự theo ABC</string>
+
+    // cai dat on tap
+    <string name="txt_setting_review">Cài đặt ôn tập</string>
+    <string name="txt_setting_review1">Chỉ hiển thị hình ảnh cho định nghĩa</string>
+    <string name="txt_setting_sub_review1">Ấn văn bản định nghĩa cho thẻ có chứa hình ảnh trong khi ôn tập</string>
+
+    <string name="txt_setting_review2">Hiển thị định nghĩa thẻ đầu tiên</string>
+    <string name="txt_setting_sub_review2">Hiển thị định nghĩa thẻ đầu tiên khi thực hành</string>
+
+    <string name="txt_mix_card">Xáo trộn thẻ</string>
+    <string name="txt_card_round">Số lượng thẻ mỗi vòng</string>
+    <string name="txt_sub_card_round">10 thẻ</string>
+
+    <string name="txt_pre_oder_card">Đặt trước 5 thẻ</string>
+    <string name="txt_sub_pre_oder_card">Sau khi nối tất cả các cặp thẻ, chỉ thêm 5 thẻ mới cho vòng tiếp theo</string>
+
+    //On tao bang am thanh
+    <string name="txt_review_audio">Ôn tập bằng âm thanh</string>
+    <string name="txt_terms">Đọc thuật ngữ</string>
+    <string name="txt_define">Đọc định nghĩa</string>
+    <string name="txt_reading_speed">Tốc độ đọc</string>
+    <string name="txt_sub_reading_speed">Bình thường</string>
+
+    //Sao luu
+    <string name="txt_backup">Sao lưu</string>
+    <string name="txt_make_copy">Tạo bản sao</string>
+    <string name="txt_restore">Khôi phục</string>
+
+    //Khac
+    <string name="txt_other">Khác</string>
+    <string name="txt_terms_of_use">Điều khoản sử dụng</string>
+    <string name="txt_privacy_policy">Chính sách bảo mật</string>
 </resources>
