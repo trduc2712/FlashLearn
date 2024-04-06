@@ -384,7 +384,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Luyện tập"
+                    android:text="@string/nav_practice"
                     style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />

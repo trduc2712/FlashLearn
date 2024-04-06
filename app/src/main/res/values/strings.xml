@@ -27,6 +27,7 @@
     <string name="nav_search">Tìm kiếm một bộ flashcard</string>
 
     <string name="nav_filter">Lọc theo chủ đề</string>
+    <string name="nav_practice">Luyện tập</string>
     <string name="nav_share">Chia sẻ ứng dụng</string>
     <string name="nav_support">Hỗ trợ</string>
     <string name="nav_privacy_policy">Chính sách bảo mật</string>
@@ -74,4 +75,33 @@
     <string name="txt_other">Khác</string>
     <string name="txt_terms_of_use">Điều khoản sử dụng</string>
     <string name="txt_privacy_policy">Chính sách bảo mật</string>
+
+    //nav_chinh sach bao mat
+    <string name="txt_privacy_policy1">Cập nhật lần cuối: 9.5.2023</string>
+    <string name="txt_privacy_policy2">Tại Flashcards World, chúng tôi tôn trọng quyền riêng tư của bạn và cam kết bảo vệ nó thông qua việc tuân thủ chính sách này. Chính sách này mô tả các loại thông tin chúng tôi có thể thu thập từ bạn hoặc bạn có thể cung cấp khi bạn sử dụng ứng dụng di động Flashcards World dành cho Android và các thông lệ của chúng tôi về việc thu thập, sử dụng, duy trì, bảo vệ và tiết lộ thông tin đó.</string>
+    <string name="txt_privacy_policy3">Vui lòng đọc kỹ chính sách này để hiểu các chính sách và thực tiễn của chúng tôi liên quan đến thông tin của bạn cũng như cách chúng tôi sẽ xử lý thông tin đó. Bằng cách sử dụng Ứng dụng, bạn đồng ý với các điều khoản và điều kiện của Chính sách quyền riêng tư này. Chính sách này có thể thay đổi theo thời gian. Việc bạn tiếp tục sử dụng Ứng dụng sau khi chúng tôi thực hiện các thay đổi được coi là chấp nhận những thay đổi đó, vì vậy vui lòng kiểm tra chính sách định kỳ để biết các bản cập nhật.</string>
+
+    <string name="txt_collect_info">Thông tin chúng tôi thu thập và cách chúng tôi thu thập thông tin đó</string>
+    <string name="txt_collect_info1">Chúng tôi thu thập một số loại thông tin từ và về người dùng Ứng dụng của chúng tôi, bao gồm:</string>
+    <string name="txt_collect_info2">Tên và địa chỉ email (tùy chọn): Nếu bạn chọn cung cấp thông tin đó, chúng tôi sẽ thu thập tên và địa chỉ email của bạn nhằm mục đích cung cấp cho bạn các dịch vụ và hỗ trợ được cá nhân hóa.</string>
+
+    <string name="txt_using_info">Cách chúng tôi sử dụng thông tin của bạn</string>
+    <string name="txt_using_info1">Chúng tôi sử dụng thông tin mà chúng tôi thu thập về bạn hoặc thông tin bạn cung cấp cho chúng tôi, bao gồm mọi thông tin cá nhân:</string>
+    <string name="txt_using_info2">Để cung cấp cho bạn Ứng dụng và các dịch vụ của nó.</string>
+    <string name="txt_using_info3">Để thông báo cho bạn về những thay đổi đối với Ứng dụng của chúng tôi hoặc bất kỳ sản phẩm hoặc dịch vụ nào chúng tôi cung cấp hoặc cung cấp thông qua Ứng dụng đó.</string>
+    <string name="txt_using_info4">Để cho phép bạn tham gia các tính năng tương tác trên Ứng dụng của chúng tôi.</string>
+    <string name="txt_using_info5">Để cung cấp hỗ trợ khách hàng và trả lời các câu hỏi của bạn.</string>
+
+    <string name="txt_disclosure">Tiết lộ thông tin của bạn</string>
+    <string name="txt_disclosure1">Chúng tôi không chia sẻ, bán hoặc tiết lộ thông tin cá nhân của bạn cho các mục đích khác ngoài những mục đích được nêu trong Chính sách quyền riêng tư này. Chúng tôi không chia sẻ thông tin cá nhân của bạn với bên thứ ba vì mục đích tiếp thị trực tiếp của họ.</string>
+
+    <string name="txt_save_delete_data">Lưu giữ và xóa dữ liệu</string>
+    <string name="txt_save_delete_data1">Dữ liệu của bạn sẽ được lưu giữ trong khoảng thời gian cần thiết để hoàn thành các mục đích thu thập dữ liệu và bạn có thể yêu cầu xóa dữ liệu của mình bất kỳ lúc nào.</string>
+
+    <string name="txt_privacy_changes">Những thay đổi đối với chính sách quyền riêng tư của chúng tôi</string>
+    <string name="txt_privacy_changes1">Chính sách của chúng tôi là đăng bất kỳ thay đổi nào chúng tôi thực hiện đối với chính sách bảo mật của mình trên trang này. Nếu chúng tôi thực hiện những thay đổi quan trọng về cách chúng tôi xử lý thông tin cá nhân của người dùng, chúng tôi sẽ thông báo cho bạn qua thông báo trên Ứng dụng. Ngày chính sách quyền riêng tư được sửa đổi lần cuối được xác định ở đầu trang. Bạn có trách nhiệm đảm bảo chúng tôi có địa chỉ email cập nhật, hoạt động và có thể gửi được cho bạn và định kỳ truy cập chính sách quyền riêng tư này để kiểm tra mọi thay đổi.</string>
+
+    <string name="txt_contact_info">Thông tin liên hệ</string>
+    <string name="txt_contact_info1">Để đặt câu hỏi hoặc nhận xét về chính sách quyền riêng tư này và các biện pháp bảo mật của chúng tôi, bạn có thể liên hệ với chúng tôi tại: flashcards@gmail.com</string>
+    <string name="txt_contact_info2">Bằng cách sử dụng Ứng dụng, bạn biểu thị sự chấp nhận Chính sách quyền riêng tư này. Nếu bạn không đồng ý với Chính sách quyền riêng tư này, vui lòng không sử dụng Ứng dụng. Việc bạn tiếp tục sử dụng Ứng dụng sau khi đăng các thay đổi đối với Chính sách quyền riêng tư này sẽ được coi là bạn chấp nhận những thay đổi đó.</string>
 </resources>
