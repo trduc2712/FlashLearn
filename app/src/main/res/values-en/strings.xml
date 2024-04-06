@@ -77,4 +77,36 @@ Press the definition text for the card containing the image while reviewing</str
     <string name="txt_other">Other</string>
     <string name="txt_terms_of_use">Terms of use</string>
     <string name="txt_privacy_policy">Privacy policy</string>
+
+
+    //trong nav_chinh sach bao mat
+    <string name="txt_privacy_policy1">Last updated: 9.5.2023</string>
+    <string name="txt_privacy_policy2">At Flashcards World, we respect your privacy and are committed to protecting it through our compliance with this policy. This policy describes the types of information we may collect from you or that you may provide when you use the Flashcards World mobile application for Android (the "App") and our practices for collecting, using, maintaining, protecting, and disclosing that information.</string>
+    <string name="txt_privacy_policy3">Please read this policy carefully to understand our policies and practices regarding your information and how we will treat it. By using the App, you agree to the terms and conditions of this Privacy Policy. This policy may change from time to time. Your continued use of the App after we make changes is deemed to be acceptance of those changes, so please check the policy periodically for updates.</string>
+
+    <string name="txt_collect_info">Information we collect and how we collect it</string>
+    <string name="txt_collect_info1">We collect several types of information from and about users of our App, including:</string>
+    <string name="txt_collect_info2">Name and email address (optional): If you choose to provide it, we collect your name and email address for the purpose of providing you with personalized services and support.</string>
+
+    <string name="txt_using_info">How we use your information</string>
+    <string name="txt_using_info1">We use the information that we collect about you or that you provide to us, including any personal information:</string>
+    <string name="txt_using_info2">To provide you with the App and its services.</string>
+    <string name="txt_using_info3">To notify you about changes to our App or any products or services we offer or provide through it.</string>
+    <string name="txt_using_info4">To allow you to participate in interactive features on our App.</string>
+    <string name="txt_using_info5">To provide customer support and respond to your inquiries.</string>
+
+    <string name="txt_disclosure">Disclosure of your information</string>
+    <string name="txt_disclosure1">We do not share, sell, or otherwise disclose your personal information for purposes other than those outlined in this Privacy Policy. We do not share your personal information with third parties for their direct marketing purposes.
+
+</string>
+
+    <string name="txt_save_delete_data">Data retention and deletion</string>
+    <string name="txt_save_delete_data1">Your data will be retained for as long as necessary to fulfill the purposes for which it was collected, and you can request the deletion of your data at any time.</string>
+
+    <string name="txt_privacy_changes">Changes to our privacy policy</string>
+    <string name="txt_privacy_changes1">It is our policy to post any changes we make to our privacy policy on this page. If we make material changes to how we treat our users personal information, we will notify you through a notice on the App. The date the privacy policy was last revised is identified at the top of the page. You are responsible for ensuring we have an up-to-date, active, and deliverable email address for you, and for periodically visiting this privacy policy to check for any changes</string>
+
+    <string name="txt_contact_info">Contact information</string>
+    <string name="txt_contact_info1">To ask questions or comment about this privacy policy and our privacy practices, you can contact us at: flashcards@gmail.com</string>
+    <string name="txt_contact_info2">By using the App, you signify your acceptance of this Privacy Policy. If you do not agree to this Privacy Policy, please do not use the App. Your continued use of the App following the posting of changes to this Privacy Policy will be deemed your acceptance of those changes.</string>
 </resources>
