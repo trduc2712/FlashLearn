@@ -489,7 +489,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="@string/nav_question"
+                    android:text="@string/nav_logout"
                     style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />
