@@ -282,6 +282,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        loadFlashcardSets();
+        choice = "Learn flashcard sets";
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("choice", choice);
+        editor.apply();
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
         closeDrawer(drawerLayout);
@@ -343,6 +354,40 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Error checking user in Firestore", Toast.LENGTH_SHORT).show();
                 }
             });
+        }
+    }
+
+    private void loadFlashcardSets() {
+        ArrayList<FlashcardSets> flashcardSetsList = new ArrayList<>();
+        FirebaseUser currentUser = auth.getCurrentUser();
+
+        if (currentUser != null) {
+            String userEmail = currentUser.getEmail();
+            if (userEmail != null) {
+                db.collection("users")
+                        .document(userEmail)
+                        .collection("flashcard_sets")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                flashcardSetsList.clear();
+                                for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                                    FlashcardSets flashcardSets = document.toObject(FlashcardSets.class);
+                                    flashcardSetsList.add(flashcardSets);
+                                }
+                                adapter = new AllFlashcardSetsAdapter(flashcardSetsList);
+                                lvAllFlashcardSets.setAdapter(adapter);
+                                adapter.notifyDataSetChanged();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+
+                            }
+                        });
+            }
         }
     }
 
