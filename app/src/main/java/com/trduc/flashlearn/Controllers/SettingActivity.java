@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,7 +53,7 @@ public class SettingActivity extends AppCompatActivity {
     Switch sDarkMode;
 
     String choice = "Learn flashcard sets";
-    private static final String[] languages = {"Select Language", "Tiếng Anh", "Tiếng Việt"};
+    private static final String[] languages = {"EN/VI", "EN", "VI"};
 
     Spinner spinner_language;
 
@@ -67,7 +68,6 @@ public class SettingActivity extends AppCompatActivity {
         } else {
             sDarkMode.setChecked(false);
         }
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.simple_spinner, languages);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_language.setAdapter(adapter);
@@ -76,14 +76,16 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selected_language = parent.getItemAtPosition(position).toString();
-                if (selected_language.equals("Tiếng Anh")) {
+                if (selected_language.equals("EN")) {
                     setLocal(SettingActivity.this, "en");
                     finish();
                     startActivity(getIntent());
-                } else if (selected_language.equals("Tiếng Việt")) {
+                    Toast.makeText(getApplicationContext(), "English", Toast.LENGTH_SHORT).show();
+                } else if (selected_language.equals("VI")) {
                     setLocal(SettingActivity.this, "vi");
                     finish();
                     startActivity(getIntent());
+                    Toast.makeText(getApplicationContext(), "Việt Nam", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -210,7 +212,6 @@ public class SettingActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         tvTitle = findViewById(R.id.tvTitle);
-        tvTitle.setText("Cài đặt");
         lnSetting = findViewById(R.id.lnSetting);
         drawerLayout = findViewById(R.id.drawerLayout);
         ivBars = findViewById(R.id.ivBars);
