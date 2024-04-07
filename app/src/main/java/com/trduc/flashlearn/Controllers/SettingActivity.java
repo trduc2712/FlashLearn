@@ -44,7 +44,7 @@ public class SettingActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView ivBars, ivProfilePicture;
     LinearLayout lnHome, lnCreate, lnSignOut, lnEditFlashcardSets, lnAdd, lnDelete, lnEdit, lnSetting, lnSubItem;
-    LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport, lnSearch;
+    LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport, lnSearch,lnFilter;
     TextView tvEmail, tvUsername, tvTitle;
     FirebaseFirestore db;
     ListView lvAllFlashcardSets;
@@ -72,6 +72,7 @@ public class SettingActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_language.setAdapter(adapter);
         spinner_language.setSelection(0);
+
         spinner_language.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -190,6 +191,18 @@ public class SettingActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        lnFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choice = "Filter a flashcard sets";
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("choice", choice);
+                editor.apply();
+                Intent intent = new Intent(SettingActivity.this, FilterActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 
@@ -221,6 +234,7 @@ public class SettingActivity extends AppCompatActivity {
         lnSecurity = findViewById(R.id.lnSecurity);
         sDarkMode = findViewById(R.id.sDarkMode);
         spinner_language = findViewById(R.id.spinner_language);
+        lnFilter=findViewById(R.id.lnFilter);
     }
 
     public static void openDrawer(DrawerLayout drawerLayout) {

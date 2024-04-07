@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView ivBars, ivProfilePicture;
     LinearLayout lnHome, lnCreate, lnSignOut, lnEditFlashcardSets, lnAdd, lnDelete, lnEdit, lnSetting, lnSubItem;
-    LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport, lnChangeNameFlashcardSets, lnSearch, lnPratice;
+    LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport, lnChangeNameFlashcardSets, lnSearch, lnPratice,lnFilter;
     TextView tvEmail, tvUsername, tvTitle;
     FirebaseFirestore db;
     ListView lvAllFlashcardSets;
@@ -214,6 +214,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        lnFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choice = "Filter a flashcard sets";
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("choice", choice);
+                editor.apply();
+                Intent intent = new Intent(MainActivity.this, FilterActivity.class);
+                startActivity(intent);
+            }
+        });
 
         lnEditFlashcardSets.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -227,6 +239,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
     }
     private void initUi(){
@@ -253,6 +266,7 @@ public class MainActivity extends AppCompatActivity {
         lnSupport = findViewById(R.id.lnSupport);
         lnShare = findViewById(R.id.lnShare);
         lnQuestion = findViewById(R.id.lnQuestion);
+        lnFilter=findViewById(R.id.lnFilter);
         lnSecurity = findViewById(R.id.lnSecurity);
         lnChangeNameFlashcardSets = findViewById(R.id.lnChangeNameFlashcardSets);
         lnSearch = findViewById(R.id.lnSearch);

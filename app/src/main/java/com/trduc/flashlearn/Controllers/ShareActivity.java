@@ -7,6 +7,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -32,7 +33,7 @@ public class ShareActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView ivBars, ivProfilePicture;
     LinearLayout lnHome, lnCreate, lnSignOut, lnEditFlashcardSets, lnAdd, lnDelete, lnEdit, lnSetting, lnSubItem;
-    LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport;
+    LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport,lnFilter;
     TextView tvEmail, tvUsername, tvTitle;
     FirebaseFirestore db;
     ListView lvAllFlashcardSets;
@@ -101,6 +102,18 @@ public class ShareActivity extends AppCompatActivity {
                 Toast.makeText(ShareActivity.this, "Đăng xuất", Toast.LENGTH_SHORT).show();
             }
         });
+        lnFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String choice = "Filter a flashcard sets";
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("choice", choice);
+                editor.apply();
+                Intent intent = new Intent(ShareActivity.this, FilterActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initUi() {
@@ -127,6 +140,7 @@ public class ShareActivity extends AppCompatActivity {
         lnShare = findViewById(R.id.lnShare);
         lnQuestion = findViewById(R.id.lnQuestion);
         lnSecurity = findViewById(R.id.lnSecurity);
+        lnFilter=findViewById(R.id.lnFilter);
     }
     private void showInformationUser() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
