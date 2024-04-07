@@ -104,4 +104,41 @@
     <string name="txt_contact_info">Thông tin liên hệ</string>
     <string name="txt_contact_info1">Để đặt câu hỏi hoặc nhận xét về chính sách quyền riêng tư này và các biện pháp bảo mật của chúng tôi, bạn có thể liên hệ với chúng tôi tại: flashcards@gmail.com</string>
     <string name="txt_contact_info2">Bằng cách sử dụng Ứng dụng, bạn biểu thị sự chấp nhận Chính sách quyền riêng tư này. Nếu bạn không đồng ý với Chính sách quyền riêng tư này, vui lòng không sử dụng Ứng dụng. Việc bạn tiếp tục sử dụng Ứng dụng sau khi đăng các thay đổi đối với Chính sách quyền riêng tư này sẽ được coi là bạn chấp nhận những thay đổi đó.</string>
+    
+    
+    //Phan cau hoi thuong gap
+    <string name="txt_introduce">Giới thiệu</string>
+    <string name="txt_introduce1">Cách sử dụng cơ bản: (tạo bộ, thêm thẻ và xem lại chúng)</string>
+    <string name="txt_introduce2">Sử dụng máy tính để viết thiệp</string>
+    <string name="txt_introduce3">Sửa lỗi âm thanh và thiếu ngôn ngữ.</string>
+    <string name="txt_introduce4">Chia sẻ học phần với người khác có ứng dụng</string>
+    <string name="txt_introduce5">Tùy chọn đánh giá hoạt động như thế nào?</string>
+    <string name="txt_introduce6">Thứ tự của các thẻ được xác định cụ thể như thế nào trong quá trình đánh giá?</string>
+    <string name="txt_introduce7">Làm cách nào để sao lưu thẻ của tôi?</string>
+    <string name="txt_introduce8">Tiết lộ định nghĩa đầu tiên trong quá trình đánh giá</string>
+    <string name="txt_introduce9">Chỉ hình ảnh phù hợp với các điều khoản</string>
+    <string name="txt_introduce10">Danh sách các tính năng cao cấp</string>
+    <string name="txt_introduce11">Mẹo chung</string>
+
+
+    <string name="txt_card_order">Thứ tự của các thẻ được xác định như thế nào trong quá trình đánh giá?</string>
+    <string name="txt_card_order1">Theo mặc định, thứ tự của các lá bài sẽ được xác định bởi các yếu tố sau: lần cuối bạn xem lại thẻ là khi nào, bạn biết rõ về thẻ đó đến mức nào, bạn đã nhận được câu trả lời đúng cho thẻ đó bao nhiêu lần. Nếu bạn muốn xem lại các thẻ theo thứ tự cụ thể, bạn có thể tắt tùy chọn lặp lại cách nhau và chọn thứ tự của các thẻ.</string>
+    <string name="txt_card_order2">Cũng có thể sắp xếp lại các thẻ từ màn hình quản lý thẻ, có thể truy cập từ màn hình thẻ, có menu tùy chọn ở trên cùng bên trái.</string>
+
+    <string name="txt_backup_way">Làm cách nào để sao lưu thẻ của tôi?</string>
+    <string name="txt_backup_way1">Nếu bạn đăng nhập thì thẻ của bạn sẽ được sao lưu tự động, xin lưu ý rằng hình ảnh chỉ được sao lưu với phiên bản pro.</string>
+
+    <string name="txt_advanced_features">Tính năng nâng cao</string>
+    <string name="txt_advanced_features1">Khả năng sao lưu hình ảnh, vì vậy thẻ có hình ảnh của bạn được an toàn.</string>
+    <string name="txt_advanced_features2">Sử dụng phần đánh giá âm thanh ở chế độ nền và có thể nghe nhiều bộ chứ không chỉ một bộ duy nhất.</string>
+    <string name="txt_advanced_features3">Tùy chỉnh đánh giá kết hợp: chọn loại thực hành bạn muốn có khi bắt đầu đánh giá.</string>
+    <string name="txt_advanced_features4">Review bài vẽ: luyện vẽ đáp án</string>
+    <string name="txt_advanced_features5">Tùy chọn ẩn/hiển thị định nghĩa hoặc thuật ngữ thẻ trong màn hình thẻ và hiển thị chúng bằng cách nhấp vào thẻ.</string>
+
+    <string name="txt_general_tips">Mẹo chung</string>
+    <string name="txt_general_tips1">Giữ cho bộ thẻ của bạn nhỏ, mỗi bộ 20-30 thẻ.</string>
+    <string name="txt_general_tips2">Sắp xếp các bộ của bạn theo danh mục.</string>
+    <string name="txt_general_tips3">Bật thông báo khi bạn có thẻ để xem xét.</string>
+    <string name="txt_general_tips4">Hãy chăm chỉ học tập, thậm chí 10-15 phút mỗi ngày cũng có thể đạt được tiến bộ vượt bậc. (Chế độ kết hợp là cách nhanh chóng để xem lại thẻ của bạn)</string>
+
 </resources>
