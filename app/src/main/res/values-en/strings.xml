@@ -97,9 +97,7 @@ Press the definition text for the card containing the image while reviewing</str
     <string name="txt_using_info5">To provide customer support and respond to your inquiries.</string>
 
     <string name="txt_disclosure">Disclosure of your information</string>
-    <string name="txt_disclosure1">We do not share, sell, or otherwise disclose your personal information for purposes other than those outlined in this Privacy Policy. We do not share your personal information with third parties for their direct marketing purposes.
-
-</string>
+    <string name="txt_disclosure1">We do not share, sell, or otherwise disclose your personal information for purposes other than those outlined in this Privacy Policy. We do not share your personal information with third parties for their direct marketing purposes.</string>
 
     <string name="txt_save_delete_data">Data retention and deletion</string>
     <string name="txt_save_delete_data1">Your data will be retained for as long as necessary to fulfill the purposes for which it was collected, and you can request the deletion of your data at any time.</string>
@@ -110,4 +108,41 @@ Press the definition text for the card containing the image while reviewing</str
     <string name="txt_contact_info">Contact information</string>
     <string name="txt_contact_info1">To ask questions or comment about this privacy policy and our privacy practices, you can contact us at: flashcards@gmail.com</string>
     <string name="txt_contact_info2">By using the App, you signify your acceptance of this Privacy Policy. If you do not agree to this Privacy Policy, please do not use the App. Your continued use of the App following the posting of changes to this Privacy Policy will be deemed your acceptance of those changes.</string>
+
+    //Phan cau hoi thuong gap
+    <string name="txt_introduce">Introduce</string>
+    <string name="txt_introduce1">Basic usage: (create sets, add cards, and review them)</string>
+    <string name="txt_introduce2">Use a computer to write your cards</string>
+    <string name="txt_introduce3">Fixing audio and missing languages issues.</string>
+    <string name="txt_introduce4">Share a set with someone else who has the app</string>
+    <string name="txt_introduce5">How does the review option work?</string>
+    <string name="txt_introduce6">How is the order of the cards defined during a review?</string>
+    <string name="txt_introduce7">How to backup my cards?</string>
+    <string name="txt_introduce8">Reveal definitions first during reviews</string>
+    <string name="txt_introduce9">Match only images to the terms</string>
+    <string name="txt_introduce10">List of the premium features</string>
+    <string name="txt_introduce11">General tips</string>
+
+
+    <string name="txt_card_order">How is the order of the cards defined during a review?</string>
+    <string name="txt_card_order1">By default, the order of the cards will be determined by the following factors: when you last reviewed a card, how well you know the card, how many times have you got a ‘correct answer’ for the card.
+If you are interested in reviewing the cards on a specific order, you can disable the ‘spaced repetition’ option, and choose the order of the cards.</string>
+    <string name="txt_card_order2">It is also possible to reorder the cards from the manage cards screen, which can be accessed from the cards screen, there is an options menu on the top left.</string>
+
+    <string name="txt_backup_way">How to backup my cards?</string>
+    <string name="txt_backup_way1">If you sign in then your cards will be backed up automatically, please note that images are backed up only with the pro version.</string>
+
+    <string name="txt_advanced_features">Premium features</string>
+    <string name="txt_advanced_features1">Possibility to backup images, so your cards with the images are safe.</string>
+    <string name="txt_advanced_features2">Use the audio review in the background, and be able to listen to multiple sets, and not just a single set.</string>
+    <string name="txt_advanced_features3">Customize the combined review: select which practice types you want to have when starting a review.</string>
+    <string name="txt_advanced_features4">Drawing review: practice drawing the answer, it could be especially good for kanji symbols.</string>
+    <string name="txt_advanced_features5">Option to hide/show card definition or terms in the cards screen, and reveal them by clicking on a card.</string>
+
+    <string name="txt_general_tips">General tips</string>
+    <string name="txt_general_tips1">Keep your sets small, 20-30 cards in each.</string>
+    <string name="txt_general_tips2">Organize your sets under categories.</string>
+    <string name="txt_general_tips3">Enable notifications when you have cards for review. </string>
+    <string name="txt_general_tips4">Keep on studying, even 10-15 minutes each day can make great progress. (The matching mode is a quick way to review your cards)</string>
+
 </resources>
