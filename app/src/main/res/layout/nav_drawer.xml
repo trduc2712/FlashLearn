@@ -244,8 +244,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
                             android:text="@string/nav_rename_set_card"
                             style="@style/TextColorMenu"
                             android:textSize="15sp"
@@ -270,8 +268,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
                             android:text="@string/nav_delete_set_card"
                             style="@style/TextColorMenu"
                             android:textSize="15sp"
@@ -328,8 +324,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
                     android:text="@string/nav_search"
                     style="@style/TextColorMenu"
                     android:textSize="15sp"

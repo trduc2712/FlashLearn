@@ -13,7 +13,7 @@
     <string name="select_english">Tiếng Anh</string>
     <string name="select_vietnamese">Tiếng Việt</string>
 
-    //nav_drawer
+<!--    //nav_drawer-->
     <string name="nav_home">Trang chủ</string>
     <string name="nav_create_card">Tạo một bộ flashcard</string>
     <string name="nav_set_edit">Chỉnh sửa một bộ flashcard</string>
@@ -34,7 +34,7 @@
     <string name="nav_question">Câu hỏi thường gặp</string>
     <string name="nav_logout">Đăng xuất</string>
 
-    //Tong quan
+<!--    //Tong quan-->
     <string name="txt_overview">Tổng quan</string>
     <string name="txt_language">Ngôn ngữ</string>
     <string name="txt_dark_mode">Chế độ tối</string>
@@ -44,7 +44,7 @@
     <string name="txt_set_oder">Thiết lập thứ tự</string>
     <string name="txt_sub_set_oder">Thiết lập thứ tự theo ABC</string>
 
-    // cai dat on tap
+<!--    // cai dat on tap-->
     <string name="txt_setting_review">Cài đặt ôn tập</string>
     <string name="txt_setting_review1">Chỉ hiển thị hình ảnh cho định nghĩa</string>
     <string name="txt_setting_sub_review1">Ấn văn bản định nghĩa cho thẻ có chứa hình ảnh trong khi ôn tập</string>
@@ -59,24 +59,24 @@
     <string name="txt_pre_oder_card">Đặt trước 5 thẻ</string>
     <string name="txt_sub_pre_oder_card">Sau khi nối tất cả các cặp thẻ, chỉ thêm 5 thẻ mới cho vòng tiếp theo</string>
 
-    //On tao bang am thanh
+<!--    //On tao bang am thanh-->
     <string name="txt_review_audio">Ôn tập bằng âm thanh</string>
     <string name="txt_terms">Đọc thuật ngữ</string>
     <string name="txt_define">Đọc định nghĩa</string>
     <string name="txt_reading_speed">Tốc độ đọc</string>
     <string name="txt_sub_reading_speed">Bình thường</string>
 
-    //Sao luu
+<!--    //Sao luu-->
     <string name="txt_backup">Sao lưu</string>
     <string name="txt_make_copy">Tạo bản sao</string>
     <string name="txt_restore">Khôi phục</string>
 
-    //Khac
+<!--    //Khac-->
     <string name="txt_other">Khác</string>
     <string name="txt_terms_of_use">Điều khoản sử dụng</string>
     <string name="txt_privacy_policy">Chính sách bảo mật</string>
 
-    //nav_chinh sach bao mat
+<!--    //nav_chinh sach bao mat-->
     <string name="txt_privacy_policy1">Cập nhật lần cuối: 9.5.2023</string>
     <string name="txt_privacy_policy2">Tại Flashcards World, chúng tôi tôn trọng quyền riêng tư của bạn và cam kết bảo vệ nó thông qua việc tuân thủ chính sách này. Chính sách này mô tả các loại thông tin chúng tôi có thể thu thập từ bạn hoặc bạn có thể cung cấp khi bạn sử dụng ứng dụng di động Flashcards World dành cho Android và các thông lệ của chúng tôi về việc thu thập, sử dụng, duy trì, bảo vệ và tiết lộ thông tin đó.</string>
     <string name="txt_privacy_policy3">Vui lòng đọc kỹ chính sách này để hiểu các chính sách và thực tiễn của chúng tôi liên quan đến thông tin của bạn cũng như cách chúng tôi sẽ xử lý thông tin đó. Bằng cách sử dụng Ứng dụng, bạn đồng ý với các điều khoản và điều kiện của Chính sách quyền riêng tư này. Chính sách này có thể thay đổi theo thời gian. Việc bạn tiếp tục sử dụng Ứng dụng sau khi chúng tôi thực hiện các thay đổi được coi là chấp nhận những thay đổi đó, vì vậy vui lòng kiểm tra chính sách định kỳ để biết các bản cập nhật.</string>
@@ -106,7 +106,7 @@
     <string name="txt_contact_info2">Bằng cách sử dụng Ứng dụng, bạn biểu thị sự chấp nhận Chính sách quyền riêng tư này. Nếu bạn không đồng ý với Chính sách quyền riêng tư này, vui lòng không sử dụng Ứng dụng. Việc bạn tiếp tục sử dụng Ứng dụng sau khi đăng các thay đổi đối với Chính sách quyền riêng tư này sẽ được coi là bạn chấp nhận những thay đổi đó.</string>
     
     
-    //Phan cau hoi thuong gap
+<!--    //Phan cau hoi thuong gap-->
     <string name="txt_introduce">Giới thiệu</string>
     <string name="txt_introduce1">Cách sử dụng cơ bản: (tạo bộ, thêm thẻ và xem lại chúng)</string>
     <string name="txt_introduce2">Sử dụng máy tính để viết thiệp</string>
@@ -140,5 +140,28 @@
     <string name="txt_general_tips2">Sắp xếp các bộ của bạn theo danh mục.</string>
     <string name="txt_general_tips3">Bật thông báo khi bạn có thẻ để xem xét.</string>
     <string name="txt_general_tips4">Hãy chăm chỉ học tập, thậm chí 10-15 phút mỗi ngày cũng có thể đạt được tiến bộ vượt bậc. (Chế độ kết hợp là cách nhanh chóng để xem lại thẻ của bạn)</string>
+
+
+<!--    //Phan toolbar-->
+    <string name="toolbar_setting">Cài đặt</string>
+    <string name="toolbar_home">Trang chủ</string>
+    <string name="toolbar_security">Chính sách bảo mật</string>
+    <string name="toolbar_question">Câu hỏi thường gặp</string>
+
+
+<!--    //Tao 1 bo flashcard-->
+    <string name="txt_select_topic">Hãy chọn chủ đề và điền tên</string>
+    <string name="btn_continue">Tiếp tục</string>
+    <string name="hint_question">Câu hỏi</string>
+    <string name="hint_answer">Đáp án</string>
+    <string name="btn_cancel">Hủy</string>
+    <string name="btn_add">Thêm</string>
+    <string name="btn_create">Tạo</string>
+
+    <string name="btn_save">Lưu</string>
+
+<!--    //Tim kiem-->
+    <string name="txt_search">Tìm kiếm</string>
+    <string name="hint_search">Tên bộ flashcard bạn muốn tìm</string>
 
 </resources>

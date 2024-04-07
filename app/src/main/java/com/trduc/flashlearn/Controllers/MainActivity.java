@@ -8,11 +8,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +44,7 @@ import com.trduc.flashlearn.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -54,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
     AllFlashcardSetsAdapter adapter;
     String choice = "Learn flashcard sets";
 
+//    private static final String[] languages = {"EN/VI", "EN", "VI"};
+//
+//    Spinner spinner_language;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +76,34 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("choice", choice);
         editor.apply();
+
+//        ArrayAdapter<String> adapter_home = new ArrayAdapter<String>(this, R.layout.simple_spinner, languages);
+//        adapter_home.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner_language.setAdapter(adapter_home);
+//        spinner_language.setSelection(0);
+//
+//        spinner_language.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                String selected_language = parent.getItemAtPosition(position).toString();
+//                if (selected_language.equals("EN")) {
+//                    setLocal(MainActivity.this, "en");
+//                    Toast.makeText(getApplicationContext(), "English", Toast.LENGTH_SHORT).show();
+//                    finish();
+//                    startActivity(getIntent());
+//                } else if (selected_language.equals("VI")) {
+//                    setLocal(MainActivity.this, "vi");
+//                    Toast.makeText(getApplicationContext(), "Việt Nam", Toast.LENGTH_SHORT).show();
+//                    finish();
+//                    startActivity(getIntent());
+//                }
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
 
         ivBars.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -276,7 +314,7 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         tvTitle=findViewById(R.id.tvTitle);
         lnPratice = findViewById(R.id.lnPratice);
-        tvTitle.setText("Trang chủ");
+//        tvTitle.setText("Trang chủ");
         lnSetting = findViewById(R.id.lnSetting);
         drawerLayout = findViewById(R.id.drawerLayout);
         ivBars = findViewById(R.id.ivBars);
@@ -289,6 +327,14 @@ public class MainActivity extends AppCompatActivity {
         lnSearch = findViewById(R.id.lnSearch);
     }
 
+//    public void setLocal(Activity activity, String langCode) {
+//        Locale locale = new Locale(langCode);
+//        locale.setDefault(locale);
+//        Resources resources = activity.getResources();
+//        Configuration config = resources.getConfiguration();
+//        config.setLocale(locale);
+//        resources.updateConfiguration(config, resources.getDisplayMetrics());
+//    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
