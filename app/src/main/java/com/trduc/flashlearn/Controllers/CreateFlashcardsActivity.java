@@ -83,7 +83,8 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
             }
         }
 
-        adapter = new AlreadyCreateAdapter(flashcardList);
+        String choice = "Create";
+        adapter = new AlreadyCreateAdapter(flashcardList, flashcardSetsId, choice);
         lvAlreadyCreate.setAdapter(adapter);
 
         bAdd.setOnClickListener(new View.OnClickListener() {

@@ -25,6 +25,7 @@ import com.trduc.flashlearn.R;
 
 import org.checkerframework.checker.units.qual.A;
 
+import java.io.StringBufferInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -94,7 +95,8 @@ public class AddFlashcardsActivity extends AppCompatActivity {
             }
         }
 
-        adapter = new AlreadyCreateAdapter(flashcardList);
+        String choice = "Add";
+        adapter = new AlreadyCreateAdapter(flashcardList, flashcardSetsId, choice);
         lvAlreadyCreate.setAdapter(adapter);
 
         bAdd.setOnClickListener(new View.OnClickListener() {
@@ -237,7 +239,43 @@ public class AddFlashcardsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        cancelAndDeleteFlashcards();
+    }
 
+    private void cancelAndDeleteFlashcards() {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            String userEmail = currentUser.getEmail();
+            if (userEmail != null) {
+                for (String flashcardId : addedFlashcardIds) {
+                    db.collection("users")
+                            .document(userEmail)
+                            .collection("flashcard_sets")
+                            .document(flashcardSetsId)
+                            .collection("flashcards")
+                            .document(flashcardId)
+                            .delete()
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    flashcardList.clear();
+                                    adapter.notifyDataSetChanged();
+                                    Intent intent = new Intent(AddFlashcardsActivity.this, BeforeAddFlashcardsActivity.class);
+                                    startActivity(intent);
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Intent intent = new Intent(AddFlashcardsActivity.this, BeforeAddFlashcardsActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
+                }
+            }
+        }
+        Intent intent = new Intent(AddFlashcardsActivity.this, BeforeAddFlashcardsActivity.class);
+        startActivity(intent);
     }
 
 }
