@@ -122,7 +122,7 @@
 
 
     <string name="txt_card_order">Thứ tự của các thẻ được xác định như thế nào trong quá trình đánh giá?</string>
-    <string name="txt_card_order1">Theo mặc định, thứ tự của các lá bài sẽ được xác định bởi các yếu tố sau: lần cuối bạn xem lại thẻ là khi nào, bạn biết rõ về thẻ đó đến mức nào, bạn đã nhận được ‘câu trả lời đúng’ cho thẻ đó bao nhiêu lần. Nếu bạn muốn xem lại các thẻ theo thứ tự cụ thể, bạn có thể tắt tùy chọn 'lặp lại cách nhau' và chọn thứ tự của các thẻ.</string>
+    <string name="txt_card_order1">Theo mặc định, thứ tự của các lá bài sẽ được xác định bởi các yếu tố sau: lần cuối bạn xem lại thẻ là khi nào, bạn biết rõ về thẻ đó đến mức nào, bạn đã nhận được câu trả lời đúng cho thẻ đó bao nhiêu lần. Nếu bạn muốn xem lại các thẻ theo thứ tự cụ thể, bạn có thể tắt tùy chọn lặp lại cách nhau và chọn thứ tự của các thẻ.</string>
     <string name="txt_card_order2">Cũng có thể sắp xếp lại các thẻ từ màn hình quản lý thẻ, có thể truy cập từ màn hình thẻ, có menu tùy chọn ở trên cùng bên trái.</string>
 
     <string name="txt_backup_way">Làm cách nào để sao lưu thẻ của tôi?</string>

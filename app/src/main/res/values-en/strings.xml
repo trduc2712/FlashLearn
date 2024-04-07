@@ -125,8 +125,8 @@ Press the definition text for the card containing the image while reviewing</str
 
 
     <string name="txt_card_order">How is the order of the cards defined during a review?</string>
-    <string name="txt_card_order1">By default, the order of the cards will be determined by the following factors: when you last reviewed a card, how well you know the card, how many times have you got a ‘correct answer’ for the card.
-If you are interested in reviewing the cards on a specific order, you can disable the ‘spaced repetition’ option, and choose the order of the cards.</string>
+    <string name="txt_card_order1">By default, the order of the cards will be determined by the following factors: when you last reviewed a card, how well you know the card, how many times have you got a correct answer for the card.
+If you are interested in reviewing the cards on a specific order, you can disable the spaced repetition option, and choose the order of the cards.</string>
     <string name="txt_card_order2">It is also possible to reorder the cards from the manage cards screen, which can be accessed from the cards screen, there is an options menu on the top left.</string>
 
     <string name="txt_backup_way">How to backup my cards?</string>
