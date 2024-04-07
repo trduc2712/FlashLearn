@@ -32,6 +32,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.trduc.flashlearn.Controllers.AddFlashcardsActivity;
 import com.trduc.flashlearn.Controllers.ChangeFlashcardSetsNameActivity;
 import com.trduc.flashlearn.Controllers.CreateFlashcardsActivity;
+import com.trduc.flashlearn.Controllers.DeleteFlashcardsActivity;
 import com.trduc.flashlearn.Controllers.LearnActivity;
 import com.trduc.flashlearn.Controllers.MainActivity;
 import com.trduc.flashlearn.Controllers.SearchActivity;
@@ -148,6 +149,11 @@ public class AllFlashcardSetsAdapter extends BaseAdapter {
                         break;
                     case "Add flashcards":
                         intent = new Intent(context, AddFlashcardsActivity.class);
+                        intent.putExtra("flashcardSetsId", flashcardSets.getId());
+                        context.startActivity(intent);
+                        break;
+                    case "Delete flashcards":
+                        intent = new Intent(context, DeleteFlashcardsActivity.class);
                         intent.putExtra("flashcardSetsId", flashcardSets.getId());
                         context.startActivity(intent);
                         break;

@@ -117,7 +117,7 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
                             .addOnSuccessListener(queryDocumentSnapshots -> {
                                 int numFlashcards = queryDocumentSnapshots.size();
                                 char newFlashcardId = (char) ('a' + numFlashcards);
-                                Flashcard newFlashcard = new Flashcard(question, answer);
+                                Flashcard newFlashcard = new Flashcard(question, answer, newFlashcardId + "");
 
                                 db.collection("users")
                                         .document(currentUser.getEmail())

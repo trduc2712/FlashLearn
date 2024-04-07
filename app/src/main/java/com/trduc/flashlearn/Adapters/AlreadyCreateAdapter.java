@@ -4,6 +4,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.trduc.flashlearn.Models.Flashcard;
 import com.trduc.flashlearn.R;
@@ -46,6 +47,23 @@ public class AlreadyCreateAdapter extends BaseAdapter {
         Flashcard flashcard = (Flashcard) getItem(position);
         ((EditText) view.findViewById(R.id.etQuestion)).setText(String.format("%s", flashcard.getQuestion()));
         ((EditText) view.findViewById(R.id.etAnswer)).setText(String.format("%s", flashcard.getAnswer()));
+
+        EditText etQuestion = view.findViewById(R.id.etQuestion);
+        EditText etAnswer = view.findViewById(R.id.etAnswer);
+
+        etQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Da bam vao flashcard co ID la: " + flashcard.getId());
+            }
+        });
+
+        etAnswer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Da bam vao flashcard co ID la: " + flashcard.getId());
+            }
+        });
 
         return view;
     }

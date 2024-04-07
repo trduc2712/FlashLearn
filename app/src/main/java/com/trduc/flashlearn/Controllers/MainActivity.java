@@ -245,6 +245,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        lnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                choice = "Delete flashcards";
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("choice", choice);
+                editor.apply();
+                Intent intent = new Intent(MainActivity.this, BeforeDeleteFlashcardsActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
     private void initUi(){
         lnHome = findViewById(R.id.lnHome);

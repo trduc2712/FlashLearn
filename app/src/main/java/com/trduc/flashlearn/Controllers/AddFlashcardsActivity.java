@@ -32,7 +32,7 @@ import java.util.Map;
 public class AddFlashcardsActivity extends AppCompatActivity {
 
     private ArrayList<Flashcard> flashcardList;
-    private ArrayList<Character> addedFlashcardIds;
+    private ArrayList<String> addedFlashcardIds;
     private ListView lvAlreadyCreate;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
@@ -129,10 +129,10 @@ public class AddFlashcardsActivity extends AppCompatActivity {
                                 .get()
                                 .addOnSuccessListener(queryDocumentSnapshots -> {
                                     int numFlashcards = queryDocumentSnapshots.size();
-                                    char newFlashcardId = (char) ('a' + numFlashcards + 1);
+                                    String newFlashcardId = String.valueOf((char) ('a' + numFlashcards));
                                     addedFlashcardIds.add(newFlashcardId);
 
-                                    char finalNewFlashcardId = newFlashcardId;
+                                    String finalNewFlashcardId = newFlashcardId;
 
                                     boolean idExists = false;
                                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
@@ -144,7 +144,7 @@ public class AddFlashcardsActivity extends AppCompatActivity {
                                     }
 
                                     while (idExists) {
-                                        finalNewFlashcardId = (char) ('a' + ++numFlashcards);
+                                        finalNewFlashcardId = String.valueOf((char) ('a' + ++numFlashcards));
                                         idExists = false;
                                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                                             String flashcardSetId = document.getString("id");
@@ -155,10 +155,11 @@ public class AddFlashcardsActivity extends AppCompatActivity {
                                         }
                                     }
 
-                                    final char finalFinalNewFlashcardSetId = finalNewFlashcardId;
+                                    final String finalFinalNewFlashcardSetId = finalNewFlashcardId;
                                     final Map<String, Object> flashcard = new HashMap<>();
                                     flashcard.put("question", question);
                                     flashcard.put("answer", answer);
+                                    flashcard.put("id", finalFinalNewFlashcardSetId);
 
                                     db.collection("users")
                                             .document(userEmail)
@@ -170,7 +171,7 @@ public class AddFlashcardsActivity extends AppCompatActivity {
                                             .addOnSuccessListener(aVoid -> {
                                                 etQuestion.setText("");
                                                 etAnswer.setText("");
-                                                flashcardList.add(new Flashcard(question, answer));
+                                                flashcardList.add(new Flashcard(question, answer, finalFinalNewFlashcardSetId + ""));
                                                 adapter.notifyDataSetChanged();
                                             })
                                             .addOnFailureListener(e -> Toast.makeText(AddFlashcardsActivity.this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show());
@@ -190,7 +191,7 @@ public class AddFlashcardsActivity extends AppCompatActivity {
                 if (currentUser != null) {
                     String userEmail = currentUser.getEmail();
                     if (userEmail != null) {
-                        for (char flashcardId : addedFlashcardIds) {
+                        for (String flashcardId : addedFlashcardIds) {
                             db.collection("users")
                                     .document(userEmail)
                                     .collection("flashcard_sets")
@@ -217,6 +218,8 @@ public class AddFlashcardsActivity extends AppCompatActivity {
                         }
                     }
                 }
+                Intent intent = new Intent(AddFlashcardsActivity.this, BeforeAddFlashcardsActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -228,6 +231,12 @@ public class AddFlashcardsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
 
     }
 
