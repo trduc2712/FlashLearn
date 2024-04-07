@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -23,7 +21,7 @@ import com.trduc.flashlearn.R;
 
 import java.util.ArrayList;
 
-public class DeleteFlashcardSetsActivity extends AppCompatActivity {
+public class BeforeAddFlashcardsActivity extends AppCompatActivity {
 
     ListView lvAllFlashcardSets;
     FirebaseAuth auth;
@@ -33,7 +31,7 @@ public class DeleteFlashcardSetsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delete_flashcard_sets);
+        setContentView(R.layout.activity_before_add_flashcards);
 
         lvAllFlashcardSets = findViewById(R.id.lvAllFlashcardSets);
 
@@ -62,7 +60,7 @@ public class DeleteFlashcardSetsActivity extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(DeleteFlashcardSetsActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(BeforeAddFlashcardsActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
                             }
                         });
             }
@@ -72,4 +70,12 @@ public class DeleteFlashcardSetsActivity extends AppCompatActivity {
         lvAllFlashcardSets.setAdapter(adapter);
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(BeforeAddFlashcardsActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
 }

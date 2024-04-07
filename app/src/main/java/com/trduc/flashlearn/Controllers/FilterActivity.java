@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class FilterActivity extends AppCompatActivity {
     Spinner spinner_topic;
-    String[] choices = {"Vui lòng chọn chủ đề", "Toán học", "Văn học", "Ngôn ngữ", "Vật lý", "Hoá học", "Sinh học", "Lịch sử", "Địa lý", "Nghệ thuật",
+    String[] choices = {"Chủ đề", "Toán học", "Văn học", "Ngôn ngữ", "Vật lý", "Hoá học", "Sinh học", "Lịch sử", "Địa lý", "Nghệ thuật",
             "Thể thao", "Y học", "Công nghê", "Ca dao tục ngữ", "Chính trị", "Tài chính", "Tâm lý", "Kinh doanh", "Kỹ thuật"};
     String selectedChoice;
     ListView lvFilterFlashcardSets;
@@ -59,8 +59,8 @@ public class FilterActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String topic = spinner_topic.getSelectedItem().toString();
                 filterFlashcardSets(topic);
-                if(topic!="Vui lòng chọn chủ đề"){
-                    Toast.makeText(FilterActivity.this, "Chủ đề "+topic, Toast.LENGTH_SHORT).show();
+                if(topic!="Chủ đề"){
+                    //Toast.makeText(FilterActivity.this, "Chủ đề "+topic, Toast.LENGTH_SHORT).show();
                 }
             }
 

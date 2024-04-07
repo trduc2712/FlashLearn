@@ -29,6 +29,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.trduc.flashlearn.Controllers.AddFlashcardsActivity;
 import com.trduc.flashlearn.Controllers.ChangeFlashcardSetsNameActivity;
 import com.trduc.flashlearn.Controllers.CreateFlashcardsActivity;
 import com.trduc.flashlearn.Controllers.LearnActivity;
@@ -143,6 +144,11 @@ public class AllFlashcardSetsAdapter extends BaseAdapter {
                         break;
                     case "Search a flashcard sets":
                         intent = new Intent(context, SearchActivity.class);
+                        context.startActivity(intent);
+                        break;
+                    case "Add flashcards":
+                        intent = new Intent(context, AddFlashcardsActivity.class);
+                        intent.putExtra("flashcardSetsId", flashcardSets.getId());
                         context.startActivity(intent);
                         break;
                 }

@@ -135,14 +135,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        lnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddFlashcardsActivity.class);
-                startActivity(intent);
-            }
-        });
-
         ArrayList<FlashcardSets> flashcardSetsList = new ArrayList<>();
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -240,6 +232,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        lnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choice = "Add flashcards";
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("choice", choice);
+                editor.apply();
+                Intent intent = new Intent(MainActivity.this, BeforeAddFlashcardsActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
     private void initUi(){

@@ -27,7 +27,7 @@ public class NameFlashcardsActivity extends AppCompatActivity {
     EditText etFlashcardSetsName;
     FirebaseFirestore db;
     Spinner sTopic;
-    String[] choices = {"", "Toán học", "Văn học", "Ngôn ngữ", "Vật lý", "Hoá học", "Sinh học", "Lịch sử", "Địa lý", "Nghệ thuật",
+    String[] choices = {"Chủ đề", "Toán học", "Văn học", "Ngôn ngữ", "Vật lý", "Hoá học", "Sinh học", "Lịch sử", "Địa lý", "Nghệ thuật",
     "Thể thao", "Y học", "Công nghê", "Ca dao tục ngữ", "Chính trị", "Tài chính", "Tâm lý", "Kinh doanh", "Kỹ thuật"};
     String selectedChoice;
 
@@ -37,6 +37,7 @@ public class NameFlashcardsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_name_flashcards);
 
         sTopic = findViewById(R.id.sTopic);
+        sTopic.setSelection(0, false);
         bContinue = findViewById(R.id.bContinue);
         etFlashcardSetsName = findViewById(R.id.etFlashcardSetsName);
         db = FirebaseFirestore.getInstance();
@@ -50,7 +51,7 @@ public class NameFlashcardsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String flashcardSetsTopic = sTopic.getSelectedItem().toString();
-                if (flashcardSetsTopic.equals("")) {
+                if (flashcardSetsTopic.equals("Chủ đề")) {
                     Toast.makeText(NameFlashcardsActivity.this, "Vui lòng chọn chủ đề", Toast.LENGTH_SHORT).show();
                     return;
                 }
