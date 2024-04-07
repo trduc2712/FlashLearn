@@ -1,9 +1,12 @@
 package com.trduc.flashlearn.Adapters;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +20,9 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.trduc.flashlearn.Controllers.BeforeDeleteFlashcardsActivity;
+import com.trduc.flashlearn.Controllers.DeleteFlashcardsActivity;
+import com.trduc.flashlearn.Controllers.MainActivity;
 import com.trduc.flashlearn.Models.Flashcard;
 import com.trduc.flashlearn.R;
 

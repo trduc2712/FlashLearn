@@ -7,6 +7,7 @@
     import android.content.Intent;
     import android.content.SharedPreferences;
     import android.os.Bundle;
+    import android.view.View;
     import android.widget.Button;
     import android.widget.EditText;
     import android.widget.ListView;
@@ -26,18 +27,21 @@
 
     public class DeleteFlashcardsActivity extends AppCompatActivity {
 
-        private ArrayList<Flashcard> flashcardList;
-        private ListView lvAlreadyCreate;
-        private FirebaseFirestore db;
-        private FirebaseAuth mAuth;
-        private String flashcardSetsId;
-        private AlreadyCreateAdapter adapter;
+        ArrayList<Flashcard> flashcardList;
+        ListView lvAlreadyCreate;
+        FirebaseFirestore db;
+        FirebaseAuth mAuth;
+        String flashcardSetsId;
+        Button bSave, bCancel;
+        AlreadyCreateAdapter adapter;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_delete_flashcards);
 
+            bSave = findViewById(R.id.bSave);
+            bCancel = findViewById(R.id.bCancel);
             flashcardList = new ArrayList<>();
             lvAlreadyCreate = findViewById(R.id.lvAlreadyCreate);
             mAuth = FirebaseAuth.getInstance();
@@ -82,6 +86,14 @@
             String choice = "Delete";
             adapter = new AlreadyCreateAdapter(flashcardList, flashcardSetsId, choice);
             lvAlreadyCreate.setAdapter(adapter);
+
+            bSave.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(DeleteFlashcardsActivity.this, BeforeDeleteFlashcardsActivity.class);
+                    startActivity(intent);
+                }
+            });
 
         }
     }
