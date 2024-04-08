@@ -400,6 +400,7 @@
                     android:src="@drawable/ic_share" />
 
                 <TextView
+                    android:id="@+id/nav_share_app"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

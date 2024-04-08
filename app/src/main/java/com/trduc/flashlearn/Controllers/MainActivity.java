@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -64,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
 //
 //    Spinner spinner_language;
 
+    TextView nav_share;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +79,22 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("choice", choice);
         editor.apply();
+
+
+        nav_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, "Hello");
+                intent.setType("text/plain");
+
+                if(intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+            }
+        });
+
 
 //        ArrayAdapter<String> adapter_home = new ArrayAdapter<String>(this, R.layout.simple_spinner, languages);
 //        adapter_home.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -326,6 +345,7 @@ public class MainActivity extends AppCompatActivity {
         lnSecurity = findViewById(R.id.lnSecurity);
         lnChangeNameFlashcardSets = findViewById(R.id.lnChangeNameFlashcardSets);
         lnSearch = findViewById(R.id.lnSearch);
+        nav_share = findViewById(R.id.nav_share_app);
     }
 
 //    public void setLocal(Activity activity, String langCode) {
