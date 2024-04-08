@@ -14,7 +14,7 @@
         android:text="Flashcard Sets Name"
         android:textStyle="bold"
         android:gravity="center"
-        android:textColor="@color/black"
+        style="@style/Backgroudsetcard"
         android:textSize="20sp"
         android:textAllCaps="false"
         android:layout_marginBottom="15sp"/>
