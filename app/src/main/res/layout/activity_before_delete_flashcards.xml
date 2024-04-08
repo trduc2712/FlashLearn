@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="15sp"
-        android:text="Hãy chọn bộ flashcard mà bạn muốn xoá flashcard"
+        android:text="@string/txt_delete_card"
         android:textColor="@color/pink0"
         android:textSize="25sp"
         android:textStyle="bold" />

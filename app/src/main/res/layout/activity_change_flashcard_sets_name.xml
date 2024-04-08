@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Bạn đang đổi tên cho bộ flashcard "
+            android:text="@string/txt_rename_card"
             android:textColor="@color/pink0"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -31,7 +31,7 @@
             android:layout_marginTop="15sp"
             android:background="@drawable/grey_rounded_border_4sp"
             android:textColorHint="#B2B4B3"
-            android:hint="Tên mới"
+            android:hint="@string/txt_new_name"
             android:inputType="textEmailAddress"
             android:paddingLeft="10sp"
             android:textSize="15sp" />
@@ -43,7 +43,7 @@
             android:layout_marginTop="15dp"
             android:backgroundTint="@color/pink0"
             android:background="@drawable/pink0_rounded_border_4sp"
-            android:text="Đổi tên"
+            android:text="@string/btn_rename"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="20sp"

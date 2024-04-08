@@ -162,6 +162,16 @@
 
     <string name="btn_save">Save</string>
 
+    //Them flashcard
+    <string name="txt_add_card">Select the flashcard set to which you want to add flashcards</string>
+    <string name="txt_delete_card">Select the flashcard set from which you want to delete flashcards</string>
+    <string name="txt_rename_card">You are renaming the flashcard set</string>
+    <string name="txt_set_rename_card">Select the set of flashcards you want to delete</string>
+
+    <string name="txt_click_delete_card">Click on flashcards to erase them</string>
+    <string name="txt_new_name">New name</string>
+    <string name="btn_rename">Rename</string>
+
     //Tim kiem
     <string name="txt_search">Search</string>
     <string name="hint_search">Name of the flashcard set you want to find</string>

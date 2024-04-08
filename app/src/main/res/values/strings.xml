@@ -160,6 +160,16 @@
 
     <string name="btn_save">Lưu</string>
 
+    //Them flashcard
+    <string name="txt_add_card">Hãy chọn bộ flashcard mà bạn muốn thêm flashcard</string>
+    <string name="txt_delete_card">Hãy chọn bộ flashcard mà bạn muốn xoá flashcard</string>
+    <string name="txt_rename_card">Bạn đang đổi tên cho bộ flashcard</string>
+    <string name="txt_set_rename_card">Hãy chọn bộ flashcard mà bạn muốn xoá</string>
+
+    <string name="txt_click_delete_card">Bấm vào flashcard để xoá chúng</string>
+    <string name="txt_new_name">Tên mới</string>
+    <string name="btn_rename">Đổi tên</string>
+
     //Tim kiem
     <string name="txt_search">Tìm kiếm</string>
     <string name="hint_search">Tên bộ flashcard bạn muốn tìm</string>
