@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class CreateFlashcardsActivity extends AppCompatActivity {
 
-    private ArrayList<Flashcard> flashcardList;
+    private ArrayList<Flashcard> flashcardList, deletedFlashcards;
     private ListView lvAlreadyCreate;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
@@ -49,6 +49,7 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
         etAnswer = findViewById(R.id.etAnswer);
 
         flashcardList = new ArrayList<>();
+        deletedFlashcards = new ArrayList<>();
         lvAlreadyCreate = findViewById(R.id.lvAlreadyCreate);
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -84,7 +85,7 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
         }
 
         String choice = "Create";
-        adapter = new AlreadyCreateAdapter(flashcardList, flashcardSetsId, choice);
+        adapter = new AlreadyCreateAdapter(flashcardList, flashcardSetsId, choice, deletedFlashcards);
         lvAlreadyCreate.setAdapter(adapter);
 
         bAdd.setOnClickListener(new View.OnClickListener() {
@@ -167,20 +168,19 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
 
     }
 
-    private void deleteFlashcardSet(String flashcardSetsId) {
+    private void deleteFlashcardSet(String flashcardSetsIdToDelete) {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             db.collection("users")
                     .document(currentUser.getEmail())
                     .collection("flashcard_sets")
-                    .document(flashcardSetsId)
+                    .document(flashcardSetsIdToDelete)
                     .delete()
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-//                            Toast.makeText(CreateFlashcardsActivity.this, "Đã xoá hoàn toàn flashcard set vừa tạo", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(CreateFlashcardsActivity.this, MainActivity.class);
-                            startActivity(intent);
+                            // Xoá thành công flashcard_sets, bắt đầu cập nhật ID mới cho các flashcard_sets khác
+                            updateFlashcardSetsIds(currentUser.getEmail());
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -190,6 +190,51 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
                         }
                     });
         }
+    }
+
+    private void updateFlashcardSetsIds(String userEmail) {
+        // Lấy danh sách flashcard_sets
+        db.collection("users")
+                .document(userEmail)
+                .collection("flashcard_sets")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        int index = 0;
+                        // Duyệt qua danh sách flashcard_sets để cập nhật ID mới cho từng flashcard_sets
+                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                            String flashcardSetsId = document.getId();
+                            // Tạo ID mới theo thứ tự a, b, c, d
+                            String newFlashcardSetsId = Character.toString((char) ('a' + index));
+                            // Cập nhật ID mới cho flashcard_sets
+                            db.collection("users")
+                                    .document(userEmail)
+                                    .collection("flashcard_sets")
+                                    .document(flashcardSetsId)
+                                    .update("id", newFlashcardSetsId)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            // Cập nhật ID mới thành công
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(CreateFlashcardsActivity.this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                            index++;
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(CreateFlashcardsActivity.this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void deleteAllFlashcards() {

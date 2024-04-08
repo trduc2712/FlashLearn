@@ -150,7 +150,7 @@
     <string name="toolbar_question">Frequently asked questions</string>
 
 
-<!--    //Tao 1 bo flashcard-->
+    //Tao 1 bo flashcard
     <string name="txt_select_topic">Please select a topic and enter a name</string>
     <string name="btn_continue">Continue</string>
     <string name="hint_question">Question</string>
@@ -162,7 +162,7 @@
 
     <string name="btn_save">Save</string>
 
-<!--    //Tim kiem-->
+    //Tim kiem
     <string name="txt_search">Search</string>
     <string name="hint_search">Name of the flashcard set you want to find</string>
 

@@ -40,7 +40,6 @@ public class SecurityActivity extends AppCompatActivity {
     ListView lvAllFlashcardSets;
     FirebaseAuth auth;
     AllFlashcardSetsAdapter adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +73,14 @@ public class SecurityActivity extends AppCompatActivity {
         lnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(SecurityActivity.this, ShareActivity.class);
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, "Hello");
+                intent.setType("text/plain");
+
+                if(intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
             }
         });
 

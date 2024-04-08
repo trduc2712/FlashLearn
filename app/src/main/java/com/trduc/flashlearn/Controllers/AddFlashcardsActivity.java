@@ -32,7 +32,7 @@ import java.util.Map;
 
 public class AddFlashcardsActivity extends AppCompatActivity {
 
-    private ArrayList<Flashcard> flashcardList;
+    private ArrayList<Flashcard> flashcardList, deletedFlashcards;
     private ArrayList<String> addedFlashcardIds;
     private ListView lvAlreadyCreate;
     private FirebaseFirestore db;
@@ -55,6 +55,7 @@ public class AddFlashcardsActivity extends AppCompatActivity {
 
         flashcardList = new ArrayList<>();
         addedFlashcardIds = new ArrayList<>();
+        deletedFlashcards = new ArrayList<>();
         lvAlreadyCreate = findViewById(R.id.lvAlreadyCreate);
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -96,7 +97,7 @@ public class AddFlashcardsActivity extends AppCompatActivity {
         }
 
         String choice = "Add";
-        adapter = new AlreadyCreateAdapter(flashcardList, flashcardSetsId, choice);
+        adapter = new AlreadyCreateAdapter(flashcardList, flashcardSetsId, choice, deletedFlashcards);
         lvAlreadyCreate.setAdapter(adapter);
 
         bAdd.setOnClickListener(new View.OnClickListener() {

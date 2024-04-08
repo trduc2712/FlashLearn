@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -77,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("choice", choice);
         editor.apply();
 
+
+
 //        ArrayAdapter<String> adapter_home = new ArrayAdapter<String>(this, R.layout.simple_spinner, languages);
 //        adapter_home.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //        spinner_language.setAdapter(adapter_home);
@@ -129,7 +132,14 @@ public class MainActivity extends AppCompatActivity {
         lnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(MainActivity.this, ShareActivity.class);
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, "Hello");
+                intent.setType("text/plain");
+
+                if(intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
             }
         });
 
@@ -244,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         lnFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

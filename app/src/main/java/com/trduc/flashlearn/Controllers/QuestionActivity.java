@@ -49,6 +49,7 @@ public class QuestionActivity extends AppCompatActivity {
         initUi();
         showInformationUser();
 
+
         ivBars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +74,14 @@ public class QuestionActivity extends AppCompatActivity {
         lnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(QuestionActivity.this, ShareActivity.class);
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, "Hello");
+                intent.setType("text/plain");
+
+                if(intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
             }
         });
 

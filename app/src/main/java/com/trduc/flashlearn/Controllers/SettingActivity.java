@@ -57,6 +57,7 @@ public class SettingActivity extends AppCompatActivity {
 
     Spinner spinner_language;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +97,7 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
+
         ivBars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,7 +123,14 @@ public class SettingActivity extends AppCompatActivity {
         lnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(SettingActivity.this, ShareActivity.class);
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, "Hello");
+                intent.setType("text/plain");
+
+                if(intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
             }
         });
 

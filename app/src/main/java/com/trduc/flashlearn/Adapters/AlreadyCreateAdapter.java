@@ -37,13 +37,14 @@ public class AlreadyCreateAdapter extends BaseAdapter {
     final ArrayList<Flashcard> flashcardList;
     private String flashcardSetsId;
     private String choice;
+    private ArrayList<Flashcard> deletedFlashcards;
 
-    public AlreadyCreateAdapter(ArrayList<Flashcard> flashcardList, String flashcardSetsId, String choice) {
+    public AlreadyCreateAdapter(ArrayList<Flashcard> flashcardList, String flashcardSetsId, String choice, ArrayList<Flashcard> deletedFlashcards) {
         this.flashcardList = flashcardList;
         this.flashcardSetsId = flashcardSetsId;
         this.choice = choice;
+        this.deletedFlashcards = deletedFlashcards;
     }
-
 
     @Override
     public int getCount() {
@@ -109,6 +110,7 @@ public class AlreadyCreateAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 deleteFlashcard(position, flashcardId);
+                deletedFlashcards.add(flashcardList.get(position));
                 dialog.dismiss();
             }
         });

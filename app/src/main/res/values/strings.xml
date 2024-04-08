@@ -142,14 +142,14 @@
     <string name="txt_general_tips4">Hãy chăm chỉ học tập, thậm chí 10-15 phút mỗi ngày cũng có thể đạt được tiến bộ vượt bậc. (Chế độ kết hợp là cách nhanh chóng để xem lại thẻ của bạn)</string>
 
 
-<!--    //Phan toolbar-->
+    //Phan toolbar
     <string name="toolbar_setting">Cài đặt</string>
     <string name="toolbar_home">Trang chủ</string>
     <string name="toolbar_security">Chính sách bảo mật</string>
     <string name="toolbar_question">Câu hỏi thường gặp</string>
 
 
-<!--    //Tao 1 bo flashcard-->
+    //Tao 1 bo flashcard
     <string name="txt_select_topic">Hãy chọn chủ đề và điền tên</string>
     <string name="btn_continue">Tiếp tục</string>
     <string name="hint_question">Câu hỏi</string>
@@ -160,7 +160,7 @@
 
     <string name="btn_save">Lưu</string>
 
-<!--    //Tim kiem-->
+    //Tim kiem
     <string name="txt_search">Tìm kiếm</string>
     <string name="hint_search">Tên bộ flashcard bạn muốn tìm</string>
 
