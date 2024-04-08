@@ -6,6 +6,8 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -40,7 +42,7 @@ public class QuestionActivity extends AppCompatActivity {
     ListView lvAllFlashcardSets;
     FirebaseAuth auth;
     AllFlashcardSetsAdapter adapter;
-
+    AlertDialog.Builder builder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,11 +108,27 @@ public class QuestionActivity extends AppCompatActivity {
                 closeDrawer(drawerLayout);
             }
         });
-
+        builder = new AlertDialog.Builder(this);
         lnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(QuestionActivity.this, "Đăng xuất", Toast.LENGTH_SHORT).show();
+                builder.setTitle("Thông báo")
+                        .setMessage("Bạn có chắc chắn muốn đăng xuất ?")
+                        .setCancelable(true)
+                        .setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                finish();
+                                redirectActivity(QuestionActivity.this, SignInActivity.class);;
+                            }
+                        })
+                        .setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                dialog.cancel();
+                            }
+                        })
+                        .show();
             }
         });
         lnFilter.setOnClickListener(new View.OnClickListener() {

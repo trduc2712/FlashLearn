@@ -6,6 +6,8 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -65,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
 //
 //    Spinner spinner_language;
 
+    AlertDialog.Builder builder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("choice", choice);
         editor.apply();
 
+        builder = new AlertDialog.Builder(this);
 
 
 //        ArrayAdapter<String> adapter_home = new ArrayAdapter<String>(this, R.layout.simple_spinner, languages);
@@ -160,18 +165,35 @@ public class MainActivity extends AppCompatActivity {
         lnQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(MainActivity.this, QuestionActivity.class);;
+                redirectActivity(MainActivity.this, QuestionActivity.class);
             }
         });
 
         lnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(MainActivity.this, SignInActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
+//                FirebaseAuth.getInstance().signOut();
+//                Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                startActivity(intent);
+//                finish();
+                builder.setTitle("Thông báo")
+                        .setMessage("Bạn có chắc chắn muốn đăng xuất ?")
+                        .setCancelable(true)
+                        .setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                finish();
+                                redirectActivity(MainActivity.this, SignInActivity.class);;
+                            }
+                        })
+                        .setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                dialog.cancel();
+                            }
+                        })
+                        .show();
             }
         });
 
