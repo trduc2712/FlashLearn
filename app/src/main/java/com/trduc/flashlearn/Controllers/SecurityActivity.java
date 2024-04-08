@@ -114,7 +114,7 @@ public class SecurityActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 builder.setTitle("Thông báo")
-                        .setMessage("Bạn có chắc chắn muốn đăng xuất ?")
+                        .setMessage("Bạn chắc chắn muốn đăng xuất ?")
                         .setCancelable(true)
                         .setPositiveButton("Có", new DialogInterface.OnClickListener() {
                             @Override
