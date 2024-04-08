@@ -10,4 +10,5 @@
     <style name="TextColor"><item name="android:textColor">@color/white</item></style>
     <style name="TextColorMenu"><item name="android:textColor">@color/pink0</item></style>
     <style name="TextColorMenu1"><item name="android:textColor">@color/pink0</item></style>
+    <style name="Backgroudsetcard"><item name="android:backgroundTint">@color/pink1</item><item name="android:textColor">@color/white</item></style>
 </resources>
