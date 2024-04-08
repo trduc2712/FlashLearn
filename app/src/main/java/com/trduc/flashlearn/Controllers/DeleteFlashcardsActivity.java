@@ -27,7 +27,7 @@
 
     public class DeleteFlashcardsActivity extends AppCompatActivity {
 
-        ArrayList<Flashcard> flashcardList;
+        ArrayList<Flashcard> flashcardList, deletedFlashcards;
         ListView lvAlreadyCreate;
         FirebaseFirestore db;
         FirebaseAuth mAuth;
@@ -43,6 +43,7 @@
             bSave = findViewById(R.id.bSave);
             bCancel = findViewById(R.id.bCancel);
             flashcardList = new ArrayList<>();
+            deletedFlashcards = new ArrayList<>();
             lvAlreadyCreate = findViewById(R.id.lvAlreadyCreate);
             mAuth = FirebaseAuth.getInstance();
             db = FirebaseFirestore.getInstance();
@@ -84,16 +85,57 @@
             }
 
             String choice = "Delete";
-            adapter = new AlreadyCreateAdapter(flashcardList, flashcardSetsId, choice);
+            adapter = new AlreadyCreateAdapter(flashcardList, flashcardSetsId, choice, deletedFlashcards);
             lvAlreadyCreate.setAdapter(adapter);
 
             bSave.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    for (Flashcard flashcard : deletedFlashcards) {
+                        System.out.println(flashcard.getId() + ": " + "Ques: " + flashcard.getQuestion() + ", Ans: " + flashcard.getAnswer());
+                    }
                     Intent intent = new Intent(DeleteFlashcardsActivity.this, BeforeDeleteFlashcardsActivity.class);
                     startActivity(intent);
                 }
             });
 
+            bCancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    addDeletedFlashcardsToFirestore();
+                    Intent intent = new Intent(DeleteFlashcardsActivity.this, BeforeDeleteFlashcardsActivity.class);
+                    startActivity(intent);
+                }
+            });
         }
+
+        private void addDeletedFlashcardsToFirestore() {
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            if (mAuth.getCurrentUser() != null) {
+                for (Flashcard flashcard : deletedFlashcards) {
+                    db.collection("users")
+                            .document(mAuth.getCurrentUser().getEmail())
+                            .collection("flashcard_sets")
+                            .document(flashcardSetsId)
+                            .collection("flashcards")
+                            .document(flashcard.getId())
+                            .set(flashcard)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                }
+                            });
+                }
+            }
+        }
+
     }
