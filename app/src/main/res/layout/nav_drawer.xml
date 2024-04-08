@@ -427,12 +427,12 @@
                     android:src="@drawable/ic_headset" />
 
                 <TextView
+                    style="@style/TextColorMenu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="@string/nav_support"
-                    style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 

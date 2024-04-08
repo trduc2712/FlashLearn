@@ -57,7 +57,6 @@ public class SettingActivity extends AppCompatActivity {
 
     Spinner spinner_language;
 
-    TextView nav_share;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,19 +97,6 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
-        nav_share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, "Hello");
-                intent.setType("text/plain");
-
-                if(intent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(intent);
-                }
-            }
-        });
 
         ivBars.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,7 +123,14 @@ public class SettingActivity extends AppCompatActivity {
         lnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(SettingActivity.this, ShareActivity.class);
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, "Hello");
+                intent.setType("text/plain");
+
+                if(intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
             }
         });
 
@@ -251,7 +244,6 @@ public class SettingActivity extends AppCompatActivity {
         sDarkMode = findViewById(R.id.sDarkMode);
         spinner_language = findViewById(R.id.spinner_language);
         lnFilter=findViewById(R.id.lnFilter);
-        nav_share = findViewById(R.id.nav_share_app);
     }
 
     public static void openDrawer(DrawerLayout drawerLayout) {
