@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class CreateFlashcardsActivity extends AppCompatActivity {
 
-    private ArrayList<Flashcard> flashcardList, deletedFlashcards;
+    private ArrayList<Flashcard> flashcardList, deletedFlashcards, editedFlashcards;
     private ListView lvAlreadyCreate;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
@@ -50,6 +50,7 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
 
         flashcardList = new ArrayList<>();
         deletedFlashcards = new ArrayList<>();
+        editedFlashcards = new ArrayList<>();
         lvAlreadyCreate = findViewById(R.id.lvAlreadyCreate);
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -85,7 +86,7 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
         }
 
         String choice = "Create";
-        adapter = new AlreadyCreateAdapter(flashcardList, flashcardSetsId, choice, deletedFlashcards);
+        adapter = new AlreadyCreateAdapter(flashcardList, flashcardSetsId, choice, deletedFlashcards, editedFlashcards);
         lvAlreadyCreate.setAdapter(adapter);
 
         bAdd.setOnClickListener(new View.OnClickListener() {

@@ -27,10 +27,9 @@ import com.trduc.flashlearn.Models.Flashcard;
 import com.trduc.flashlearn.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.google.firebase.auth.FirebaseAuth;
-
-
 
 public class AlreadyCreateAdapter extends BaseAdapter {
 
@@ -38,12 +37,14 @@ public class AlreadyCreateAdapter extends BaseAdapter {
     private String flashcardSetsId;
     private String choice;
     private ArrayList<Flashcard> deletedFlashcards;
+    private ArrayList<Flashcard> editedFlashcards;
 
-    public AlreadyCreateAdapter(ArrayList<Flashcard> flashcardList, String flashcardSetsId, String choice, ArrayList<Flashcard> deletedFlashcards) {
+    public AlreadyCreateAdapter(ArrayList<Flashcard> flashcardList, String flashcardSetsId, String choice, ArrayList<Flashcard> deletedFlashcards, ArrayList<Flashcard> editedFlashcards) {
         this.flashcardList = flashcardList;
         this.flashcardSetsId = flashcardSetsId;
         this.choice = choice;
         this.deletedFlashcards = deletedFlashcards;
+        this.editedFlashcards = editedFlashcards;
     }
 
     @Override
@@ -77,19 +78,34 @@ public class AlreadyCreateAdapter extends BaseAdapter {
 
         etQuestion.setText(String.valueOf(flashcard.getQuestion()));
         etAnswer.setText(String.valueOf(flashcard.getAnswer()));
-        System.out.println("Choice: " + choice);
+        System.out.println("Choice is: " + choice);
+
+        if (choice.equals("Edit")) {
+            etQuestion.setFocusable(true);
+            etQuestion.setFocusableInTouchMode(true);
+            etAnswer.setFocusable(true);
+            etAnswer.setFocusableInTouchMode(true);
+        }
 
         etQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (choice.equals("Delete")) showDeleteConfirmationDialog(position, flashcard.getId(), v.getContext());
+                if (choice.equals("Delete")) {
+                    showDeleteConfirmationDialog(position, flashcard.getId(), v.getContext());
+                } else if (choice.equals("Edit")) {
+
+                }
             }
         });
 
         etAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (choice.equals("Delete")) showDeleteConfirmationDialog(position, flashcard.getId(), v.getContext());
+                if (choice.equals("Delete")) {
+                    showDeleteConfirmationDialog(position, flashcard.getId(), v.getContext());
+                } else if (choice.equals("Edit")) {
+
+                }
             }
         });
 
@@ -149,6 +165,5 @@ public class AlreadyCreateAdapter extends BaseAdapter {
                     });
         }
     }
-
 
 }

@@ -290,19 +290,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        lnEditFlashcardSets.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                choice = "Delete a flashcard sets";
-                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("choice", choice);
-                editor.apply();
-                Intent intent = new Intent(MainActivity.this, DeleteFlashcardSetsActivity.class);
-                startActivity(intent);
-            }
-        });
-
         lnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -325,6 +312,32 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString("choice", choice);
                 editor.apply();
                 Intent intent = new Intent(MainActivity.this, BeforeDeleteFlashcardsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        lnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                choice = "Edit flashcards";
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("choice", choice);
+                editor.apply();
+                Intent intent = new Intent(MainActivity.this, BeforeEditFlashcardsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        lnPratice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                choice = "Pratice flashcards";
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("choice", choice);
+                editor.apply();
+                Intent intent = new Intent(MainActivity.this, BeforePraticeActivity.class);
                 startActivity(intent);
             }
         });

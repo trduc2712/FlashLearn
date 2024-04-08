@@ -33,8 +33,10 @@ import com.trduc.flashlearn.Controllers.AddFlashcardsActivity;
 import com.trduc.flashlearn.Controllers.ChangeFlashcardSetsNameActivity;
 import com.trduc.flashlearn.Controllers.CreateFlashcardsActivity;
 import com.trduc.flashlearn.Controllers.DeleteFlashcardsActivity;
+import com.trduc.flashlearn.Controllers.EditFlashcardsActivity;
 import com.trduc.flashlearn.Controllers.LearnActivity;
 import com.trduc.flashlearn.Controllers.MainActivity;
+import com.trduc.flashlearn.Controllers.PraticeActivity;
 import com.trduc.flashlearn.Controllers.SearchActivity;
 import com.trduc.flashlearn.Models.FlashcardSets;
 import com.trduc.flashlearn.R;
@@ -154,6 +156,16 @@ public class AllFlashcardSetsAdapter extends BaseAdapter {
                         break;
                     case "Delete flashcards":
                         intent = new Intent(context, DeleteFlashcardsActivity.class);
+                        intent.putExtra("flashcardSetsId", flashcardSets.getId());
+                        context.startActivity(intent);
+                        break;
+                    case "Edit flashcards":
+                        intent = new Intent(context, EditFlashcardsActivity.class);
+                        intent.putExtra("flashcardSetsId", flashcardSets.getId());
+                        context.startActivity(intent);
+                        break;
+                    case "Pratice flashcards":
+                        intent = new Intent(context, PraticeActivity.class);
                         intent.putExtra("flashcardSetsId", flashcardSets.getId());
                         context.startActivity(intent);
                         break;
