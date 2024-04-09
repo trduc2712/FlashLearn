@@ -1,37 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
 
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_gravity="center">-->
+
+<!--        <TextView-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="FlashLearn"-->
+<!--            android:gravity="center"-->
+<!--            android:textColor="@color/pink0"-->
+<!--            android:textSize="40sp"-->
+<!--            android:textStyle="bold" />-->
+
+<!--        <TextView-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Learn in a flash!"-->
+<!--            android:gravity="center"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="30sp"-->
+<!--            android:textStyle="bold" />-->
+
+<!--    </LinearLayout>-->
+    <com.denzcoskun.imageslider.ImageSlider
+        android:layout_width="match_parent"
+        android:layout_height="700dp"
+        android:id="@+id/imageslider"
+        app:iss_period="1000"
+        app:iss_auto_cycle="true"
+        app:iss_delay="1000"
+        app:iss_corner_radius="20"
+        app:iss_title_background="@drawable/flashcard1">
+    </com.denzcoskun.imageslider.ImageSlider>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center">
-
-        <TextView
-            android:layout_gravity="center"
+        android:layout_height="match_parent"
+        android:gravity="center">
+        <Button
+            android:id="@+id/bt_start"
+            android:layout_gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="FlashLearn"
-            android:gravity="center"
-            android:textColor="@color/pink0"
-            android:textSize="40sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Learn in a flash!"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
+            android:layout_marginBottom="15dp"
+            android:text="Bắt đầu ngay"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:padding="20dp"
+            android:backgroundTint="@color/pink0">
+        </Button>
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
