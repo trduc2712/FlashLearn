@@ -14,12 +14,14 @@
 
     import com.google.android.gms.tasks.OnCompleteListener;
     import com.google.android.gms.tasks.OnFailureListener;
+    import com.google.android.gms.tasks.OnSuccessListener;
     import com.google.android.gms.tasks.Task;
     import com.google.firebase.auth.AuthResult;
     import com.google.firebase.auth.FirebaseAuth;
     import com.google.firebase.auth.FirebaseUser;
     import com.google.firebase.database.DatabaseReference;
     import com.google.firebase.database.FirebaseDatabase;
+    import com.google.firebase.firestore.FirebaseFirestore;
     import com.trduc.flashlearn.Models.User;
     import com.trduc.flashlearn.R;
 
@@ -186,7 +188,22 @@
                         reference.child(firebaseUser.getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
+                                if (task.isSuccessful()){
+                                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                    db.collection("Registered users").document(email)
+                                            .update("username", username)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    // Xử lý thành công
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    // Xử lý lỗi
+                                                }
+                                            });
                                     firebaseUser.sendEmailVerification();
                                     Toast.makeText(SignUpActivity.this, "Vui lòng xác minh email của bạn", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
@@ -198,6 +215,7 @@
 
                     }
                 }
+
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {

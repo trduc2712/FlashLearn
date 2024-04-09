@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView ivBars, ivProfilePicture;
     LinearLayout lnHome, lnCreate, lnSignOut, lnEditFlashcardSets, lnAdd, lnDelete, lnEdit, lnSetting, lnSubItem;
-    LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport, lnChangeNameFlashcardSets, lnSearch, lnPratice,lnFilter;
+    LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport, lnChangeNameFlashcardSets, lnSearch, lnPratice, lnFilter, lnSearchUser;
     TextView tvEmail, tvUsername, tvTitle;
     FirebaseFirestore db;
     ListView lvAllFlashcardSets;
@@ -177,23 +178,33 @@ public class MainActivity extends AppCompatActivity {
 //                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 //                startActivity(intent);
 //                finish();
-                builder.setTitle("Thông báo")
-                        .setMessage("Bạn chắc chắn muốn đăng xuất ?")
-                        .setCancelable(true)
-                        .setPositiveButton("Có", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                finish();
-                                redirectActivity(MainActivity.this, SignInActivity.class);;
-                            }
-                        })
-                        .setNegativeButton("Không", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                dialog.cancel();
-                            }
-                        })
-                        .show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setView(R.layout.dialog_sign_out);
+
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+
+                Button bYes = dialog.findViewById(R.id.bYes);
+                Button bNo = dialog.findViewById(R.id.bNo);
+
+                bYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        FirebaseAuth.getInstance().signOut();
+                        Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                        dialog.dismiss();
+                    }
+                });
+
+                bNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
             }
         });
 
@@ -342,6 +353,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+//        lnSearchUser.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, SearchUserActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+
     }
     private void initUi(){
         lnHome = findViewById(R.id.lnHome);
@@ -371,6 +390,7 @@ public class MainActivity extends AppCompatActivity {
         lnSecurity = findViewById(R.id.lnSecurity);
         lnChangeNameFlashcardSets = findViewById(R.id.lnChangeNameFlashcardSets);
         lnSearch = findViewById(R.id.lnSearch);
+//        lnSearchUser = findViewById(R.id.lnSearchUser);
     }
 
 //    public void setLocal(Activity activity, String langCode) {
@@ -426,8 +446,8 @@ public class MainActivity extends AppCompatActivity {
         if (user == null) {
             return;
         }
-
         String userID = user.getUid();
+        System.out.println("UID: " + user.getUid());
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Registered users");
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -437,8 +457,33 @@ public class MainActivity extends AppCompatActivity {
                 String email = user.getEmail();
                 String name = userprofile.getUsername();
                 Glide.with(MainActivity.this).load(user.getPhotoUrl()).into(ivProfilePicture);
+                System.out.println("Duong dan den anh dai dien cua nguoi dung: " + user.getPhotoUrl());
                 tvEmail.setText(email);
                 tvUsername.setText(name);
+//                FirebaseUser currentUser = auth.getCurrentUser();
+//                String userEmail = currentUser.getEmail();
+//                String photo_url = "";
+//
+//                if (currentUser != null && userEmail != null && user.getPhotoUrl() != null) {
+//                    photo_url = user.getPhotoUrl().toString();
+//
+//                    db.collection("users")
+//                            .document(userEmail)
+//                            .update("photo_url", photo_url)
+//                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                @Override
+//                                public void onSuccess(Void aVoid) {
+//                                    // Xử lý thành công
+//                                }
+//                            })
+//                            .addOnFailureListener(new OnFailureListener() {
+//                                @Override
+//                                public void onFailure(@NonNull Exception e) {
+//                                    // Xử lý thất bại
+//                                }
+//                            });
+//                }
+
             }
 
             @Override

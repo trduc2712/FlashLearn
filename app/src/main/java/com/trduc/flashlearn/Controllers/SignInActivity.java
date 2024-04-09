@@ -175,12 +175,12 @@ public class SignInActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     FirebaseUser datauser = auth.getCurrentUser();
                     String email = datauser.getEmail();
-                    String name=datauser.getDisplayName();
+                    String name = datauser.getDisplayName();
                     User data = new User(email,name);
                     database = FirebaseDatabase.getInstance();
                     reference = database.getReference("Registered users");
                     reference.child(datauser.getUid()).setValue(data);
-                    Intent intent = new Intent(SignInActivity.this,MainActivity.class);
+                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                     startActivity(intent);
                     showDiaglog();
                 }
@@ -193,7 +193,7 @@ public class SignInActivity extends AppCompatActivity {
     void showDiaglog(){
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Đăng nhập");
-        progressDialog.setMessage("Loadingg .....");
+        progressDialog.setMessage("Loadingg...");
         progressDialog.setMax(20);
         progressDialog.show();
     }
@@ -254,7 +254,7 @@ public class SignInActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(SignInActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                etPassword.setError("Sai mật khẩu");
             }
         });
 
