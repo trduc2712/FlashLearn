@@ -7,14 +7,14 @@
     android:orientation="horizontal" >
 
     <Button
-        android:background="@drawable/pink0_rounded_border_4sp"
         android:id="@+id/bFlashcardSetsName"
         android:layout_width="match_parent"
+        android:background="@drawable/pink0_rounded_border_4sp"
         android:layout_height="48sp"
         android:text="Flashcard Sets Name"
         android:textStyle="bold"
         android:gravity="center"
-        android:textColor="@color/black"
+        style="@style/Backgroudsetcard"
         android:textSize="20sp"
         android:textAllCaps="false"
         android:layout_marginBottom="15sp"/>

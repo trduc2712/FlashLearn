@@ -13,69 +13,87 @@
         android:theme="@style/Theme.FlashLearn"
         tools:targetApi="31">
         <activity
-            android:name=".SearchActivity"
+            android:name=".Controllers.PraticeActivity"
             android:exported="false" />
         <activity
-            android:name=".ChangeFlashcardSetsNameActivity"
+            android:name=".Controllers.BeforePraticeActivity"
             android:exported="false" />
         <activity
-            android:name=".AddFlashcardsActivity"
+            android:name=".Controllers.EditFlashcardsActivity"
             android:exported="false" />
         <activity
-            android:name=".SignInActivity"
+            android:name=".Controllers.BeforeEditFlashcardsActivity"
             android:exported="false" />
         <activity
-            android:name=".QuestionActivity"
+            android:name=".Controllers.BeforeDeleteFlashcardsActivity"
             android:exported="false" />
         <activity
-            android:name=".SecurityActivity"
+            android:name=".Controllers.DeleteFlashcardsActivity"
             android:exported="false" />
         <activity
-            android:name=".LearnActivity"
+            android:name=".Controllers.BeforeAddFlashcardsActivity"
             android:exported="false" />
         <activity
-            android:name=".AllFlashcardSetsActivity"
+            android:name=".Controllers.FilterActivity"
             android:exported="false" />
         <activity
-            android:name=".AllCartActivity"
+            android:name=".Controllers.DeleteFlashcardSetsActivity"
             android:exported="false" />
         <activity
-            android:name=".EditAvatarActivity"
+            android:name=".Controllers.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".AlreadyCreateActivity"
+            android:name=".Controllers.ChangeFlashcardSetsNameActivity"
             android:exported="false" />
         <activity
-            android:name=".NameFlashcardsActivity"
+            android:name=".Controllers.AddFlashcardsActivity"
             android:exported="false" />
         <activity
-            android:name=".CreateFlashcardsActivity"
+            android:name=".Controllers.SignInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Controllers.QuestionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Controllers.SecurityActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Controllers.LearnActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Controllers.AllFlashcardSetsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Controllers.NameFlashcardsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Controllers.CreateFlashcardsActivity"
             android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".SupportActivity"
+            android:name=".Controllers.SupportActivity"
             android:exported="false" />
         <activity
-            android:name=".ShareActivity"
+            android:name=".Controllers.ShareActivity"
             android:exported="false" />
         <activity
-            android:name=".SettingActivity"
+            android:name=".Controllers.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".ForgotPasswordActivity"
+            android:name=".Controllers.ForgotPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Controllers.MainActivity"
             android:exported="false">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".SplashActivity"
+            android:name=".Controllers.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -84,7 +102,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignUpActivity"
+            android:name=".Controllers.SignUpActivity"
             android:exported="false">
             <intent-filter>
 

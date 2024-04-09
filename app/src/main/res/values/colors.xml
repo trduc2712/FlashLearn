@@ -9,5 +9,7 @@
     <color name="pink3">#FFFFC2D1</color>
     <color name="pink4">#FFEFCFD4</color>
     <color name="pink5">#FFF5DCE0</color>
+    <color name="green">#FF77DD77</color>
+    <color name="red">#FFFF6961</color>
     <color name="blue_login">#539CFF</color>
 </resources>

@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Tìm kiếm"
+            android:text="@string/txt_search"
             android:textColor="@color/pink0"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -32,26 +32,13 @@
             android:layout_width="match_parent"
             android:paddingRight="10sp"
             android:layout_height="48dp"
-            android:background="@drawable/pink0_rounded_border_4sp"
+            android:background="@drawable/grey_rounded_border_4sp"
             android:textColorHint="#B2B4B3"
-            android:hint="Tên bộ flashcard bạn muốn tìm"
+            android:hint="@string/hint_search"
             android:inputType="textEmailAddress"
             android:paddingLeft="10sp"
+            style="@style/TextColor"
             android:textSize="15sp" />
-
-        <Button
-            android:id="@+id/bSearch"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="@color/pink0"
-            android:background="@drawable/pink0_rounded_border_4sp"
-            android:text="Tìm kiếm"
-            android:elevation="10dp"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
 
         <ListView
             android:layout_marginTop="15sp"
