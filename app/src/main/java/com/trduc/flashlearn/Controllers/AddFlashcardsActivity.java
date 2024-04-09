@@ -15,25 +15,19 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.trduc.flashlearn.Adapters.AlreadyCreateAdapter;
 import com.trduc.flashlearn.Models.Flashcard;
 import com.trduc.flashlearn.R;
 
-import org.checkerframework.checker.units.qual.A;
-
-import java.io.StringBufferInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class AddFlashcardsActivity extends AppCompatActivity {
 
-    private ArrayList<Flashcard> flashcardList, deletedFlashcards;
-    private ArrayList<String> addedFlashcardIds;
+    private ArrayList<Flashcard> flashcardList, deletedFlashcards, addedFlashcards, editedFlashcards;
     private ListView lvAlreadyCreate;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
@@ -54,8 +48,9 @@ public class AddFlashcardsActivity extends AppCompatActivity {
         etAnswer = findViewById(R.id.etAnswer);
 
         flashcardList = new ArrayList<>();
-        addedFlashcardIds = new ArrayList<>();
+        addedFlashcards = new ArrayList<>();
         deletedFlashcards = new ArrayList<>();
+        editedFlashcards = new ArrayList<>();
         lvAlreadyCreate = findViewById(R.id.lvAlreadyCreate);
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -76,28 +71,19 @@ public class AddFlashcardsActivity extends AppCompatActivity {
                         .document(flashcardSetsId)
                         .collection("flashcards")
                         .get()
-                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                            @Override
-                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                flashcardList.clear();
-                                for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                                    Flashcard flashcard = document.toObject(Flashcard.class);
-                                    flashcardList.add(flashcard);
-                                }
-                                adapter.notifyDataSetChanged();
+                        .addOnSuccessListener(queryDocumentSnapshots -> {
+                            flashcardList.clear();
+                            for (Flashcard flashcard : queryDocumentSnapshots.toObjects(Flashcard.class)) {
+                                flashcardList.add(flashcard);
                             }
+                            adapter.notifyDataSetChanged();
                         })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-
-                            }
-                        });
+                        .addOnFailureListener(e -> {});
             }
         }
 
         String choice = "Add";
-        adapter = new AlreadyCreateAdapter(flashcardList, flashcardSetsId, choice, deletedFlashcards);
+        adapter = new AlreadyCreateAdapter(flashcardList, flashcardSetsId, choice, deletedFlashcards, editedFlashcards);
         lvAlreadyCreate.setAdapter(adapter);
 
         bAdd.setOnClickListener(new View.OnClickListener() {
@@ -133,7 +119,6 @@ public class AddFlashcardsActivity extends AppCompatActivity {
                                 .addOnSuccessListener(queryDocumentSnapshots -> {
                                     int numFlashcards = queryDocumentSnapshots.size();
                                     String newFlashcardId = String.valueOf((char) ('a' + numFlashcards));
-                                    addedFlashcardIds.add(newFlashcardId);
 
                                     String finalNewFlashcardId = newFlashcardId;
 
@@ -163,6 +148,8 @@ public class AddFlashcardsActivity extends AppCompatActivity {
                                     flashcard.put("question", question);
                                     flashcard.put("answer", answer);
                                     flashcard.put("id", finalFinalNewFlashcardSetId);
+                                    Flashcard flashcard1 = new Flashcard(question, answer, finalFinalNewFlashcardSetId);
+                                    addedFlashcards.add(flashcard1);
 
                                     db.collection("users")
                                             .document(userEmail)
@@ -174,7 +161,7 @@ public class AddFlashcardsActivity extends AppCompatActivity {
                                             .addOnSuccessListener(aVoid -> {
                                                 etQuestion.setText("");
                                                 etAnswer.setText("");
-                                                flashcardList.add(new Flashcard(question, answer, finalFinalNewFlashcardSetId + ""));
+                                                flashcardList.add(new Flashcard(question, answer, finalFinalNewFlashcardSetId));
                                                 adapter.notifyDataSetChanged();
                                             })
                                             .addOnFailureListener(e -> Toast.makeText(AddFlashcardsActivity.this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show());
@@ -184,56 +171,42 @@ public class AddFlashcardsActivity extends AppCompatActivity {
                 } else {
 
                 }
-            }
-        });
 
+                for (Flashcard flashcard : addedFlashcards) {
+                    String ques = flashcard.getQuestion();
+                    String ans = flashcard.getAnswer();
+                    String id = flashcard.getId();
 
-        bCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (currentUser != null) {
-                    String userEmail = currentUser.getEmail();
-                    if (userEmail != null) {
-                        for (String flashcardId : addedFlashcardIds) {
-                            db.collection("users")
-                                    .document(userEmail)
-                                    .collection("flashcard_sets")
-                                    .document(flashcardSetsId)
-                                    .collection("flashcards")
-                                    .document(String.valueOf(flashcardId))
-                                    .delete()
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            flashcardList.clear();
-                                            adapter.notifyDataSetChanged();
-                                            Intent intent = new Intent(AddFlashcardsActivity.this, BeforeAddFlashcardsActivity.class);
-                                            startActivity(intent);
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Intent intent = new Intent(AddFlashcardsActivity.this, BeforeAddFlashcardsActivity.class);
-                                            startActivity(intent);
-                                        }
-                                    });
-                        }
-                    }
+                    System.out.println("ID: " + id);
+                    System.out.println("Question: " + ques);
+                    System.out.println("Answer: " + ans);
+                    System.out.println("");
                 }
-                Intent intent = new Intent(AddFlashcardsActivity.this, BeforeAddFlashcardsActivity.class);
-                startActivity(intent);
+
             }
         });
 
 
-        bSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(AddFlashcardsActivity.this, BeforeAddFlashcardsActivity.class);
-                startActivity(intent);
+        bCancel.setOnClickListener(view -> {
+            if (!addedFlashcards.isEmpty()) {
+                for (Flashcard flashcard : addedFlashcards) {
+                    db.collection("users")
+                            .document(currentUser.getEmail())
+                            .collection("flashcard_sets")
+                            .document(flashcardSetsId)
+                            .collection("flashcards")
+                            .document(flashcard.getId())
+                            .delete()
+                            .addOnSuccessListener(aVoid -> {})
+                            .addOnFailureListener(e -> {});
+                }
+                addedFlashcards.clear();
+                adapter.notifyDataSetChanged();
             }
+            startActivity(new Intent(AddFlashcardsActivity.this, BeforeAddFlashcardsActivity.class));
         });
+
+        bSave.setOnClickListener(view -> startActivity(new Intent(AddFlashcardsActivity.this, BeforeAddFlashcardsActivity.class)));
 
     }
 
@@ -246,37 +219,18 @@ public class AddFlashcardsActivity extends AppCompatActivity {
     private void cancelAndDeleteFlashcards() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            String userEmail = currentUser.getEmail();
-            if (userEmail != null) {
-                for (String flashcardId : addedFlashcardIds) {
-                    db.collection("users")
-                            .document(userEmail)
-                            .collection("flashcard_sets")
-                            .document(flashcardSetsId)
-                            .collection("flashcards")
-                            .document(flashcardId)
-                            .delete()
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    flashcardList.clear();
-                                    adapter.notifyDataSetChanged();
-                                    Intent intent = new Intent(AddFlashcardsActivity.this, BeforeAddFlashcardsActivity.class);
-                                    startActivity(intent);
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Intent intent = new Intent(AddFlashcardsActivity.this, BeforeAddFlashcardsActivity.class);
-                                    startActivity(intent);
-                                }
-                            });
-                }
+            for (Flashcard flashcard : addedFlashcards) {
+                db.collection("users")
+                        .document(currentUser.getEmail())
+                        .collection("flashcard_sets")
+                        .document(flashcardSetsId)
+                        .collection("flashcards")
+                        .document(flashcard.getId())
+                        .delete()
+                        .addOnSuccessListener(aVoid -> {})
+                        .addOnFailureListener(e -> {});
             }
         }
-        Intent intent = new Intent(AddFlashcardsActivity.this, BeforeAddFlashcardsActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(AddFlashcardsActivity.this, BeforeAddFlashcardsActivity.class));
     }
-
 }

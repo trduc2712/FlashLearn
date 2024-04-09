@@ -13,6 +13,21 @@
         android:theme="@style/Theme.FlashLearn"
         tools:targetApi="31">
         <activity
+            android:name=".Controllers.SearchUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Controllers.PraticeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Controllers.BeforePraticeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Controllers.EditFlashcardsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Controllers.BeforeEditFlashcardsActivity"
+            android:exported="false" />
+        <activity
             android:name=".Controllers.BeforeDeleteFlashcardsActivity"
             android:exported="false" />
         <activity
@@ -35,9 +50,6 @@
             android:exported="false" />
         <activity
             android:name=".Controllers.AddFlashcardsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Controllers.SignInActivity"
             android:exported="false" />
         <activity
             android:name=".Controllers.QuestionActivity"
@@ -81,7 +93,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Controllers.SplashActivity"
+            android:name=".Controllers.SignInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

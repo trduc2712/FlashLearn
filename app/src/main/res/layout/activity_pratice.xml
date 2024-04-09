@@ -33,10 +33,11 @@
             android:thumb="@null" />
 
         <TextView
-            android:id="@+id/tvContent"
+            android:id="@+id/tvQuestion"
             android:layout_width="match_parent"
-            android:layout_height="200sp"
-            android:layout_marginBottom="30sp"
+            android:layout_height="150sp"
+            android:layout_marginBottom="15sp"
+            android:hint="Câu hỏi"
             android:background="@drawable/pink0_rounded_border_4sp"
             android:gravity="center"
             style="@style/TextColor"
@@ -45,19 +46,34 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tvNoti"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="30sp"
-            android:text="Bấm vào flashcard để xem đáp án"
+            android:text="Thông báo"
+            android:visibility="invisible"
             android:textSize="15sp"
-           style="@style/TextColor"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15sp"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/etAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="150sp"
+            android:background="@drawable/pink0_rounded_border_4sp"
+            android:gravity="center"
+            android:hint="Đáp án"
+            style="@style/TextColor"
+            android:textSize="20sp"
+            android:padding="15sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="30sp"
             android:layout_gravity="center">
 
             <ImageView
@@ -67,6 +83,18 @@
                 android:background="@drawable/learn_nav_button_background"
                 android:layout_marginRight="15sp"
                 android:src="@drawable/baseline_chevron_left" />
+
+            <Button
+                android:id="@+id/bAnswer"
+                android:layout_width="150sp"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/pink0"
+                android:background="@drawable/learn_nav_button_background"
+                android:text="Trả lời"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/ivForward"

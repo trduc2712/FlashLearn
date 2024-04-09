@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class CreateFlashcardsActivity extends AppCompatActivity {
 
-    private ArrayList<Flashcard> flashcardList, deletedFlashcards;
+    private ArrayList<Flashcard> flashcardList, deletedFlashcards, editedFlashcards;
     private ListView lvAlreadyCreate;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
@@ -50,6 +50,7 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
 
         flashcardList = new ArrayList<>();
         deletedFlashcards = new ArrayList<>();
+        editedFlashcards = new ArrayList<>();
         lvAlreadyCreate = findViewById(R.id.lvAlreadyCreate);
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -85,7 +86,7 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
         }
 
         String choice = "Create";
-        adapter = new AlreadyCreateAdapter(flashcardList, flashcardSetsId, choice, deletedFlashcards);
+        adapter = new AlreadyCreateAdapter(flashcardList, flashcardSetsId, choice, deletedFlashcards, editedFlashcards);
         lvAlreadyCreate.setAdapter(adapter);
 
         bAdd.setOnClickListener(new View.OnClickListener() {
@@ -179,7 +180,6 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            // Xoá thành công flashcard_sets, bắt đầu cập nhật ID mới cho các flashcard_sets khác
                             updateFlashcardSetsIds(currentUser.getEmail());
                         }
                     })
@@ -193,7 +193,6 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
     }
 
     private void updateFlashcardSetsIds(String userEmail) {
-        // Lấy danh sách flashcard_sets
         db.collection("users")
                 .document(userEmail)
                 .collection("flashcard_sets")
@@ -202,12 +201,9 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         int index = 0;
-                        // Duyệt qua danh sách flashcard_sets để cập nhật ID mới cho từng flashcard_sets
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                             String flashcardSetsId = document.getId();
-                            // Tạo ID mới theo thứ tự a, b, c, d
                             String newFlashcardSetsId = Character.toString((char) ('a' + index));
-                            // Cập nhật ID mới cho flashcard_sets
                             db.collection("users")
                                     .document(userEmail)
                                     .collection("flashcard_sets")
@@ -216,7 +212,7 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
-                                            // Cập nhật ID mới thành công
+
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {

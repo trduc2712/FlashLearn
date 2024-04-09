@@ -3,9 +3,7 @@ package com.trduc.flashlearn.Controllers;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +23,7 @@ import com.trduc.flashlearn.R;
 
 import java.util.ArrayList;
 
-public class DeleteFlashcardsActivity extends AppCompatActivity {
+public class EditFlashcardsActivity extends AppCompatActivity {
 
     ArrayList<Flashcard> flashcardList, deletedFlashcards, editedFlashcards;
     ListView lvAlreadyCreate;
@@ -38,7 +36,7 @@ public class DeleteFlashcardsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delete_flashcards);
+        setContentView(R.layout.activity_edit_flashcards);
 
         bSave = findViewById(R.id.bSave);
         bCancel = findViewById(R.id.bCancel);
@@ -85,17 +83,14 @@ public class DeleteFlashcardsActivity extends AppCompatActivity {
             }
         }
 
-        String choice = "Delete";
+        String choice = "Edit";
         adapter = new AlreadyCreateAdapter(flashcardList, flashcardSetsId, choice, deletedFlashcards, editedFlashcards);
         lvAlreadyCreate.setAdapter(adapter);
 
         bSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (Flashcard flashcard : deletedFlashcards) {
-                    System.out.println(flashcard.getId() + ": " + "Ques: " + flashcard.getQuestion() + ", Ans: " + flashcard.getAnswer());
-                }
-                Intent intent = new Intent(DeleteFlashcardsActivity.this, BeforeDeleteFlashcardsActivity.class);
+                Intent intent = new Intent(EditFlashcardsActivity.this, BeforeEditFlashcardsActivity.class);
                 startActivity(intent);
             }
         });
@@ -103,40 +98,10 @@ public class DeleteFlashcardsActivity extends AppCompatActivity {
         bCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addDeletedFlashcardsToFirestore();
-                Intent intent = new Intent(DeleteFlashcardsActivity.this, BeforeDeleteFlashcardsActivity.class);
+                Intent intent = new Intent(EditFlashcardsActivity.this, BeforeEditFlashcardsActivity.class);
                 startActivity(intent);
             }
         });
+
     }
-
-    private void addDeletedFlashcardsToFirestore() {
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        if (mAuth.getCurrentUser() != null) {
-            for (Flashcard flashcard : deletedFlashcards) {
-                db.collection("users")
-                        .document(mAuth.getCurrentUser().getEmail())
-                        .collection("flashcard_sets")
-                        .document(flashcardSetsId)
-                        .collection("flashcards")
-                        .document(flashcard.getId())
-                        .set(flashcard)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-
-                            }
-                        });
-            }
-        }
-    }
-
 }

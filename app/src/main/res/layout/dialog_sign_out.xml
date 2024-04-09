@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Bạn có chắc chắn muốn xoá bộ flashcard này không?"
+            android:text="Bạn có chắc chắn muốn đăng xuất không?"
             style="@style/TextColor"
             android:textSize="20sp"
             android:layout_marginBottom="15sp"

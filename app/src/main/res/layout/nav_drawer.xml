@@ -147,7 +147,8 @@
                     android:id="@+id/lnSubItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:id="@+id/lnAdd"
@@ -385,6 +386,35 @@
 
             </LinearLayout>
 
+<!--            <LinearLayout-->
+
+<!--                android:id="@+id/lnSearchUser"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginRight="10sp"-->
+<!--                    android:src="@drawable/ic_person" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="Tìm kiếm người dùng"-->
+<!--                    style="@style/TextColorMenu"-->
+<!--                    android:textSize="15sp"-->
+<!--                    android:textStyle="bold" />-->
+
+<!--            </LinearLayout>-->
+
+
+
             <LinearLayout
                 android:id="@+id/lnShare"
                 android:layout_width="wrap_content"
@@ -510,7 +540,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="@string/nav_logout"
+                    android:text="@string/nav_sign_out"
                     style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -519,10 +549,10 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="140dp">
-        </LinearLayout>
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="140dp">-->
+<!--        </LinearLayout>-->
 
     </LinearLayout>
 

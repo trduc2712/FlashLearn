@@ -68,8 +68,6 @@ public class SignInActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
 
-
-
         sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
         boolean isRemembered = sharedPreferences.getBoolean("isChecked", false);
         cbRemember.setChecked(isRemembered);
@@ -103,6 +101,7 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         bSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,6 +112,7 @@ public class SignInActivity extends AppCompatActivity {
                 }
             }
         });
+
         tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,6 +120,7 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         bGoogleSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,12 +173,12 @@ public class SignInActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     FirebaseUser datauser = auth.getCurrentUser();
                     String email = datauser.getEmail();
-                    String name=datauser.getDisplayName();
+                    String name = datauser.getDisplayName();
                     User data = new User(email,name);
                     database = FirebaseDatabase.getInstance();
                     reference = database.getReference("Registered users");
                     reference.child(datauser.getUid()).setValue(data);
-                    Intent intent = new Intent(SignInActivity.this,MainActivity.class);
+                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                     startActivity(intent);
                     showDiaglog();
                 }
@@ -190,7 +191,7 @@ public class SignInActivity extends AppCompatActivity {
     void showDiaglog(){
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Đăng nhập");
-        progressDialog.setMessage("Loadingg .....");
+        progressDialog.setMessage("Loadingg...");
         progressDialog.setMax(20);
         progressDialog.show();
     }
@@ -242,9 +243,8 @@ public class SignInActivity extends AppCompatActivity {
         auth.signInWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
+
                 Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-                startActivity(intent);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 showDiaglog();
                 finish();
@@ -252,7 +252,7 @@ public class SignInActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(SignInActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                etPassword.setError("Sai mật khẩu");
             }
         });
 
