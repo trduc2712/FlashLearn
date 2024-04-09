@@ -93,10 +93,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Controllers.SignInActivity"
+            android:name=".Controllers.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Controllers.SignInActivity"
+            android:exported="false">
+            <intent-filter>
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
