@@ -52,9 +52,6 @@
             android:name=".Controllers.AddFlashcardsActivity"
             android:exported="false" />
         <activity
-            android:name=".Controllers.SignInActivity"
-            android:exported="false" />
-        <activity
             android:name=".Controllers.QuestionActivity"
             android:exported="false" />
         <activity
@@ -96,7 +93,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Controllers.SplashActivity"
+            android:name=".Controllers.SignInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

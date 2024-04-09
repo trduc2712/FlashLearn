@@ -68,8 +68,6 @@ public class SignInActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
 
-
-
         sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
         boolean isRemembered = sharedPreferences.getBoolean("isChecked", false);
         cbRemember.setChecked(isRemembered);

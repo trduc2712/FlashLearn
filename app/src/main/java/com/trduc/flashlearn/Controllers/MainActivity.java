@@ -190,7 +190,6 @@ public class MainActivity extends AppCompatActivity {
                 bYes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        FirebaseAuth.getInstance().signOut();
                         Intent intent = new Intent(MainActivity.this, SignInActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
