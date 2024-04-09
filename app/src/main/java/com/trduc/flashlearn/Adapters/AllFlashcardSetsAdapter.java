@@ -125,13 +125,10 @@ public class AllFlashcardSetsAdapter extends BaseAdapter {
                             public void onClick(View v) {
                                 deleteAllFlashcards(flashcardSets.getId());
                                 deleteFlashcardSet(flashcardSets.getId());
-                                ((Activity) view.getContext()).runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        flashcardSetsList.remove(position);
-                                        notifyDataSetChanged();
-                                    }
-                                });
+                                flashcardSetsList.remove(position);
+                                deleteAllFlashcards(flashcardSets.getId());
+                                deleteFlashcardSet(flashcardSets.getId());
+                                notifyDataSetChanged();
                                 System.out.println("Da xoa");
                                 dialog.dismiss();
                             }

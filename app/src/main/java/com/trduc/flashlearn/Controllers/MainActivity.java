@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("choice", choice);
                 editor.apply();
-                Intent intent = new Intent(MainActivity.this, AllFlashcardSetsActivity.class);
+                Intent intent = new Intent(MainActivity.this, BeforeChangeFlashcardSetsNameActivity.class);
                 startActivity(intent);
             }
         });
@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("choice", choice);
                 editor.apply();
-                Intent intent = new Intent(MainActivity.this, AllFlashcardSetsActivity.class);
+                Intent intent = new Intent(MainActivity.this, DeleteFlashcardSetsActivity.class);
                 startActivity(intent);
             }
         });
