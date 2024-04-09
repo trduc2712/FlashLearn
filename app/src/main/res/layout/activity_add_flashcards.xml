@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    style="@style/Backgroud"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -10,6 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingTop="15sp"
+        style="@style/Backgroud"
         android:paddingRight="15sp"
         android:paddingLeft="15sp" >
 
@@ -23,9 +25,10 @@
                 android:layout_width="0sp"
                 android:layout_height="75sp"
                 android:layout_weight="1"
-                android:background="@drawable/black_rounded_border_4sp"
+                android:background="@drawable/pink0_rounded_border_4sp"
                 android:gravity="center"
                 android:hint="@string/hint_question"
+                style="@style/TextColorHint"
                 android:inputType="textMultiLine"
                 android:padding="15sp"
                 android:textSize="15sp" />
@@ -39,7 +42,8 @@
                 android:layout_width="0sp"
                 android:layout_height="75sp"
                 android:layout_weight="1"
-                android:background="@drawable/black_rounded_border_4sp"
+                style="@style/TextColorHint"
+                android:background="@drawable/pink0_rounded_border_4sp"
                 android:gravity="center"
                 android:hint="@string/hint_answer"
                 android:inputType="textMultiLine"

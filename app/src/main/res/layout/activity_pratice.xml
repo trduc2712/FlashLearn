@@ -40,7 +40,7 @@
             android:hint="Câu hỏi"
             android:background="@drawable/pink0_rounded_border_4sp"
             android:gravity="center"
-            android:textColor="@color/black"
+            style="@style/TextColor"
             android:textSize="20sp"
             android:padding="15sp"
             android:textStyle="bold" />
@@ -64,6 +64,7 @@
             android:background="@drawable/pink0_rounded_border_4sp"
             android:gravity="center"
             android:hint="Đáp án"
+            style="@style/TextColor"
             android:textSize="20sp"
             android:padding="15sp"
             android:textStyle="bold" />

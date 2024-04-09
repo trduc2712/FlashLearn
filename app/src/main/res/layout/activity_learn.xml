@@ -39,7 +39,7 @@
             android:layout_marginBottom="30sp"
             android:background="@drawable/pink0_rounded_border_4sp"
             android:gravity="center"
-            android:textColor="@color/black"
+            style="@style/TextColor"
             android:textSize="20sp"
             android:padding="15sp"
             android:textStyle="bold" />
@@ -51,7 +51,7 @@
             android:layout_marginBottom="30sp"
             android:text="Bấm vào flashcard để xem đáp án"
             android:textSize="15sp"
-            android:textColor="@color/black"
+           style="@style/TextColor"
             android:textStyle="bold"/>
 
         <LinearLayout

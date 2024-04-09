@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        style="@style/Backgroud"
         android:padding="15sp"
         android:text="Hãy chọn bộ flashcard mà bạn muốn sửa flashcard"
         android:textColor="@color/pink0"
