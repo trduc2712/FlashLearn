@@ -90,7 +90,9 @@ public class PraticeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String answer = etAnswer.getText().toString();
-                if (answer.toLowerCase().equals(flashcardList.get(currentFlashcardIndex).getAnswer().toLowerCase())) {
+                if (answer.isEmpty()) {
+                    Toast.makeText(PraticeActivity.this, "Vui lòng nhập đáp án", Toast.LENGTH_SHORT).show();;
+                } else if (answer.toLowerCase().equals(flashcardList.get(currentFlashcardIndex).getAnswer().toLowerCase())) {
                     tvNoti.setText("Chính xác");
                     tvNoti.setVisibility(View.VISIBLE);
                     tvNoti.setTextColor(getResources().getColor(R.color.green));

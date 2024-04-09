@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -36,15 +37,13 @@ public class SecurityActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView ivBars, ivProfilePicture;
     LinearLayout lnHome, lnCreate, lnSignOut, lnEditFlashcardSets, lnAdd, lnDelete, lnEdit, lnSetting, lnSubItem;
-    LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport, lnSearch,lnChangeNameFlashcardSets ,lnPratice,lnFilter;
+    LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport, lnSearch, lnChangeNameFlashcardSets, lnPratice, lnFilter, lnDeleteFlashcardSets;
     TextView tvEmail, tvUsername, tvTitle;
     FirebaseFirestore db;
     String choice = "Learn flashcard sets";
     ListView lvAllFlashcardSets;
     FirebaseAuth auth;
-    AllFlashcardSetsAdapter adapter;
 
-    AlertDialog.Builder builder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,111 +63,21 @@ public class SecurityActivity extends AppCompatActivity {
         lnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(SecurityActivity.this, MainActivity.class);
+                closeDrawer(drawerLayout);
+                Intent intent = new Intent(SecurityActivity.this, MainActivity.class);
+                startActivity(intent);;
             }
         });
 
-        lnSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(SecurityActivity.this, SettingActivity.class);
-            }
-        });
 
-        lnShare.setOnClickListener(new View.OnClickListener() {
+        lnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, "Hello");
-                intent.setType("text/plain");
-
-                if(intent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(intent);
-                }
-            }
-        });
-
-        lnSupport.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(SecurityActivity.this, SupportActivity.class);;
-//                recreate();
-            }
-        });
-
-        lnSecurity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               closeDrawer(drawerLayout);
-            }
-        });
-
-        lnQuestion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(SecurityActivity.this, QuestionActivity.class);;
-            }
-        });
-        builder = new AlertDialog.Builder(this);
-        lnSignOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                builder.setTitle("Thông báo")
-                        .setMessage("Bạn chắc chắn muốn đăng xuất ?")
-                        .setCancelable(true)
-                        .setPositiveButton("Có", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                finish();
-                                redirectActivity(SecurityActivity.this, SignInActivity.class);;
-                            }
-                        })
-                        .setNegativeButton("Không", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                dialog.cancel();
-                            }
-                        })
-                        .show();
-            }
-        });
-        lnFilter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String choice = "Filter a flashcard sets";
-                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("choice", choice);
-                editor.apply();
-                Intent intent = new Intent(SecurityActivity.this, FilterActivity.class);
+            public void onClick(View view) {
+                Intent intent = new Intent(SecurityActivity.this, NameFlashcardsActivity.class);
                 startActivity(intent);
             }
         });
-        lnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                choice = "Search a flashcard sets";
-                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("choice", choice);
-                editor.apply();
-                Intent intent = new Intent(SecurityActivity.this, AllFlashcardSetsActivity.class);
-                startActivity(intent);
-            }
-        });
-        lnPratice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                choice = "Pratice flashcards";
-                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("choice", choice);
-                editor.apply();
-                Intent intent = new Intent(SecurityActivity.this, BeforePraticeActivity.class);
-                startActivity(intent);
-            }
-        });
+
         lnEditFlashcardSets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -179,6 +88,7 @@ public class SecurityActivity extends AppCompatActivity {
                 }
             }
         });
+
         lnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -191,18 +101,7 @@ public class SecurityActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        lnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                choice = "Delete flashcards";
-                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("choice", choice);
-                editor.apply();
-                Intent intent = new Intent(SecurityActivity.this, BeforeDeleteFlashcardsActivity.class);
-                startActivity(intent);
-            }
-        });
+
         lnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -215,6 +114,20 @@ public class SecurityActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        lnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                choice = "Delete flashcards";
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("choice", choice);
+                editor.apply();
+                Intent intent = new Intent(SecurityActivity.this, BeforeDeleteFlashcardsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         lnChangeNameFlashcardSets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -225,6 +138,132 @@ public class SecurityActivity extends AppCompatActivity {
                 editor.apply();
                 Intent intent = new Intent(SecurityActivity.this, AllFlashcardSetsActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        lnDeleteFlashcardSets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                choice = "Delete a flashcard sets";
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("choice", choice);
+                editor.apply();
+                Intent intent = new Intent(SecurityActivity.this, AllFlashcardSetsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        lnSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(SecurityActivity.this, SettingActivity.class);
+            }
+        });
+
+        lnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choice = "Search a flashcard sets";
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("choice", choice);
+                editor.apply();
+                Intent intent = new Intent(SecurityActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        lnFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choice = "Filter a flashcard sets";
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("choice", choice);
+                editor.apply();
+                Intent intent = new Intent(SecurityActivity.this, FilterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        lnPratice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                choice = "Pratice flashcards";
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("choice", choice);
+                editor.apply();
+                Intent intent = new Intent(SecurityActivity.this, BeforePraticeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        lnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, "Hello");
+                intent.setType("text/plain");
+
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+            }
+        });
+
+        lnSupport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(SecurityActivity.this, SupportActivity.class);
+            }
+        });
+
+        lnSecurity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(SecurityActivity.this, SecurityActivity.class);
+            }
+        });
+
+        lnQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(SecurityActivity.this, QuestionActivity.class);
+            }
+        });
+
+        lnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setView(R.layout.dialog_sign_out);
+
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+
+                Button bYes = dialog.findViewById(R.id.bYes);
+                Button bNo = dialog.findViewById(R.id.bNo);
+
+                bYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(SecurityActivity.this, SignInActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                        dialog.dismiss();
+                    }
+                });
+
+                bNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
             }
         });
     }
@@ -248,6 +287,7 @@ public class SecurityActivity extends AppCompatActivity {
         lnSetting = findViewById(R.id.lnSetting);
         drawerLayout = findViewById(R.id.drawerLayout);
         ivBars = findViewById(R.id.ivBars);
+        lnDeleteFlashcardSets = findViewById(R.id.lnDeleteFlashcardSets);
         lnSupport = findViewById(R.id.lnSupport);
         lnShare = findViewById(R.id.lnShare);
         lnQuestion = findViewById(R.id.lnQuestion);
