@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,10 +35,10 @@ import com.trduc.flashlearn.R;
 public class SupportActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
-    ImageView ivBars, ivProfilePicture;
+    ImageView ivBars, ivProfilePicture,ivMap;
     LinearLayout lnHome, lnCreate, lnSignOut, lnEditFlashcardSets, lnAdd, lnDelete, lnEdit, lnSetting, lnSubItem;
     LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport, lnSearch, lnChangeNameFlashcardSets, lnPratice, lnFilter, lnDeleteFlashcardSets;
-    TextView tvEmail, tvUsername, tvTitle;
+    TextView tvEmail, tvUsername, tvTitle,tvphone;
     String choice = "Learn flashcard sets";
     FirebaseFirestore db;
     ListView lvAllFlashcardSets;
@@ -51,6 +52,22 @@ public class SupportActivity extends AppCompatActivity {
         initUi();
         showInformationUser();
 
+        tvphone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sdt = tvphone.getText().toString();
+                Intent intent_call = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+sdt));
+                startActivity(intent_call);
+            }
+        });
+        ivMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("https://www.google.com/maps/place/%C4%90%E1%BA%A1i+H%E1%BB%8Dc+Thu%E1%BB%B7+L%E1%BB%A3i+-+175+T%C3%A2y+S%C6%A1n+(C%E1%BB%99t+Sau)/@21.007651,105.8238196,15z/data=!4m6!3m5!1s0x3135ac81847527d9:0x608eb25e26856d92!8m2!3d21.007651!4d105.8238196!16s%2Fg%2F1hhx6qmkx?entry=ttu");
+                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                startActivity(intent);
+            }
+        });
         ivBars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -295,6 +312,8 @@ public class SupportActivity extends AppCompatActivity {
         lnPratice = findViewById(R.id.lnPratice);
         lnChangeNameFlashcardSets = findViewById(R.id.lnChangeNameFlashcardSets);
         lnSearch = findViewById(R.id.lnSearch);
+        ivMap=findViewById(R.id.ivmap);
+        tvphone=findViewById(R.id.tvphone);
     }
 
     public static void openDrawer(DrawerLayout drawerLayout) {

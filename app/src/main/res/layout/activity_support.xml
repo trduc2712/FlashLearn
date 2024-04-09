@@ -19,11 +19,102 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Liên hệ với chúng tôi"
+            android:textSize="27sp"
+            android:textStyle="bold"
             android:layout_gravity="center"
-            android:layout_marginTop="400dp"
-            android:text="Hỗ trợ"
+            android:layout_marginTop="50sp"
+            android:layout_marginBottom="5dp"
             android:textColor="@color/pink0"
-            android:textSize="36dp" />
+            />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_marginTop="10sp"
+            style="@style/BackgroudInit"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp">
+                <TextView
+                    android:layout_width="140sp"
+                    android:layout_height="wrap_content"
+                    android:padding="5sp"
+                    android:text="Đường dây nóng"
+                    android:textStyle="bold"
+                    style="@style/TextColor"
+                    android:id="@+id/tvhotline"
+                    android:layout_marginStart="20sp"
+                    android:textSize="17sp"/>
+                <TextView
+                    android:id="@+id/tvphone"
+                    android:layout_width="match_parent"
+                    android:padding="5sp"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5sp"
+                    android:textSize="17sp"
+                    android:drawableLeft="@drawable/phonecall"
+                    android:layout_marginStart="20sp"
+                    android:text="0999777706"
+                    android:textStyle="bold"
+                   style="@style/TextColor"
+                    android:layout_toEndOf="@id/tvhotline"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_marginTop="10sp"
+            style="@style/BackgroudInit"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email: flashlearn@gmail.com"
+                    android:padding="10sp"
+                    android:textStyle="bold"
+                    style="@style/TextColor"
+                    android:id="@+id/tvemail"
+                    android:layout_marginStart="20sp"
+                    android:textSize="17sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:layout_height="wrap_content"
+                    android:padding="10sp"
+                    android:text="Địa chỉ: 175 Phố Tây Sơn, Đống Đa, Hà Nội"
+                    android:textStyle="bold"
+                    android:id="@+id/tvaddres"
+                    style="@style/TextColor"
+                    android:layout_below="@id/tvemail"
+                    android:layout_marginStart="20sp"
+                    android:textSize="17sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:layout_height="wrap_content"
+                    android:padding="10sp"
+                    android:text="Thời gian phục vụ: Từ 8h - 17:30h (Thứ 2 đến thứ 6); Từ 8h - 12h00 (Thứ 7)"
+                    android:textStyle="bold"
+                    style="@style/TextColor"
+                    android:layout_below="@id/tvaddres"
+                    android:layout_marginStart="20sp"
+                    android:id="@+id/tvtime"
+                    android:textSize="17sp"/>
+                <ImageView
+                    android:id="@+id/ivmap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvtime"
+                    android:padding="20sp"
+                    android:src="@drawable/map"
+                    />
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 
     <RelativeLayout
