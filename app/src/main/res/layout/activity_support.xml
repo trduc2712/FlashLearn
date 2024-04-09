@@ -44,7 +44,7 @@
                     android:textStyle="bold"
                     style="@style/TextColor"
                     android:id="@+id/tvhotline"
-                    android:layout_marginStart="20sp"
+                    android:layout_marginStart="5sp"
                     android:textSize="17sp"/>
                 <TextView
                     android:id="@+id/tvphone"
