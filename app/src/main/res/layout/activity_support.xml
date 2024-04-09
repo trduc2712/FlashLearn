@@ -20,10 +20,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Liên hệ với chúng tôi"
-            android:textSize="27sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:layout_gravity="center"
-            android:layout_marginTop="50sp"
+            android:layout_marginTop="15sp"
             android:layout_marginBottom="5dp"
             android:textColor="@color/pink0"
             />

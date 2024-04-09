@@ -14,7 +14,9 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.trduc.flashlearn.R;
 
@@ -83,54 +85,96 @@ public class NameFlashcardsActivity extends AppCompatActivity {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
+//        if (currentUser != null) {
+//            final String userEmail = currentUser.getEmail();
+//
+//            db.collection("users")
+//                    .document(userEmail)
+//                    .collection("flashcard_sets")
+//                    .get()
+//                    .addOnSuccessListener(queryDocumentSnapshots -> {
+//                        int numFlashcardSets = queryDocumentSnapshots.size();
+//                        char newFlashcardSetId = (char) ('a' + numFlashcardSets);
+//
+//                        char finalNewFlashcardSetId = newFlashcardSetId;
+//
+//                        boolean idExists = false;
+//                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+//                            String flashcardSetId = document.getString("id");
+//                            if (flashcardSetId.equals(String.valueOf(finalNewFlashcardSetId))) {
+//                                idExists = true;
+//                                break;
+//                            }
+//                        }
+//
+//                        while (idExists) {
+//                            finalNewFlashcardSetId = (char) ('a' + ++numFlashcardSets);
+//                            idExists = false;
+//                            for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+//                                String flashcardSetId = document.getString("id");
+//                                if (flashcardSetId.equals(String.valueOf(finalNewFlashcardSetId))) {
+//                                    idExists = true;
+//                                    break;
+//                                }
+//                            }
+//                        }
+//
+//                        final char finalFinalNewFlashcardSetId = finalNewFlashcardSetId;
+//                        final Map<String, Object> flashcardSet = new HashMap<>();
+//                        flashcardSet.put("id", String.valueOf(finalFinalNewFlashcardSetId));
+//                        flashcardSet.put("name", flashcardSetsName);
+//                        flashcardSet.put("topic", selectedChoice);
+//
+//                        db.collection("users")
+//                                .document(userEmail)
+//                                .collection("flashcard_sets")
+//                                .document(String.valueOf(finalFinalNewFlashcardSetId))
+//                                .set(flashcardSet)
+//                                .addOnSuccessListener(aVoid -> {
+//                                    startActivity(new Intent(NameFlashcardsActivity.this, CreateFlashcardsActivity.class)
+//                                            .putExtra("flashcardSetsId", String.valueOf(finalFinalNewFlashcardSetId))
+//                                    );
+//                                    finish();
+//                                })
+//                                .addOnFailureListener(e -> Toast.makeText(NameFlashcardsActivity.this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+//                    })
+//                    .addOnFailureListener(e -> Toast.makeText(NameFlashcardsActivity.this, "Không thể lấy dữ liệu flashcard_sets", Toast.LENGTH_SHORT).show());
+//        }
+
         if (currentUser != null) {
             final String userEmail = currentUser.getEmail();
 
             db.collection("users")
                     .document(userEmail)
                     .collection("flashcard_sets")
+                    .orderBy("id", Query.Direction.DESCENDING)
+                    .limit(1)
                     .get()
                     .addOnSuccessListener(queryDocumentSnapshots -> {
-                        int numFlashcardSets = queryDocumentSnapshots.size();
-                        char newFlashcardSetId = (char) ('a' + numFlashcardSets);
+                        char newFlashcardSetId;
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            DocumentSnapshot lastDocument = queryDocumentSnapshots.getDocuments().get(0);
+                            char lastFlashcardSetId = lastDocument.getString("id").charAt(0);
+                            newFlashcardSetId = (char) (lastFlashcardSetId + 1);
+                        } else {
+                            newFlashcardSetId = 'a';
+                        }
 
                         char finalNewFlashcardSetId = newFlashcardSetId;
 
-                        boolean idExists = false;
-                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                            String flashcardSetId = document.getString("id");
-                            if (flashcardSetId.equals(String.valueOf(finalNewFlashcardSetId))) {
-                                idExists = true;
-                                break;
-                            }
-                        }
-
-                        while (idExists) {
-                            finalNewFlashcardSetId = (char) ('a' + ++numFlashcardSets);
-                            idExists = false;
-                            for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                                String flashcardSetId = document.getString("id");
-                                if (flashcardSetId.equals(String.valueOf(finalNewFlashcardSetId))) {
-                                    idExists = true;
-                                    break;
-                                }
-                            }
-                        }
-
-                        final char finalFinalNewFlashcardSetId = finalNewFlashcardSetId;
                         final Map<String, Object> flashcardSet = new HashMap<>();
-                        flashcardSet.put("id", String.valueOf(finalFinalNewFlashcardSetId));
+                        flashcardSet.put("id", String.valueOf(finalNewFlashcardSetId));
                         flashcardSet.put("name", flashcardSetsName);
                         flashcardSet.put("topic", selectedChoice);
 
                         db.collection("users")
                                 .document(userEmail)
                                 .collection("flashcard_sets")
-                                .document(String.valueOf(finalFinalNewFlashcardSetId))
+                                .document(String.valueOf(finalNewFlashcardSetId))
                                 .set(flashcardSet)
                                 .addOnSuccessListener(aVoid -> {
                                     startActivity(new Intent(NameFlashcardsActivity.this, CreateFlashcardsActivity.class)
-                                            .putExtra("flashcardSetsId", String.valueOf(finalFinalNewFlashcardSetId))
+                                            .putExtra("flashcardSetsId", String.valueOf(finalNewFlashcardSetId))
                                     );
                                     finish();
                                 })
@@ -138,6 +182,8 @@ public class NameFlashcardsActivity extends AppCompatActivity {
                     })
                     .addOnFailureListener(e -> Toast.makeText(NameFlashcardsActivity.this, "Không thể lấy dữ liệu flashcard_sets", Toast.LENGTH_SHORT).show());
         }
+
+
     }
 
 

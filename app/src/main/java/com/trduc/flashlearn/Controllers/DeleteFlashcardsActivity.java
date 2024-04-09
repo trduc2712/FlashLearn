@@ -143,8 +143,8 @@ public class DeleteFlashcardsActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         addDeletedFlashcardsToFirestore();
-        Intent intent = new Intent(DeleteFlashcardsActivity.this, MainActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(DeleteFlashcardsActivity.this, MainActivity.class);
+//        startActivity(intent);
     }
 
 }

@@ -29,7 +29,6 @@ public class DeleteFlashcardSetsActivity extends AppCompatActivity {
     FirebaseAuth auth;
     AllFlashcardSetsAdapter adapter;
     FirebaseFirestore db;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
