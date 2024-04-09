@@ -540,7 +540,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="@string/nav_logout"
+                    android:text="@string/nav_sign_out"
                     style="@style/TextColorMenu"
                     android:textSize="15sp"
                     android:textStyle="bold" />

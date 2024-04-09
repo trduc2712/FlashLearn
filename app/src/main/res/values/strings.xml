@@ -32,7 +32,7 @@
     <string name="nav_support">Hỗ trợ</string>
     <string name="nav_privacy_policy">Chính sách bảo mật</string>
     <string name="nav_question">Câu hỏi thường gặp</string>
-    <string name="nav_logout">Đăng xuất</string>
+    <string name="nav_sign_out">Đăng xuất</string>
 
     <!--    //Tong quan-->
     <string name="txt_overview">Tổng quan</string>
