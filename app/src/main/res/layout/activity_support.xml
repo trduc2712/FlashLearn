@@ -54,7 +54,7 @@
                     android:drawablePadding="5sp"
                     android:textSize="17sp"
                     android:drawableLeft="@drawable/phonecall"
-                    android:layout_marginStart="20sp"
+                    android:layout_marginStart="15sp"
                     android:text="0999777706"
                     android:textStyle="bold"
                    style="@style/TextColor"
