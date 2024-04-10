@@ -110,14 +110,14 @@
             android:textColor="@color/black"
             android:textSize="15sp" />
 
-        <Button
-            android:id="@+id/bFacebookSignIn"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/facebook_sign_in_background"
-            android:textAllCaps="false"
-            android:textSize="20sp" />
+<!--        <Button-->
+<!--            android:id="@+id/bFacebookSignIn"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="48dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:background="@drawable/facebook_sign_in_background"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textSize="20sp" />-->
 
         <Button
             android:id="@+id/bGoogleSignIn"
