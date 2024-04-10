@@ -38,7 +38,7 @@ public class SupportActivity extends AppCompatActivity {
     ImageView ivBars, ivProfilePicture,ivMap;
     LinearLayout lnHome, lnCreate, lnSignOut, lnEditFlashcardSets, lnAdd, lnDelete, lnEdit, lnSetting, lnSubItem;
     LinearLayout lnSecurity, lnQuestion, lnShare, lnSupport, lnSearch, lnChangeNameFlashcardSets, lnPratice, lnFilter, lnDeleteFlashcardSets;
-    TextView tvEmail, tvUsername, tvTitle,tvphone;
+    TextView tvEmail, tvUsername, tvTitle,tvphone,tvcall;
     String choice = "Learn flashcard sets";
     FirebaseFirestore db;
     ListView lvAllFlashcardSets;
@@ -52,7 +52,7 @@ public class SupportActivity extends AppCompatActivity {
         initUi();
         showInformationUser();
 
-        tvphone.setOnClickListener(new View.OnClickListener() {
+        tvcall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String sdt = tvphone.getText().toString();
@@ -314,6 +314,7 @@ public class SupportActivity extends AppCompatActivity {
         lnSearch = findViewById(R.id.lnSearch);
         ivMap=findViewById(R.id.ivmap);
         tvphone=findViewById(R.id.tvphone);
+        tvcall=findViewById(R.id.tvcall);
     }
 
     public static void openDrawer(DrawerLayout drawerLayout) {
