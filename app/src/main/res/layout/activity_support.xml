@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Liên hệ với chúng tôi"
+            android:text="@string/txt_contact"
             android:textColor="@color/pink0"
             android:textSize="18dp"
             android:layout_marginLeft="25dp"
@@ -39,7 +39,7 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="5dp"
-                    android:text="Điện thoại: 0999 7777 06"
+                    android:text="@string/txt_phone"
                     style="@style/TextColor" />
             <TextView
                 android:layout_width="match_parent"
@@ -52,7 +52,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/pink0"
                 android:drawableRight="@drawable/phone_volume_solid"
-                android:text="Gọi ngay"/>
+                android:text="@string/txt_call_now"/>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -79,7 +79,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
-                android:text="Địa chỉ: 175 Phố Tây Sơn, Đống Đa, Hà Nội"
+                android:text="@string/txt_address"
                 style="@style/TextColor" />
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -93,7 +93,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
-                android:text="Thời gian làm việc: 8h-17h30 (Thứ 2-6); 8h-12h(Thứ 7)"
+                android:text="@string/txt_working"
                 style="@style/TextColor" />
         </androidx.cardview.widget.CardView>
 

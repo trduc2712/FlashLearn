@@ -202,5 +202,6 @@
     <string name="txt_phone">Điện thoại: 0999 7777 06</string>
     <string name="txt_address">Địa chỉ: 175 Phố Tây Sơn, Đống Đa, Hà Nội</string>
     <string name="txt_working">Thời gian làm việc: 8h-17h30 (Thứ 2-6); 8h-12h(Thứ 7)</string>
+    <string name="txt_call_now">Gọi ngay</string>
 
 </resources>

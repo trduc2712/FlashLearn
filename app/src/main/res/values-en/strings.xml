@@ -208,5 +208,6 @@ Filter by topic</string>
     <string name="txt_phone">Phone: 0999 7777 06</string>
     <string name="txt_address">Address: 175 Tay Son Street, Dong Da, Hanoi</string>
     <string name="txt_working">Working hours: 8:00 a.m. - 5:30 p.m. (Monday - Friday); 8am-12pm(Saturday)</string>
+    <string name="txt_call_now">Call now</string>
 
 </resources>
