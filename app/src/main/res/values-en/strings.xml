@@ -174,8 +174,8 @@
     <string name="txt_delete_card">Select the flashcard set from which you want to delete flashcards</string>
 
     <string name="txt_edit_set_cart">Select the flashcard set for which you want to edit flashcards</string>
-    <string name="txt_practice_cart">
-Choose the set of flashcards you want to practice with</string>
+    <string name="txt_rename_set_cart">Select the flashcard set you want to rename</string>
+    <string name="txt_practice_cart">Choose the set of flashcards you want to practice with</string>
     <string name="txt_click_edit_cart">Click on flashcards to edit them</string>
 
     <string name="txt_rename_card">You are renaming the flashcard set</string>
@@ -195,8 +195,7 @@ Are you sure you want to delete this flashcard?</string>
     <string name="txt_search_user">Search for users</string>
     <string name="hint_username">User name</string>
     <string name="hint_search">Name of the flashcard set you want to find</string>
-    <string name="txt_filter_card">
-Filter by topic</string>
+    <string name="txt_filter_card">Filter by topic</string>
 
     //Luyen tap
     <string name="txt_click_answer_card">Click on the flashcard to see the answers</string>
