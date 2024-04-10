@@ -59,12 +59,13 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/TextColor"
             android:text="@string/txt_click_delete_card"
             android:textSize="15sp"
             android:textStyle="bold"
             android:layout_gravity="center"
             android:layout_marginTop="15sp"
-            android:textColor="@color/black"/>
+            />
 
         <ListView
             android:id="@+id/lvAlreadyCreate"
