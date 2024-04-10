@@ -236,19 +236,19 @@ public class SupportActivity extends AppCompatActivity {
             }
         });
 
-        lnSecurity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(SupportActivity.this, SecurityActivity.class);
-            }
-        });
-
-        lnQuestion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(SupportActivity.this, QuestionActivity.class);
-            }
-        });
+//        lnSecurity.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                redirectActivity(SupportActivity.this, SecurityActivity.class);
+//            }
+//        });
+//
+//        lnQuestion.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                redirectActivity(SupportActivity.this, QuestionActivity.class);
+//            }
+//        });
 
         lnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -305,8 +305,8 @@ public class SupportActivity extends AppCompatActivity {
         ivBars = findViewById(R.id.ivBars);
         lnSupport = findViewById(R.id.lnSupport);
         lnShare = findViewById(R.id.lnShare);
-        lnQuestion = findViewById(R.id.lnQuestion);
-        lnSecurity = findViewById(R.id.lnSecurity);
+//        lnQuestion = findViewById(R.id.lnQuestion);
+//        lnSecurity = findViewById(R.id.lnSecurity);
         lnFilter=findViewById(R.id.lnFilter);
         lnDeleteFlashcardSets = findViewById(R.id.lnDeleteFlashcardSets);
         lnPratice = findViewById(R.id.lnPratice);

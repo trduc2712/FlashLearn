@@ -275,19 +275,19 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
-        lnSecurity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(SettingActivity.this, SecurityActivity.class);
-            }
-        });
-
-        lnQuestion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(SettingActivity.this, QuestionActivity.class);
-            }
-        });
+//        lnSecurity.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                redirectActivity(SettingActivity.this, SecurityActivity.class);
+//            }
+//        });
+//
+//        lnQuestion.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                redirectActivity(SettingActivity.this, QuestionActivity.class);
+//            }
+//        });
 
         lnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -345,8 +345,8 @@ public class SettingActivity extends AppCompatActivity {
         ivBars = findViewById(R.id.ivBars);
         lnSupport = findViewById(R.id.lnSupport);
         lnShare = findViewById(R.id.lnShare);
-        lnQuestion = findViewById(R.id.lnQuestion);
-        lnSecurity = findViewById(R.id.lnSecurity);
+//        lnQuestion = findViewById(R.id.lnQuestion);
+//        lnSecurity = findViewById(R.id.lnSecurity);
         sDarkMode = findViewById(R.id.sDarkMode);
         spinner_language = findViewById(R.id.spinner_language);
         lnFilter=findViewById(R.id.lnFilter);
@@ -411,6 +411,13 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(SettingActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
 }

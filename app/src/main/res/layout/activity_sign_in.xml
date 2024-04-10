@@ -32,6 +32,7 @@
             android:background="@drawable/grey_rounded_border_4sp"
             android:textColorHint="#B2B4B3"
             android:hint="Email"
+            style="@style/TextColor"
             android:inputType="textEmailAddress"
             android:paddingLeft="10sp"
             android:textSize="15sp" />
@@ -44,6 +45,7 @@
             android:paddingRight="10sp"
             android:layout_marginTop="15sp"
             android:hint="Mật khẩu"
+            style="@style/TextColor"
             android:inputType="textPassword"
             android:paddingLeft="10sp"
             android:background="@drawable/grey_rounded_border_4sp"
