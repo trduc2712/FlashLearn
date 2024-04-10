@@ -15,7 +15,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.trduc.flashlearn.Adapters.AlreadyCreateAdapter;
@@ -109,6 +111,39 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
                     }
                 }
 
+//                FirebaseUser currentUser = mAuth.getCurrentUser();
+//                if (currentUser != null) {
+//                    db.collection("users")
+//                            .document(currentUser.getEmail())
+//                            .collection("flashcard_sets")
+//                            .document(flashcardSetsId)
+//                            .collection("flashcards")
+//                            .get()
+//                            .addOnSuccessListener(queryDocumentSnapshots -> {
+//                                int numFlashcards = queryDocumentSnapshots.size();
+//                                char newFlashcardId = (char) ('a' + numFlashcards);
+//                                Flashcard newFlashcard = new Flashcard(question, answer, newFlashcardId + "");
+//
+//                                db.collection("users")
+//                                        .document(currentUser.getEmail())
+//                                        .collection("flashcard_sets")
+//                                        .document(flashcardSetsId)
+//                                        .collection("flashcards")
+//                                        .document(String.valueOf(newFlashcardId))
+//                                        .set(newFlashcard)
+//                                        .addOnSuccessListener(aVoid -> {
+//                                            etQuestion.setText("");
+//                                            etAnswer.setText("");
+//                                            flashcardList.add(newFlashcard);
+//                                            adapter.notifyDataSetChanged();
+//                                        })
+//                                        .addOnFailureListener(e -> Toast.makeText(CreateFlashcardsActivity.this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+//                            })
+//                            .addOnFailureListener(e -> Toast.makeText(CreateFlashcardsActivity.this, "Không thể cập nhật danh sách flashcards", Toast.LENGTH_SHORT).show());
+//                } else {
+//                    Toast.makeText(CreateFlashcardsActivity.this, "Không thể lấy dữ liệu người dùng", Toast.LENGTH_SHORT).show();
+//                }
+
                 FirebaseUser currentUser = mAuth.getCurrentUser();
                 if (currentUser != null) {
                     db.collection("users")
@@ -116,11 +151,20 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
                             .collection("flashcard_sets")
                             .document(flashcardSetsId)
                             .collection("flashcards")
+                            .orderBy("id", Query.Direction.DESCENDING)
+                            .limit(1)
                             .get()
                             .addOnSuccessListener(queryDocumentSnapshots -> {
-                                int numFlashcards = queryDocumentSnapshots.size();
-                                char newFlashcardId = (char) ('a' + numFlashcards);
-                                Flashcard newFlashcard = new Flashcard(question, answer, newFlashcardId + "");
+                                char newFlashcardId;
+                                if (!queryDocumentSnapshots.isEmpty()) {
+                                    DocumentSnapshot lastDocument = queryDocumentSnapshots.getDocuments().get(0);
+                                    char lastFlashcardId = lastDocument.getString("id").charAt(0);
+                                    newFlashcardId = (char) (lastFlashcardId + 1);
+                                } else {
+                                    newFlashcardId = 'a';
+                                }
+
+                                Flashcard newFlashcard = new Flashcard(question, answer, String.valueOf(newFlashcardId));
 
                                 db.collection("users")
                                         .document(currentUser.getEmail())
@@ -141,6 +185,7 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(CreateFlashcardsActivity.this, "Không thể lấy dữ liệu người dùng", Toast.LENGTH_SHORT).show();
                 }
+
 
             }
         });
