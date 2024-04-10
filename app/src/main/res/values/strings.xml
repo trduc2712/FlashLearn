@@ -158,13 +158,26 @@
     <string name="btn_add">Thêm</string>
     <string name="btn_create">Tạo</string>
 
+    <string name="btn_search">Tìm kiếm</string>
+    <string name="txt_notification">Thông báo</string>
+    <string name="btn_no">Không</string>
+    <string name="btn_yes">Có</string>
+    <string name="btn_reply">Trả lời</string>
+
     <string name="btn_save">Lưu</string>
 
     //Them flashcard
     <string name="txt_add_card">Hãy chọn bộ flashcard mà bạn muốn thêm flashcard</string>
     <string name="txt_delete_card">Hãy chọn bộ flashcard mà bạn muốn xoá flashcard</string>
+
+    <string name="txt_edit_set_cart">Hãy chọn bộ flashcard mà bạn muốn sửa flashcard</string>
+    <string name="txt_practice_cart">Hãy chọn bộ flashcard mà bạn muốn luyện tập</string>
+    <string name="txt_click_edit_cart">Bấm vào flashcard để sửa chúng</string>
+
     <string name="txt_rename_card">Bạn đang đổi tên cho bộ flashcard</string>
     <string name="txt_set_rename_card">Hãy chọn bộ flashcard mà bạn muốn xoá</string>
+    <string name="txt_dialog_set_delete_card">Bạn có chắc chắn muốn xoá bộ flashcard này không?</string>
+    <string name="txt_dialog_delete_card">Bạn có chắc chắn muốn xoá flashcard này không?</string>
 
     <string name="txt_click_delete_card">Bấm vào flashcard để xoá chúng</string>
     <string name="txt_new_name">Tên mới</string>
@@ -172,6 +185,15 @@
 
     <!--    //Tim kiem-->
     <string name="txt_search">Tìm kiếm</string>
+    <string name="txt_search_user">Tìm kiếm người dùng</string>
+    <string name="hint_username">Tên người dùng</string>
     <string name="hint_search">Tên bộ flashcard bạn muốn tìm</string>
+    <string name="txt_filter_card">Lọc theo chủ đề</string>
+
+    //Luyen tap
+    <string name="txt_click_answer_card">Bấm vào flashcard để xem đáp án</string>
+
+    //dang xuat
+    <string name="txt_dialog_logout">Bạn có chắc chắn muốn đăng xuất không?</string>
 
 </resources>

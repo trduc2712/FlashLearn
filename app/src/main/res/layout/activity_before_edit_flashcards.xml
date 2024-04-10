@@ -13,7 +13,7 @@
         android:gravity="center"
         style="@style/Backgroud"
         android:padding="15sp"
-        android:text="Hãy chọn bộ flashcard mà bạn muốn sửa flashcard"
+        android:text="@string/txt_edit_set_cart"
         android:textColor="@color/pink0"
         android:textSize="25sp"
         android:textStyle="bold" />

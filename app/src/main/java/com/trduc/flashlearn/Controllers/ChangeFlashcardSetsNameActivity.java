@@ -51,7 +51,7 @@ public class ChangeFlashcardSetsNameActivity extends AppCompatActivity {
         bChange = findViewById(R.id.bChange);
 
         String newName = etFlashcardSetsNewName.getText().toString();
-        tvTitle.setText("Bạn đang đổi tên cho bộ flashcard " + flashcardSetsName);
+//        tvTitle.setText("Bạn đang đổi tên cho bộ flashcard " + flashcardSetsName);
 
         bChange.setOnClickListener(new View.OnClickListener() {
             @Override

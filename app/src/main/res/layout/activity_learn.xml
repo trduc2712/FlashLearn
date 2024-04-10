@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="30sp"
-            android:text="Bấm vào flashcard để xem đáp án"
+            android:text="@string/txt_click_answer_card"
             android:textSize="15sp"
            style="@style/TextColor"
             android:textStyle="bold"/>
