@@ -33,6 +33,7 @@
             style="@style/TextColor"
             android:layout_marginTop="15dp"
             android:paddingLeft="10sp"
+            android:paddingRight="10sp"
             android:background="@drawable/grey_rounded_border_4sp" />
 
         <ListView

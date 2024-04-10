@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,6 +32,7 @@ public class DeleteFlashcardsActivity extends AppCompatActivity {
     ListView lvAlreadyCreate;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
+    TextView tvTitle;
     String flashcardSetsId;
     Button bSave, bCancel;
     AlreadyCreateAdapter adapter;
@@ -44,6 +46,7 @@ public class DeleteFlashcardsActivity extends AppCompatActivity {
         bCancel = findViewById(R.id.bCancel);
         flashcardList = new ArrayList<>();
         deletedFlashcards = new ArrayList<>();
+        tvTitle = findViewById(R.id.tvTitle);
         editedFlashcards = new ArrayList<>();
         lvAlreadyCreate = findViewById(R.id.lvAlreadyCreate);
         mAuth = FirebaseAuth.getInstance();
