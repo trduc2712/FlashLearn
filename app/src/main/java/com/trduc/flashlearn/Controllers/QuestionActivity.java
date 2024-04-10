@@ -135,7 +135,7 @@ public class QuestionActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("choice", choice);
                 editor.apply();
-                Intent intent = new Intent(QuestionActivity.this, AllFlashcardSetsActivity.class);
+                Intent intent = new Intent(QuestionActivity.this, BeforeChangeFlashcardSetsNameActivity.class);
                 startActivity(intent);
             }
         });

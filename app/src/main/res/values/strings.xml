@@ -176,7 +176,7 @@
     <string name="txt_practice_cart">Hãy chọn bộ flashcard mà bạn muốn luyện tập</string>
     <string name="txt_click_edit_cart">Bấm vào flashcard để sửa chúng</string>
 
-    <string name="txt_rename_card">Bạn đang đổi tên cho bộ flashcard</string>
+    <string name="txt_rename_card">Hãy điền tiên mới</string>
     <string name="txt_set_rename_card">Hãy chọn bộ flashcard mà bạn muốn xoá</string>
     <string name="txt_dialog_set_delete_card">Bạn có chắc chắn muốn xoá bộ flashcard này không?</string>
     <string name="txt_dialog_delete_card">Bạn có chắc chắn muốn xoá flashcard này không?</string>
@@ -201,8 +201,8 @@
     //Ho tro
     <string name="txt_contact">Liên hệ với chúng tôi</string>
     <string name="txt_phone">Điện thoại:</string>
-    <string name="txt_address">Địa chỉ: 175 Phố Tây Sơn, Đống Đa, Hà Nội</string>
-    <string name="txt_working">Thời gian làm việc: 8h-17h30 (Thứ 2-6); 8h-12h(Thứ 7)</string>
+    <string name="txt_address">Địa chỉ: 175 phố Tây Sơn, Đống Đa, Hà Nội</string>
+    <string name="txt_working">Thời gian làm việc: 8h - 17h30 (Thứ 2 - 6); 8h - 12h (Thứ 7)</string>
     <string name="txt_call_now">Gọi ngay</string>
 
 </resources>

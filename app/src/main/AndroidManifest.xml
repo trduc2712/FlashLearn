@@ -21,9 +21,6 @@
             android:name=".Controllers.BeforeChangeFlashcardSetsNameActivity"
             android:exported="false" />
         <activity
-            android:name=".Controllers.SearchUserActivity"
-            android:exported="false" />
-        <activity
             android:name=".Controllers.PraticeActivity"
             android:exported="false" />
         <activity

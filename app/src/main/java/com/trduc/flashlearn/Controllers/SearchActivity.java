@@ -120,7 +120,6 @@ public class SearchActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        // Clear the list here only when starting a new search
                         if (!flashcardSetsList.isEmpty()) {
                             flashcardSetsList.clear();
                         }

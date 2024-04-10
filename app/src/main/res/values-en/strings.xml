@@ -178,7 +178,7 @@
     <string name="txt_practice_cart">Choose the set of flashcards you want to practice with</string>
     <string name="txt_click_edit_cart">Click on flashcards to edit them</string>
 
-    <string name="txt_rename_card">You are renaming the flashcard set</string>
+    <string name="txt_rename_card">Please enter new name</string>
     <string name="txt_set_rename_card">Select the set of flashcards you want to delete</string>
 
     <string name="txt_dialog_set_delete_card">Are you sure you want to delete this set of flashcards?</string>
@@ -205,7 +205,7 @@ Are you sure you want to delete this flashcard?</string>
 
     <string name="txt_contact">Contact us</string>
     <string name="txt_phone">Phone:</string>
-    <string name="txt_address">Address: 175 Tay Son Street, Dong Da, Hanoi</string>
+    <string name="txt_address">Address: 175 Tay Son street, Dong Da, Hanoi</string>
     <string name="txt_working">Working hours: 8:00 a.m. - 5:30 p.m. (Monday - Friday); 8:00 a.m. - 12:00 p.m. (Saturday)</string>
     <string name="txt_call_now">Call now</string>
 

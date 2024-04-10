@@ -151,7 +151,7 @@ public class SupportActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("choice", choice);
                 editor.apply();
-                Intent intent = new Intent(SupportActivity.this, AllFlashcardSetsActivity.class);
+                Intent intent = new Intent(SupportActivity.this, BeforeChangeFlashcardSetsNameActivity.class);
                 startActivity(intent);
             }
         });
@@ -364,5 +364,12 @@ public class SupportActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(SupportActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }

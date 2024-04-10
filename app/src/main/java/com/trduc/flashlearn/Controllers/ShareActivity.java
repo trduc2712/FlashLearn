@@ -139,7 +139,7 @@ public class ShareActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("choice", choice);
                 editor.apply();
-                Intent intent = new Intent(ShareActivity.this, AllFlashcardSetsActivity.class);
+                Intent intent = new Intent(ShareActivity.this, BeforeChangeFlashcardSetsNameActivity.class);
                 startActivity(intent);
             }
         });
