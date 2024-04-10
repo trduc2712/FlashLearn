@@ -299,7 +299,7 @@ public class SupportActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         tvTitle=findViewById(R.id.tvTitle);
-        tvTitle.setText("Hỗ trợ");
+//        tvTitle.setText("Hỗ trợ");
         lnSetting = findViewById(R.id.lnSetting);
         drawerLayout = findViewById(R.id.drawerLayout);
         ivBars = findViewById(R.id.ivBars);

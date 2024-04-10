@@ -201,7 +201,7 @@ public class SignInActivity extends AppCompatActivity {
         bSignIn = findViewById(R.id.bSignIn);
         tvForgotPassword = findViewById(R.id.tvForgotPassword);
         tvSignUp = findViewById(R.id.tvSignUp);
-        bFacebookSignIn = findViewById(R.id.bFacebookSignIn);
+//        bFacebookSignIn = findViewById(R.id.bFacebookSignIn);
         bGoogleSignIn = findViewById(R.id.bGoogleSignIn);
         cbRemember = findViewById(R.id.cbRemember);
     }

@@ -15,106 +15,97 @@
         android:orientation="vertical">
 
         <include
-            layout="@layout/toolbar" />
+            layout="@layout/toolbar_support" />
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Liên hệ với chúng tôi"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:layout_marginTop="15sp"
-            android:layout_marginBottom="5dp"
             android:textColor="@color/pink0"
-            />
+            android:textSize="18dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp"
+            android:textStyle="bold"/>
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_marginTop="10sp"
             style="@style/BackgroudInit"
             android:layout_height="wrap_content">
-            <RelativeLayout
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Điện thoại: 0999 7777 06"
+                    style="@style/TextColor" />
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp">
-                <TextView
-                    android:layout_width="140sp"
-                    android:layout_height="wrap_content"
-                    android:padding="5sp"
-                    android:text="Đường dây nóng"
-                    android:textStyle="bold"
-                    style="@style/TextColor"
-                    android:id="@+id/tvhotline"
-                    android:layout_marginStart="5sp"
-                    android:textSize="17sp"/>
-                <TextView
-                    android:id="@+id/tvphone"
-                    android:layout_width="match_parent"
-                    android:padding="5sp"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="5sp"
-                    android:textSize="17sp"
-                    android:drawableLeft="@drawable/phonecall"
-                    android:layout_marginStart="15sp"
-                    android:text="0999777706"
-                    android:textStyle="bold"
-                   style="@style/TextColor"
-                    android:layout_toEndOf="@id/tvhotline"/>
-            </RelativeLayout>
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/tvphone"
+                android:gravity="right"
+                android:textStyle="bold"
+                android:textColor="@color/pink0"
+                android:drawableRight="@drawable/phone_volume_solid"
+                android:text="Gọi ngay"/>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_marginTop="10sp"
             style="@style/BackgroudInit"
             android:layout_height="wrap_content">
-            <RelativeLayout
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Email: flashlearn@gmail.com"
-                    android:padding="10sp"
-                    android:textStyle="bold"
-                    style="@style/TextColor"
-                    android:id="@+id/tvemail"
-                    android:layout_marginStart="20sp"
-                    android:textSize="17sp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="5sp"
-                    android:layout_height="wrap_content"
-                    android:padding="10sp"
-                    android:text="Địa chỉ: 175 Phố Tây Sơn, Đống Đa, Hà Nội"
-                    android:textStyle="bold"
-                    android:id="@+id/tvaddres"
-                    style="@style/TextColor"
-                    android:layout_below="@id/tvemail"
-                    android:layout_marginStart="20sp"
-                    android:textSize="17sp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="5sp"
-                    android:layout_height="wrap_content"
-                    android:padding="10sp"
-                    android:text="Thời gian phục vụ: Từ 8h - 17:30h (Thứ 2 đến thứ 6); Từ 8h - 12h00 (Thứ 7)"
-                    android:textStyle="bold"
-                    style="@style/TextColor"
-                    android:layout_below="@id/tvaddres"
-                    android:layout_marginStart="20sp"
-                    android:id="@+id/tvtime"
-                    android:textSize="17sp"/>
-                <ImageView
-                    android:id="@+id/ivmap"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvtime"
-                    android:padding="20sp"
-                    android:src="@drawable/map"
-                    />
-
-
-            </RelativeLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Email: flashlearn@gmail.com"
+                style="@style/TextColor" />
         </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            style="@style/BackgroudInit"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Địa chỉ: 175 Phố Tây Sơn, Đống Đa, Hà Nội"
+                style="@style/TextColor" />
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            style="@style/BackgroudInit"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Thời gian làm việc: 8h-17h30 (Thứ 2-6); 8h-12h(Thứ 7)"
+                style="@style/TextColor" />
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:id="@+id/ivmap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10sp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:src="@drawable/map"
+            />
     </LinearLayout>
 
     <RelativeLayout
