@@ -26,7 +26,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.trduc.flashlearn.Models.Flashcard;
 import com.trduc.flashlearn.R;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class EditFlashcardsActivity extends AppCompatActivity {
 
@@ -70,6 +70,11 @@ public class EditFlashcardsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 showNextFlashcard();
                 seekBar.incrementProgressBy(1);
+                for (Flashcard flashcard : originalFlashcardList) {
+                    System.out.println("ID: " + flashcard.getId());
+                    System.out.println("Ques: " + flashcard.getQuestion());
+                    System.out.println("Ans: " + flashcard.getAnswer());
+                }
             }
         });
 
@@ -78,6 +83,11 @@ public class EditFlashcardsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 showPreviousFlashcard();
                 seekBar.incrementProgressBy(-1);
+                for (Flashcard flashcard : originalFlashcardList) {
+                    System.out.println("ID: " + flashcard.getId());
+                    System.out.println("Ques: " + flashcard.getQuestion());
+                    System.out.println("Ans: " + flashcard.getAnswer());
+                }
             }
         });
 
@@ -199,6 +209,7 @@ public class EditFlashcardsActivity extends AppCompatActivity {
         if (currentUser != null) {
             Flashcard currentFlashcard = flashcardList.get(currentFlashcardIndex);
             if (currentFlashcard != null && currentFlashcard.getId() != null) {
+                currentFlashcard.setQuestion(question);
                 db.collection("users")
                         .document(currentUser.getEmail())
                         .collection("flashcard_sets")
@@ -218,6 +229,8 @@ public class EditFlashcardsActivity extends AppCompatActivity {
 
                             }
                         });
+            } else {
+
             }
         }
     }
@@ -251,11 +264,6 @@ public class EditFlashcardsActivity extends AppCompatActivity {
 
             }
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
     }
 
 }
