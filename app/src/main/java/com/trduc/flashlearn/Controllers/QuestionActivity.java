@@ -220,19 +220,19 @@ public class QuestionActivity extends AppCompatActivity {
             }
         });
 
-        lnSecurity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(QuestionActivity.this, SecurityActivity.class);
-            }
-        });
-
-        lnQuestion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(QuestionActivity.this, QuestionActivity.class);
-            }
-        });
+//        lnSecurity.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                redirectActivity(QuestionActivity.this, SecurityActivity.class);
+//            }
+//        });
+//
+//        lnQuestion.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                redirectActivity(QuestionActivity.this, QuestionActivity.class);
+//            }
+//        });
 
         lnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -289,8 +289,8 @@ public class QuestionActivity extends AppCompatActivity {
         ivBars = findViewById(R.id.ivBars);
         lnSupport = findViewById(R.id.lnSupport);
         lnShare = findViewById(R.id.lnShare);
-        lnQuestion = findViewById(R.id.lnQuestion);
-        lnSecurity = findViewById(R.id.lnSecurity);
+//        lnQuestion = findViewById(R.id.lnQuestion);
+//        lnSecurity = findViewById(R.id.lnSecurity);
         lnFilter=findViewById(R.id.lnFilter);
         lnPratice = findViewById(R.id.lnPratice);
         lnChangeNameFlashcardSets = findViewById(R.id.lnChangeNameFlashcardSets);

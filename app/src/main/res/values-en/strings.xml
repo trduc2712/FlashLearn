@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">FlashLearn</string>
-    <string name="open_nav">Open Navigation Drawer</string>
-    <string name="close_nav">Close Navigation Drawer</string>
+    <string name="open_nav">Open navigation drawer</string>
+    <string name="close_nav">Close navigation drawer</string>
     <string name="default_web_client_id">382070999281-thkcs7ku9v3679k8ar60u6fhdlcpt1t6.apps.googleusercontent.com</string>
 
     <string-array name="language">
@@ -16,7 +16,7 @@
 <!--    //nav drawer-->
 
     <string name="nav_home">Home</string>
-    <string name="nav_create_card">Create a set of flashcarts</string>
+    <string name="nav_create_card">Create a set of flashcards</string>
 
     <string name="nav_set_edit">Edit a set of flashcards</string>
     <string name="nav_add_card">Add flashcard</string>
@@ -164,7 +164,7 @@
     <string name="txt_notification">Notification</string>
     <string name="btn_no">No</string>
     <string name="btn_yes">Yes</string>
-    <string name="btn_reply">Reply</string>
+    <string name="btn_reply">Answer</string>
 
 
     <string name="btn_save">Save</string>
@@ -207,7 +207,7 @@ Filter by topic</string>
     <string name="txt_contact">Contact us</string>
     <string name="txt_phone">Phone:</string>
     <string name="txt_address">Address: 175 Tay Son Street, Dong Da, Hanoi</string>
-    <string name="txt_working">Working hours: 8:00 a.m. - 5:30 p.m. (Monday - Friday); 8am-12pm(Saturday)</string>
+    <string name="txt_working">Working hours: 8:00 a.m. - 5:30 p.m. (Monday - Friday); 8:00 a.m. - 12:00 p.m. (Saturday)</string>
     <string name="txt_call_now">Call now</string>
 
 </resources>

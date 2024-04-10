@@ -224,19 +224,19 @@ public class ShareActivity extends AppCompatActivity {
             }
         });
 
-        lnSecurity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(ShareActivity.this, SecurityActivity.class);
-            }
-        });
-
-        lnQuestion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(ShareActivity.this, QuestionActivity.class);
-            }
-        });
+//        lnSecurity.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                redirectActivity(ShareActivity.this, SecurityActivity.class);
+//            }
+//        });
+//
+//        lnQuestion.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                redirectActivity(ShareActivity.this, QuestionActivity.class);
+//            }
+//        });
 
         lnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -293,8 +293,8 @@ public class ShareActivity extends AppCompatActivity {
         ivBars = findViewById(R.id.ivBars);
         lnSupport = findViewById(R.id.lnSupport);
         lnShare = findViewById(R.id.lnShare);
-        lnQuestion = findViewById(R.id.lnQuestion);
-        lnSecurity = findViewById(R.id.lnSecurity);
+//        lnQuestion = findViewById(R.id.lnQuestion);
+//        lnSecurity = findViewById(R.id.lnSecurity);
         lnFilter=findViewById(R.id.lnFilter);
         lnDeleteFlashcardSets = findViewById(R.id.lnDeleteFlashcardSets);
     }

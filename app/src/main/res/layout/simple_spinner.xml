@@ -6,6 +6,6 @@
     style="@style/TextColor"
     android:layout_height="wrap_content"
     android:ellipsize="marquee"
+    android:textSize="15sp"
     android:textAlignment="inherit">
-
 </TextView>
