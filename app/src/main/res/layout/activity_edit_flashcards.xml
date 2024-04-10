@@ -3,73 +3,96 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    style="@style/Backgroud"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    style="@style/Backgroud">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="vertical"
-        android:paddingTop="15sp"
-        android:paddingRight="15sp"
-        android:paddingLeft="15sp" >
+        android:padding="30sp" >
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tvCurrentFlashcard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15sp"
+            android:textSize="15sp"
+            android:textColor="@color/pink0"
+            android:textStyle="bold"/>
+
+        <SeekBar
+            android:id="@+id/seekBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="15sp"
+            android:progressTint="@color/pink0"
+            android:thumb="@null" />
 
-            <Button
-                android:id="@+id/bCancel"
-                android:layout_width="0sp"
-                android:layout_height="48sp"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="@string/btn_cancel"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/pink0"
-                android:background="@drawable/pink0_rounded_border_4sp"
-                android:gravity="center"
-                android:inputType="textMultiLine" />
+        <EditText
+            android:id="@+id/etQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="150sp"
+            android:background="@drawable/pink0_rounded_border_4sp"
+            android:gravity="center"
+            android:hint="Câu hỏi"
+            style="@style/TextColor"
+            android:textSize="20sp"
+            android:padding="15sp"
+            android:textStyle="bold" />
 
-            <View
-                android:layout_width="15dp"
-                android:layout_height="0dp" />
+        <EditText
+            android:id="@+id/etAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="150sp"
+            android:background="@drawable/pink0_rounded_border_4sp"
+            android:gravity="center"
+            android:layout_marginTop="30sp"
+            android:hint="@string/hint_answer"
+            style="@style/TextColor"
+            android:textSize="20sp"
+            android:padding="15sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30sp"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/ivBackward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/learn_nav_button_background"
+                android:layout_marginRight="15sp"
+                android:src="@drawable/baseline_chevron_left" />
 
             <Button
                 android:id="@+id/bSave"
-                android:layout_width="0sp"
-                android:layout_height="48sp"
-                android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="@string/btn_save"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
+                android:layout_width="150sp"
+                android:layout_height="match_parent"
                 android:backgroundTint="@color/pink0"
-                android:background="@drawable/pink0_rounded_border_4sp"
-                android:gravity="center"
-                android:inputType="textMultiLine" />
+                android:background="@drawable/learn_nav_button_background"
+                android:text="Lưu"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/ivForward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:background="@drawable/learn_nav_button_background"
+                android:src="@drawable/baseline_chevron_right" />
 
         </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_click_edit_cart"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:layout_marginTop="15sp"
-            android:textColor="@color/black"/>
-
-        <ListView
-            android:id="@+id/lvAlreadyCreate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15sp"/>
 
     </LinearLayout>
 

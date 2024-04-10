@@ -79,21 +79,14 @@ public class AlreadyCreateAdapter extends BaseAdapter {
         etQuestion.setText(String.valueOf(flashcard.getQuestion()));
         etAnswer.setText(String.valueOf(flashcard.getAnswer()));
         System.out.println("Choice is: " + choice);
-
-        if (choice.equals("Edit")) {
-            etQuestion.setFocusable(true);
-            etQuestion.setFocusableInTouchMode(true);
-            etAnswer.setFocusable(true);
-            etAnswer.setFocusableInTouchMode(true);
-        }
+        etQuestion.setFocusable(false);
+        etAnswer.setFocusable(false);
 
         etQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (choice.equals("Delete")) {
                     showDeleteConfirmationDialog(position, flashcard.getId(), v.getContext());
-                } else if (choice.equals("Edit")) {
-
                 }
             }
         });
@@ -103,8 +96,6 @@ public class AlreadyCreateAdapter extends BaseAdapter {
             public void onClick(View v) {
                 if (choice.equals("Delete")) {
                     showDeleteConfirmationDialog(position, flashcard.getId(), v.getContext());
-                } else if (choice.equals("Edit")) {
-
                 }
             }
         });
