@@ -29,7 +29,6 @@ import java.util.ArrayList;
 public class SearchActivity extends AppCompatActivity {
 
     TextView tvTitle;
-    Button bSearch;
     EditText etFlashcardSetsName;
     ListView lvSearchFlashcardSets;
     ArrayList<FlashcardSets> flashcardSetsList;
@@ -74,7 +73,6 @@ public class SearchActivity extends AppCompatActivity {
                 }
             }
         });
-
 
         if (currentUser != null) {
             String userEmail = currentUser.getEmail();
