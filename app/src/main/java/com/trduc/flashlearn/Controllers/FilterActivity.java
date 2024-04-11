@@ -60,25 +60,27 @@ public class FilterActivity extends AppCompatActivity {
 
                 String topic = spinner_topic.getSelectedItem().toString();
                 filterFlashcardSets(topic);
-                if(topic!="Chủ đề"){
+                if (topic!="Chủ đề"){
                 }
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
-
             }
         });
     }
 
     private void filterFlashcardSets(String keytopic) {
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
         if (currentUser != null) {
             String userEmail = currentUser.getEmail();
             if (userEmail != null) {
                 db.collection("users")
+
                         .document(userEmail)
+
                         .collection("flashcard_sets")
+
                         .get()
                         .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
 
@@ -86,14 +88,12 @@ public class FilterActivity extends AppCompatActivity {
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
                                 flashcardSetsList.clear();
-
                                 for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                                     FlashcardSets flashcardSets = document.toObject(FlashcardSets.class);
                                     if(flashcardSets.getTopic().equals(keytopic)) {
                                         flashcardSetsList.add(flashcardSets);
                                     }
                                 }
-
                                 adapter.notifyDataSetChanged();
                                 lvFilterFlashcardSets.setAdapter(adapter);
                             }
@@ -101,8 +101,7 @@ public class FilterActivity extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-
-                                Toast.makeText(FilterActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(FilterActivity.this, "Lỗi!", Toast.LENGTH_SHORT).show();
                             }
                         });
             }
@@ -111,7 +110,6 @@ public class FilterActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
         super.onBackPressed();
         Intent intent = new Intent(FilterActivity.this, MainActivity.class);
         startActivity(intent);
