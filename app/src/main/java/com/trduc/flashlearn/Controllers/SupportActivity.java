@@ -58,6 +58,7 @@ public class SupportActivity extends AppCompatActivity {
 
                 String sdt = tvphone.getText().toString();
                 Intent intent_call = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+sdt));
+
                 startActivity(intent_call);
             }
         });
@@ -67,6 +68,7 @@ public class SupportActivity extends AppCompatActivity {
 
                 Uri uri = Uri.parse("https://www.google.com/maps/place/%C4%90%E1%BA%A1i+H%E1%BB%8Dc+Thu%E1%BB%B7+L%E1%BB%A3i+-+175+T%C3%A2y+S%C6%A1n+(C%E1%BB%99t+Sau)/@21.007651,105.8238196,15z/data=!4m6!3m5!1s0x3135ac81847527d9:0x608eb25e26856d92!8m2!3d21.007651!4d105.8238196!16s%2Fg%2F1hhx6qmkx?entry=ttu");
                 Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+
                 startActivity(intent);
             }
         });
