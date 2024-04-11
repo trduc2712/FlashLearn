@@ -1,5 +1,6 @@
 package com.trduc.flashlearn.Controllers;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -27,22 +29,23 @@ public class NameFlashcardsActivity extends AppCompatActivity {
 
     Button bContinue;
     EditText etFlashcardSetsName;
-    FirebaseFirestore db;
     Spinner sTopic;
+    FirebaseFirestore db;
+    FirebaseAuth auth;
+    FirebaseUser currentUser;
     String[] choices = {"Chủ đề", "Toán học", "Văn học", "Ngôn ngữ", "Vật lý", "Hoá học", "Sinh học", "Lịch sử", "Địa lý", "Nghệ thuật",
-    "Thể thao", "Y học", "Công nghê", "Ca dao tục ngữ", "Chính trị", "Tài chính", "Tâm lý", "Kinh doanh", "Kỹ thuật"};
+            "Thể thao", "Y học", "Công nghê", "Ca dao tục ngữ", "Chính trị", "Tài chính", "Tâm lý", "Kinh doanh", "Kỹ thuật"};
     String selectedChoice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name_flashcards);
+        initUi();
 
-        sTopic = findViewById(R.id.sTopic);
-        sTopic.setSelection(0, false);
-        bContinue = findViewById(R.id.bContinue);
-        etFlashcardSetsName = findViewById(R.id.etFlashcardSetsName);
         db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.custom_spinner_item, choices);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -81,66 +84,14 @@ public class NameFlashcardsActivity extends AppCompatActivity {
 
     }
 
+    private void initUi() {
+        sTopic = findViewById(R.id.sTopic);
+        sTopic.setSelection(0, false);
+        bContinue = findViewById(R.id.bContinue);
+        etFlashcardSetsName = findViewById(R.id.etFlashcardSetsName);
+    }
+
     private void createNewFlashcardSet(final String flashcardSetsName) {
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-//        if (currentUser != null) {
-//            final String userEmail = currentUser.getEmail();
-//
-//            db.collection("users")
-//                    .document(userEmail)
-//                    .collection("flashcard_sets")
-//                    .get()
-//                    .addOnSuccessListener(queryDocumentSnapshots -> {
-//                        int numFlashcardSets = queryDocumentSnapshots.size();
-//                        char newFlashcardSetId = (char) ('a' + numFlashcardSets);
-//
-//                        char finalNewFlashcardSetId = newFlashcardSetId;
-//
-//                        boolean idExists = false;
-//                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-//                            String flashcardSetId = document.getString("id");
-//                            if (flashcardSetId.equals(String.valueOf(finalNewFlashcardSetId))) {
-//                                idExists = true;
-//                                break;
-//                            }
-//                        }
-//
-//                        while (idExists) {
-//                            finalNewFlashcardSetId = (char) ('a' + ++numFlashcardSets);
-//                            idExists = false;
-//                            for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-//                                String flashcardSetId = document.getString("id");
-//                                if (flashcardSetId.equals(String.valueOf(finalNewFlashcardSetId))) {
-//                                    idExists = true;
-//                                    break;
-//                                }
-//                            }
-//                        }
-//
-//                        final char finalFinalNewFlashcardSetId = finalNewFlashcardSetId;
-//                        final Map<String, Object> flashcardSet = new HashMap<>();
-//                        flashcardSet.put("id", String.valueOf(finalFinalNewFlashcardSetId));
-//                        flashcardSet.put("name", flashcardSetsName);
-//                        flashcardSet.put("topic", selectedChoice);
-//
-//                        db.collection("users")
-//                                .document(userEmail)
-//                                .collection("flashcard_sets")
-//                                .document(String.valueOf(finalFinalNewFlashcardSetId))
-//                                .set(flashcardSet)
-//                                .addOnSuccessListener(aVoid -> {
-//                                    startActivity(new Intent(NameFlashcardsActivity.this, CreateFlashcardsActivity.class)
-//                                            .putExtra("flashcardSetsId", String.valueOf(finalFinalNewFlashcardSetId))
-//                                    );
-//                                    finish();
-//                                })
-//                                .addOnFailureListener(e -> Toast.makeText(NameFlashcardsActivity.this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show());
-//                    })
-//                    .addOnFailureListener(e -> Toast.makeText(NameFlashcardsActivity.this, "Không thể lấy dữ liệu flashcard_sets", Toast.LENGTH_SHORT).show());
-//        }
-
         if (currentUser != null) {
             final String userEmail = currentUser.getEmail();
 
@@ -178,9 +129,19 @@ public class NameFlashcardsActivity extends AppCompatActivity {
                                     );
                                     finish();
                                 })
-                                .addOnFailureListener(e -> Toast.makeText(NameFlashcardsActivity.this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+
+                                    }
+                                });
                     })
-                    .addOnFailureListener(e -> Toast.makeText(NameFlashcardsActivity.this, "Không thể lấy dữ liệu flashcard_sets", Toast.LENGTH_SHORT).show());
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
         }
 
 

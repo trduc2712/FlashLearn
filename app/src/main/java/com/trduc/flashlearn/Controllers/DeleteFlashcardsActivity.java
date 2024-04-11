@@ -28,30 +28,28 @@ import java.util.ArrayList;
 
 public class DeleteFlashcardsActivity extends AppCompatActivity {
 
-    ArrayList<Flashcard> flashcardList, deletedFlashcards, editedFlashcards;
+    TextView tvTitle;
+    Button bSave, bCancel;
     ListView lvAlreadyCreate;
     FirebaseFirestore db;
-    FirebaseAuth mAuth;
-    TextView tvTitle;
+    FirebaseAuth auth;
+    FirebaseUser currentUser;
+    ArrayList<Flashcard> flashcardList, deletedFlashcards, editedFlashcards;
     String flashcardSetsId;
-    Button bSave, bCancel;
     AlreadyCreateAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_flashcards);
+        initUi();
 
-        bSave = findViewById(R.id.bSave);
-        bCancel = findViewById(R.id.bCancel);
         flashcardList = new ArrayList<>();
         deletedFlashcards = new ArrayList<>();
-        tvTitle = findViewById(R.id.tvTitle);
         editedFlashcards = new ArrayList<>();
-        lvAlreadyCreate = findViewById(R.id.lvAlreadyCreate);
-        mAuth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        currentUser = auth.getCurrentUser();
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -113,14 +111,18 @@ public class DeleteFlashcardsActivity extends AppCompatActivity {
         });
     }
 
-    private void addDeletedFlashcardsToFirestore() {
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private void initUi() {
+        bSave = findViewById(R.id.bSave);
+        bCancel = findViewById(R.id.bCancel);
+        tvTitle = findViewById(R.id.tvTitle);
+        lvAlreadyCreate = findViewById(R.id.lvAlreadyCreate);
+    }
 
-        if (mAuth.getCurrentUser() != null) {
+    private void addDeletedFlashcardsToFirestore() {
+        if (auth.getCurrentUser() != null) {
             for (Flashcard flashcard : deletedFlashcards) {
                 db.collection("users")
-                        .document(mAuth.getCurrentUser().getEmail())
+                        .document(auth.getCurrentUser().getEmail())
                         .collection("flashcard_sets")
                         .document(flashcardSetsId)
                         .collection("flashcards")
@@ -146,8 +148,6 @@ public class DeleteFlashcardsActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         addDeletedFlashcardsToFirestore();
-//        Intent intent = new Intent(DeleteFlashcardsActivity.this, MainActivity.class);
-//        startActivity(intent);
     }
 
 }

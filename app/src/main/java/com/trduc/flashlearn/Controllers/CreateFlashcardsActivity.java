@@ -28,35 +28,29 @@ import java.util.ArrayList;
 
 public class CreateFlashcardsActivity extends AppCompatActivity {
 
-    private ArrayList<Flashcard> flashcardList, deletedFlashcards, editedFlashcards;
     private ListView lvAlreadyCreate;
-    private FirebaseFirestore db;
-    private FirebaseAuth mAuth;
-    private String flashcardSetsId;
     private EditText etQuestion, etAnswer;
     private Button bAdd, bCancel, bCreate;
+    private FirebaseFirestore db;
+    private FirebaseAuth auth;
+    FirebaseUser currentUser;
+    private ArrayList<Flashcard> flashcardList, deletedFlashcards, editedFlashcards;
+    private String flashcardSetsId;
     private AlreadyCreateAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_flashcards);
+        initUi();
 
         flashcardSetsId = getIntent().getStringExtra("flashcardSetsId");
-
-        bCreate = findViewById(R.id.bCreate);
-        bCancel = findViewById(R.id.bCancel);
-        bAdd = findViewById(R.id.bAdd);
-        etQuestion = findViewById(R.id.etQuestion);
-        etAnswer = findViewById(R.id.etAnswer);
-
         flashcardList = new ArrayList<>();
         deletedFlashcards = new ArrayList<>();
         editedFlashcards = new ArrayList<>();
-        lvAlreadyCreate = findViewById(R.id.lvAlreadyCreate);
-        mAuth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        currentUser = auth.getCurrentUser();
 
         if (currentUser != null) {
             String userEmail = currentUser.getEmail();
@@ -81,7 +75,7 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(CreateFlashcardsActivity.this, "Không thể lấy dữ liệu", Toast.LENGTH_SHORT).show();
+
                             }
                         });
             }
@@ -111,40 +105,7 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
                     }
                 }
 
-//                FirebaseUser currentUser = mAuth.getCurrentUser();
-//                if (currentUser != null) {
-//                    db.collection("users")
-//                            .document(currentUser.getEmail())
-//                            .collection("flashcard_sets")
-//                            .document(flashcardSetsId)
-//                            .collection("flashcards")
-//                            .get()
-//                            .addOnSuccessListener(queryDocumentSnapshots -> {
-//                                int numFlashcards = queryDocumentSnapshots.size();
-//                                char newFlashcardId = (char) ('a' + numFlashcards);
-//                                Flashcard newFlashcard = new Flashcard(question, answer, newFlashcardId + "");
-//
-//                                db.collection("users")
-//                                        .document(currentUser.getEmail())
-//                                        .collection("flashcard_sets")
-//                                        .document(flashcardSetsId)
-//                                        .collection("flashcards")
-//                                        .document(String.valueOf(newFlashcardId))
-//                                        .set(newFlashcard)
-//                                        .addOnSuccessListener(aVoid -> {
-//                                            etQuestion.setText("");
-//                                            etAnswer.setText("");
-//                                            flashcardList.add(newFlashcard);
-//                                            adapter.notifyDataSetChanged();
-//                                        })
-//                                        .addOnFailureListener(e -> Toast.makeText(CreateFlashcardsActivity.this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show());
-//                            })
-//                            .addOnFailureListener(e -> Toast.makeText(CreateFlashcardsActivity.this, "Không thể cập nhật danh sách flashcards", Toast.LENGTH_SHORT).show());
-//                } else {
-//                    Toast.makeText(CreateFlashcardsActivity.this, "Không thể lấy dữ liệu người dùng", Toast.LENGTH_SHORT).show();
-//                }
-
-                FirebaseUser currentUser = mAuth.getCurrentUser();
+                FirebaseUser currentUser = auth.getCurrentUser();
                 if (currentUser != null) {
                     db.collection("users")
                             .document(currentUser.getEmail())
@@ -214,8 +175,16 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
 
     }
 
+    private void initUi() {
+        bCreate = findViewById(R.id.bCreate);
+        bCancel = findViewById(R.id.bCancel);
+        bAdd = findViewById(R.id.bAdd);
+        etQuestion = findViewById(R.id.etQuestion);
+        etAnswer = findViewById(R.id.etAnswer);
+        lvAlreadyCreate = findViewById(R.id.lvAlreadyCreate);
+    }
+
     private void deleteFlashcardSet(String flashcardSetsIdToDelete) {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             db.collection("users")
                     .document(currentUser.getEmail())
@@ -225,61 +194,20 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            updateFlashcardSetsIds(currentUser.getEmail());
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(CreateFlashcardsActivity.this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
                         }
                     });
         }
     }
 
-    private void updateFlashcardSetsIds(String userEmail) {
-        db.collection("users")
-                .document(userEmail)
-                .collection("flashcard_sets")
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        int index = 0;
-                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                            String flashcardSetsId = document.getId();
-                            String newFlashcardSetsId = Character.toString((char) ('a' + index));
-                            db.collection("users")
-                                    .document(userEmail)
-                                    .collection("flashcard_sets")
-                                    .document(flashcardSetsId)
-                                    .update("id", newFlashcardSetsId)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(CreateFlashcardsActivity.this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                            index++;
-                        }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(CreateFlashcardsActivity.this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
     private void deleteAllFlashcards() {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        FirebaseUser currentUser = auth.getCurrentUser();
 
         if (currentUser != null) {
             db.collection("users")
@@ -294,13 +222,13 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                                 document.getReference().delete();
                             }
-//                            Toast.makeText(CreateFlashcardsActivity.this, "Đã xoá hoàn toàn các flashcard", Toast.LENGTH_SHORT).show();
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(CreateFlashcardsActivity.this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
                         }
                     });
         }

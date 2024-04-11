@@ -29,25 +29,27 @@ import java.util.ArrayList;
 
 public class PraticeActivity extends AppCompatActivity {
 
-    String flashcardSetsId;
     ImageView ivForward, ivBackward;
     Button bAnswer;
     TextView tvNoti, tvQuestion, tvCurrentFlashcard;
     EditText etAnswer;
     SeekBar seekBar;
-    int currentFlashcardIndex = 0;
     FirebaseFirestore db;
-    FirebaseAuth mAuth;
+    FirebaseAuth auth;
+    FirebaseUser currentUser;
     ArrayList<Flashcard> flashcardList;
+    String flashcardSetsId;
+    int currentFlashcardIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pratice);
-
         initUi();
+
         db = FirebaseFirestore.getInstance();
-        mAuth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
         flashcardList = new ArrayList<>();
 
         Intent intent = getIntent();
@@ -172,7 +174,6 @@ public class PraticeActivity extends AppCompatActivity {
     }
 
     private void loadFlashcards() {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             db.collection("users")
                     .document(currentUser.getEmail())
@@ -192,14 +193,14 @@ public class PraticeActivity extends AppCompatActivity {
                             if (!flashcardList.isEmpty()) {
                                 showFlashcard(currentFlashcardIndex);
                             } else {
-                                Toast.makeText(PraticeActivity.this, "Không có flashcard nào", Toast.LENGTH_SHORT).show();
+
                             }
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(PraticeActivity.this, "Không thể lấy dữ liệu", Toast.LENGTH_SHORT).show();
+
                         }
                     });
         }

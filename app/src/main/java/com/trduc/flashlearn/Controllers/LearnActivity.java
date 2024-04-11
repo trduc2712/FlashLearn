@@ -24,15 +24,15 @@ import com.trduc.flashlearn.R;
 import java.util.ArrayList;
 
 public class LearnActivity extends AppCompatActivity {
-
     ImageView ivForward, ivBackward;
     TextView tvContent, tvCurrentFlashcard;
-    String flashcardSetsId;
-    int currentFlashcardIndex = 0;
-    FirebaseFirestore db;
-    FirebaseAuth mAuth;
-    ArrayList<Flashcard> flashcardList;
     SeekBar seekBar;
+    FirebaseFirestore db;
+    FirebaseAuth auth;
+    FirebaseUser currentUser;
+    int currentFlashcardIndex = 0;
+    String flashcardSetsId;
+    ArrayList<Flashcard> flashcardList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,8 @@ public class LearnActivity extends AppCompatActivity {
         seekBar = findViewById(R.id.seekBar);
 
         db = FirebaseFirestore.getInstance();
-        mAuth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
         flashcardList = new ArrayList<>();
 
         Intent intent = getIntent();
@@ -88,7 +89,6 @@ public class LearnActivity extends AppCompatActivity {
     }
 
     private void loadFlashcards() {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             db.collection("users")
                     .document(currentUser.getEmail())
@@ -108,14 +108,14 @@ public class LearnActivity extends AppCompatActivity {
                             if (!flashcardList.isEmpty()) {
                                 showFlashcard(currentFlashcardIndex);
                             } else {
-                                Toast.makeText(LearnActivity.this, "Không có flashcard nào", Toast.LENGTH_SHORT).show();
+
                             }
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(LearnActivity.this, "Không thể lấy dữ liệu", Toast.LENGTH_SHORT).show();
+
                         }
                     });
         }

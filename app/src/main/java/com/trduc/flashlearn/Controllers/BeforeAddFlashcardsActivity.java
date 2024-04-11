@@ -27,6 +27,7 @@ public class BeforeAddFlashcardsActivity extends AppCompatActivity {
     FirebaseAuth auth;
     AllFlashcardSetsAdapter adapter;
     FirebaseFirestore db;
+    FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class BeforeAddFlashcardsActivity extends AppCompatActivity {
         ArrayList<FlashcardSets> flashcardSetsList = new ArrayList<>();
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-        FirebaseUser currentUser = auth.getCurrentUser();
+        currentUser = auth.getCurrentUser();
 
         if (currentUser != null) {
             String userEmail = currentUser.getEmail();

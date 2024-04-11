@@ -30,33 +30,29 @@ import java.util.*;
 
 public class EditFlashcardsActivity extends AppCompatActivity {
 
-    private ArrayList<Flashcard> flashcardList;
-    private ArrayList<Flashcard> originalFlashcardList;
-    private ImageView ivBackward, ivForward;
-    private FirebaseFirestore db;
-    private FirebaseAuth mAuth;
-    private TextView tvCurrentFlashcard;
-    private String flashcardSetsId;
-    private Button bSave;
-    private EditText etQuestion, etAnswer;
-    private SeekBar seekBar;
-    private int currentFlashcardIndex = 0;
+    ImageView ivBackward, ivForward;
+    EditText etQuestion, etAnswer;
+    SeekBar seekBar;
+    Button bSave;
+    TextView tvCurrentFlashcard;
+    FirebaseFirestore db;
+    FirebaseAuth auth;
+    FirebaseUser currentUser;
+    ArrayList<Flashcard> flashcardList;
+    ArrayList<Flashcard> originalFlashcardList;
+    String flashcardSetsId;
+    int currentFlashcardIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_flashcards);
+        initUi();
 
-        mAuth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-        bSave = findViewById(R.id.bSave);
-        ivBackward = findViewById(R.id.ivBackward);
-        ivForward = findViewById(R.id.ivForward);
-        etQuestion = findViewById(R.id.etQuestion);
-        etAnswer = findViewById(R.id.etAnswer);
+        currentUser = auth.getCurrentUser();
         flashcardList = new ArrayList<>();
-        seekBar = findViewById(R.id.seekBar);
-        tvCurrentFlashcard = findViewById(R.id.tvCurrentFlashcard);
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -70,11 +66,6 @@ public class EditFlashcardsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 showNextFlashcard();
                 seekBar.incrementProgressBy(1);
-                for (Flashcard flashcard : originalFlashcardList) {
-                    System.out.println("ID: " + flashcard.getId());
-                    System.out.println("Ques: " + flashcard.getQuestion());
-                    System.out.println("Ans: " + flashcard.getAnswer());
-                }
             }
         });
 
@@ -83,11 +74,6 @@ public class EditFlashcardsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 showPreviousFlashcard();
                 seekBar.incrementProgressBy(-1);
-                for (Flashcard flashcard : originalFlashcardList) {
-                    System.out.println("ID: " + flashcard.getId());
-                    System.out.println("Ques: " + flashcard.getQuestion());
-                    System.out.println("Ans: " + flashcard.getAnswer());
-                }
             }
         });
 
@@ -104,7 +90,6 @@ public class EditFlashcardsActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
                 updateFirestoreQuestion(s.toString());
             }
         });
@@ -136,6 +121,16 @@ public class EditFlashcardsActivity extends AppCompatActivity {
 
     }
 
+    private void initUi() {
+        bSave = findViewById(R.id.bSave);
+        ivBackward = findViewById(R.id.ivBackward);
+        ivForward = findViewById(R.id.ivForward);
+        etQuestion = findViewById(R.id.etQuestion);
+        etAnswer = findViewById(R.id.etAnswer);
+        tvCurrentFlashcard = findViewById(R.id.tvCurrentFlashcard);
+        seekBar = findViewById(R.id.seekBar);
+    }
+
     private void showFlashcard(int index) {
         if (index >= 0 && index < flashcardList.size()) {
             Flashcard flashcard = flashcardList.get(index);
@@ -165,7 +160,6 @@ public class EditFlashcardsActivity extends AppCompatActivity {
     }
 
     private void loadFlashcards() {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             db.collection("users")
                     .document(currentUser.getEmail())
@@ -205,7 +199,7 @@ public class EditFlashcardsActivity extends AppCompatActivity {
     }
 
     private void updateFirestoreQuestion(String question) {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser != null) {
             Flashcard currentFlashcard = flashcardList.get(currentFlashcardIndex);
             if (currentFlashcard != null && currentFlashcard.getId() != null) {
@@ -236,7 +230,7 @@ public class EditFlashcardsActivity extends AppCompatActivity {
     }
 
     private void updateFirestoreAnswer(String answer) {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser != null) {
             Flashcard currentFlashcard = flashcardList.get(currentFlashcardIndex);
             if (currentFlashcard != null && currentFlashcard.getId() != null) {
@@ -264,6 +258,42 @@ public class EditFlashcardsActivity extends AppCompatActivity {
 
             }
         }
+    }
+
+    private void restoreFlashcardsInFirestore() {
+        if (auth.getCurrentUser() != null) {
+            for (Flashcard flashcard : originalFlashcardList) {
+                db.collection("users")
+                        .document(auth.getCurrentUser().getEmail())
+                        .collection("flashcard_sets")
+                        .document(flashcardSetsId)
+                        .collection("flashcards")
+                        .document(flashcard.getId())
+                        .update(
+                                "question", flashcard.getQuestion(),
+                                "answer", flashcard.getAnswer()
+                        )
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+
+                            }
+                        });
+            }
+        }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        restoreFlashcardsInFirestore();
+        super.onBackPressed();
     }
 
 }
