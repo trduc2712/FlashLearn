@@ -167,11 +167,6 @@
                 return;
             }
 
-    //        database = FirebaseDatabase.getInstance();
-    //        reference = database.getReference("users");
-    //        User user = new User(email, username, password);
-    //        reference.child(username).setValue(user);
-
             auth = FirebaseAuth.getInstance();
             auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -184,33 +179,13 @@
                         reference = database.getReference("Registered users");
 
                         User user = new User(email, username, password);
+                        reference.child(firebaseUser.getUid()).setValue(user);
 
-                        reference.child(firebaseUser.getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()){
-                                    FirebaseFirestore db = FirebaseFirestore.getInstance();
-                                    db.collection("Registered users").document(email)
-                                            .update("username", username)
-                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void aVoid) {
-                                                    // Xử lý thành công
-                                                }
-                                            })
-                                            .addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    // Xử lý lỗi
-                                                }
-                                            });
-                                    firebaseUser.sendEmailVerification();
-                                    Toast.makeText(SignUpActivity.this, "Vui lòng xác minh email của bạn", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
-                                    startActivity(intent);
-                                }
-                            }
-                        });
+                        firebaseUser.sendEmailVerification();
+
+                        Toast.makeText(SignUpActivity.this, "Vui lòng xác minh email của bạn", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
+                        startActivity(intent);
 
 
                     }
