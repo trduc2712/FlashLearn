@@ -3,12 +3,8 @@ package com.trduc.flashlearn.Controllers;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -61,7 +57,7 @@ public class DeleteFlashcardSetsActivity extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(DeleteFlashcardSetsActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+
                             }
                         });
             }
