@@ -37,6 +37,82 @@ public class FilterActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     SearchAdapter adapter;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_filter);
+        spinner_topic=findViewById(R.id.spinner_Topic);
+        ArrayAdapter<String> adapter_language = new ArrayAdapter<String>(this, R.layout.simple_spinner, choices);
+        adapter_language.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_topic.setAdapter(adapter_language);
+        spinner_topic.setSelection(0);
 
+        flashcardSetsList = new ArrayList<>();
+        lvFilterFlashcardSets = findViewById(R.id.lvFilterFlashcardSets);
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        adapter = new SearchAdapter(flashcardSetsList);
+
+        spinner_topic.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                String topic = spinner_topic.getSelectedItem().toString();
+                filterFlashcardSets(topic);
+                if (topic!="Chủ đề"){
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
+
+    private void filterFlashcardSets(String keytopic) {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            String userEmail = currentUser.getEmail();
+            if (userEmail != null) {
+                db.collection("users")
+
+                        .document(userEmail)
+
+                        .collection("flashcard_sets")
+
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                                flashcardSetsList.clear();
+                                for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                                    FlashcardSets flashcardSets = document.toObject(FlashcardSets.class);
+                                    if(flashcardSets.getTopic().equals(keytopic)) {
+                                        flashcardSetsList.add(flashcardSets);
+                                    }
+                                }
+                                adapter.notifyDataSetChanged();
+                                lvFilterFlashcardSets.setAdapter(adapter);
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(FilterActivity.this, "Lỗi!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(FilterActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
 
 }
