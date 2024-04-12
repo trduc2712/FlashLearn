@@ -44,13 +44,13 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_flashcards);
         initUi();
 
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        currentUser = auth.getCurrentUser();
         flashcardSetsId = getIntent().getStringExtra("flashcardSetsId");
         flashcardList = new ArrayList<>();
         deletedFlashcards = new ArrayList<>();
         editedFlashcards = new ArrayList<>();
-        auth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
-        currentUser = auth.getCurrentUser();
 
         if (currentUser != null) {
             String userEmail = currentUser.getEmail();
@@ -154,7 +154,7 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
         bCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteFlashcardSet(flashcardSetsId);
+                deleteFlashcardSet();
                 deleteAllFlashcards();
                 Intent intent = new Intent(CreateFlashcardsActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -184,12 +184,12 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
         lvAlreadyCreate = findViewById(R.id.lvAlreadyCreate);
     }
 
-    private void deleteFlashcardSet(String flashcardSetsIdToDelete) {
+    private void deleteFlashcardSet() {
         if (currentUser != null) {
             db.collection("users")
                     .document(currentUser.getEmail())
                     .collection("flashcard_sets")
-                    .document(flashcardSetsIdToDelete)
+                    .document(flashcardSetsId)
                     .delete()
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
@@ -237,7 +237,7 @@ public class CreateFlashcardsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        deleteFlashcardSet(flashcardSetsId);
+        deleteFlashcardSet();
         deleteAllFlashcards();
         Intent intent = new Intent(CreateFlashcardsActivity.this, MainActivity.class);
         startActivity(intent);

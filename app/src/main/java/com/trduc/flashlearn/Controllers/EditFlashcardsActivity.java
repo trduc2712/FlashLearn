@@ -199,7 +199,6 @@ public class EditFlashcardsActivity extends AppCompatActivity {
     }
 
     private void updateFirestoreQuestion(String question) {
-        FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser != null) {
             Flashcard currentFlashcard = flashcardList.get(currentFlashcardIndex);
             if (currentFlashcard != null && currentFlashcard.getId() != null) {
@@ -230,7 +229,6 @@ public class EditFlashcardsActivity extends AppCompatActivity {
     }
 
     private void updateFirestoreAnswer(String answer) {
-        FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser != null) {
             Flashcard currentFlashcard = flashcardList.get(currentFlashcardIndex);
             if (currentFlashcard != null && currentFlashcard.getId() != null) {
@@ -261,7 +259,7 @@ public class EditFlashcardsActivity extends AppCompatActivity {
     }
 
     private void restoreFlashcardsInFirestore() {
-        if (auth.getCurrentUser() != null) {
+        if (currentUser != null) {
             for (Flashcard flashcard : originalFlashcardList) {
                 db.collection("users")
                         .document(auth.getCurrentUser().getEmail())

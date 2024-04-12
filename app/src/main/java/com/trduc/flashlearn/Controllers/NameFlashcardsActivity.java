@@ -94,7 +94,6 @@ public class NameFlashcardsActivity extends AppCompatActivity {
     private void createNewFlashcardSet(final String flashcardSetsName) {
         if (currentUser != null) {
             final String userEmail = currentUser.getEmail();
-
             db.collection("users")
                     .document(userEmail)
                     .collection("flashcard_sets")
