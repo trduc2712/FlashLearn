@@ -10,7 +10,7 @@
     <EditText
         android:id="@+id/etQuestion"
         android:layout_width="0dp"
-        android:layout_height="75sp"
+        android:layout_height="125sp"
         android:layout_weight="1"
         android:background="@drawable/pink0_rounded_border_4sp"
         android:gravity="center"
@@ -26,7 +26,7 @@
     <EditText
         android:id="@+id/etAnswer"
         android:layout_width="0dp"
-        android:layout_height="75sp"
+        android:layout_height="125sp"
         android:layout_weight="1"
         android:background="@drawable/pink0_rounded_border_4sp"
         android:gravity="center"

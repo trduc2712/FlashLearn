@@ -400,7 +400,9 @@ public class SettingActivity extends AppCompatActivity {
                 User userprofile = snapshot.getValue(User.class);
                 String email = user.getEmail();
                 String name = userprofile.getUsername();
-                Glide.with(SettingActivity.this).load(user.getPhotoUrl()).into(ivProfilePicture);
+                if (!isDestroyed() && !isFinishing()) {
+                    Glide.with(SettingActivity.this).load(user.getPhotoUrl()).into(ivProfilePicture);
+                }
                 tvEmail.setText(email);
                 tvUsername.setText(name);
             }
